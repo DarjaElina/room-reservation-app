@@ -43,7 +43,7 @@ jobs:
         - name: Install dependencies and Maestro
           run: |
             export MAESTRO_VERSION=1.33.1
-            curl -Ls “https://get.maestro.mobile.dev" | bash
+            curl -Ls "https://get.maestro.mobile.dev" | bash
             arch -arm64 brew tap facebook/fb
             arch -arm64 brew install facebook/fb/idb-companion
             arch -arm64 brew install jq
