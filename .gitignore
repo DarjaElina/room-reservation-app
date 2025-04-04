@@ -23,4 +23,3 @@ expo-env.d.ts
 .env
 ios/
 .vscode/
-__generated__
