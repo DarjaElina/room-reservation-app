@@ -17,13 +17,23 @@
     "production": {
       "autoIncrement": true
     },
+    "e2e-test": {
+      "withoutCredentials": true,
+      "ios": {
+        "simulator": true
+      }
+    },
     "development-simulator": {
-      "developmentClient": true,
       "distribution": "internal",
       "ios": {
         "simulator": true
       },
-      "environment": "development"
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_BACKEND_URL": "https://backend-rough-wildflower-6075.fly.dev"
+      }
     }
   },
   "submit": {

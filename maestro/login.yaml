@@ -4,9 +4,9 @@ tags: ["login"]
 - launchApp
 - assertVisible: 'Log In'
 - tapOn: 'Username'
-- inputText: 'jd10000'
+- inputText: 'de10002'
 - tapOn: 'Password'
-- inputText: 'password'
+- inputText: 'Password1)'
 - tapOn:
     point: '50%,41%'
 - tapOn:

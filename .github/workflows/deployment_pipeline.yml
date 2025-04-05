@@ -39,12 +39,42 @@ jobs:
             eas-version: latest
             token: ${{ secrets.EXPO_TOKEN }}
 
-        - name: Send EAS build request
-          run: eas build --platform ios --non-interactive --no-wait --profile development-simulator
-          shell: bash
+        - name: Install jq for JSON output processing
+          run: brew install jq
 
-        - name: Install dependencies and Maestro
+        - name: Install Maestro
           run: curl -fsSL "https://get.maestro.mobile.dev" | bash
         
         - name: List simulators
           run: xcrun simctl list devices available
+
+        - name: Start iOS Simulator
+          run: |
+            # Find a simulator by name (e.g., iPhone 15)
+            DEVICE_ID=$(xcrun simctl list devices available --json | jq -r '.devices[] | .[] | select(.name == "iPhone 16") | .udid' | head -n 1)
+            DEVICE_STATE=$(xcrun simctl list devices available --json | jq -r --arg DEVICE_ID "$DEVICE_ID" '.devices[] | .[] | select(.udid == $DEVICE_ID) | .state')
+            
+            if [ -z "$DEVICE_ID" ]; then
+              echo "No available simulator found for the criteria."
+              exit 1
+            fi
+            
+            echo "DEVICE_ID=$DEVICE_ID" >> $GITHUB_ENV
+            
+            if [ "$DEVICE_STATE" != "Booted" ]; then
+              # Boot the simulator if it's not already booted
+              xcrun simctl boot "$DEVICE_ID"
+              # Wait a bit for the simulator to boot
+              sleep 30
+            else
+              echo "Simulator with DEVICE_ID=$DEVICE_ID is already booted."
+            fi
+
+        - name: Download and install the latest build on the iOS Simulator
+          run: eas build:run -p ios --latest 
+
+        - name: Run Maestro UI tests
+          run: |
+            export PATH="$PATH:$HOME/.maestro/bin"
+            maestro —-device $DEVICE_ID test maestro/login.yaml
+    
