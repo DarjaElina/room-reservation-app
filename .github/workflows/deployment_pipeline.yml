@@ -76,5 +76,5 @@ jobs:
         - name: Run Maestro UI tests
           run: |
             export PATH="$PATH:$HOME/.maestro/bin"
-            maestro —-device $DEVICE_ID test maestro/login.yaml
+            maestro --device $DEVICE_ID test maestro/login.yaml
     
