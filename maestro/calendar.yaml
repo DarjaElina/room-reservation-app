@@ -1,6 +1,6 @@
 appId: com.daria111.mobilefrontend
 ---
-# - launchApp
+- launchApp
 # - assertVisible: "My Calendar, tab, 2 of 3"
 - runFlow: login.yaml
 - tapOn: "My Calendar, tab, 2 of 3"

@@ -1,6 +1,6 @@
 appId: com.daria111.mobilefrontend
 ---
-# - launchApp
+- launchApp
 # - tapOn: 'MY-100 Myaskovsky Building Available'
 - runFlow: login.yaml
 - tapOn: 'Reserve'
