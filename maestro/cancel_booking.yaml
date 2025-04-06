@@ -14,7 +14,7 @@ appId: com.daria111.mobilefrontend
 - tapOn: 'My Calendar, tab, 2 of 3'
 - assertVisible: 'MY-100'
 - runScript: ../src/scripts/getTomorrowDate.js
-- assertVisible: '${output.getTomorrowDate.commaFormat} at 6.00 - ${output.getTomorrowDate.commaFormat} at 7.00'
+- assertVisible: '${output.getTomorrowDate.commaFormat} at 06.00 - ${output.getTomorrowDate.commaFormat} at 07.00'
 - assertVisible: 'Cancel'
 - tapOn: 'Cancel'
 - assertVisible: 'Cancel Booking'
