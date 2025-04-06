@@ -76,10 +76,10 @@ jobs:
         - name: Run Maestro Login test
           run: |
             export PATH="$PATH:$HOME/.maestro/bin"
-            maestro --device $DEVICE_ID test maestro/login.yaml
+            maestro --device $DEVICE_ID test --no-reset maestro/login.yaml
 
-        # - name: Run other Maestro tests
-        #   run: |
-        #     export PATH="$PATH:$HOME/.maestro/bin"
-        #     maestro --device $DEVICE_ID test --exclude-tags=login maestro
+        - name: Run other Maestro tests
+          run: |
+            export PATH="$PATH:$HOME/.maestro/bin"
+            maestro --device $DEVICE_ID test --no-reset --exclude-tags=login maestro
       
