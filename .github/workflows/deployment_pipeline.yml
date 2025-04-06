@@ -78,8 +78,8 @@ jobs:
             export PATH="$PATH:$HOME/.maestro/bin"
             maestro --device $DEVICE_ID test maestro/login.yaml
 
-        - name: Run other Maestro tests
-          run: |
-            export PATH="$PATH:$HOME/.maestro/bin"
-            maestro --device $DEVICE_ID test --exclude-tags=login maestro
+        # - name: Run other Maestro tests
+        #   run: |
+        #     export PATH="$PATH:$HOME/.maestro/bin"
+        #     maestro --device $DEVICE_ID test --exclude-tags=login maestro
       

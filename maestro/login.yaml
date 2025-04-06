@@ -12,4 +12,5 @@ tags:
     point: '50%,41%'
 - tapOn:
     point: '50%,70%'
+- assertVisible: 'MY-100 Myaskovsky Building Available'
 - clearState
