@@ -1,7 +1,8 @@
 appId: com.daria111.mobilefrontend
 ---
-- launchApp
-- assertVisible: 'MY-100 Myaskovsky Building Available'
+# - launchApp
+# - assertVisible: 'MY-100 Myaskovsky Building Available'
+- runFlow: login.yaml
 - tapOn: 'MY-100 Myaskovsky Building Available'
 - assertVisible: 'MY-100'
 - assertVisible: 'Reserve'

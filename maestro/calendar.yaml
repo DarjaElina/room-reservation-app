@@ -1,7 +1,8 @@
 appId: com.daria111.mobilefrontend
 ---
-- launchApp
-- assertVisible: "My Calendar, tab, 2 of 3"
+# - launchApp
+# - assertVisible: "My Calendar, tab, 2 of 3"
+- runFlow: login.yaml
 - tapOn: "My Calendar, tab, 2 of 3"
 - assertVisible: 'You have no upcoming bookings.'
 - tapOn: 'Search, tab, 1 of 3'
