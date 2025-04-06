@@ -78,8 +78,48 @@ jobs:
             export PATH="$PATH:$HOME/.maestro/bin"
             maestro --device $DEVICE_ID test maestro/login.yaml
 
-        - name: Run other Maestro tests
+        - name: Maestro test 1
           run: |
             export PATH="$PATH:$HOME/.maestro/bin"
-            maestro --device $DEVICE_ID test --exclude-tags=login maestro
-      
+            maestro --device $DEVICE_ID test maestro/date_time_picker.yaml
+
+        - name: Maestro test 2
+          run: |
+            export PATH="$PATH:$HOME/.maestro/bin"
+            maestro --device $DEVICE_ID test maestro/home_screen.yaml
+
+        - name: Maestro test 3
+          run: |
+            export PATH="$PATH:$HOME/.maestro/bin"
+            maestro --device $DEVICE_ID test maestro/tools_filter.yaml
+
+        - name: Maestro test 4
+          run: |
+            export PATH="$PATH:$HOME/.maestro/bin"
+            maestro --device $DEVICE_ID test maestro/type_filter.yaml
+
+        - name: Maestro test 5
+          run: |
+            export PATH="$PATH:$HOME/.maestro/bin"
+            maestro --device $DEVICE_ID test maestro/building_filter.yaml
+
+        - name: Maestro test 6
+          run: |
+            export PATH="$PATH:$HOME/.maestro/bin"
+            maestro --device $DEVICE_ID test maestro/modify_booking.yaml
+
+        - name: Maestro test 7
+          run: |
+            export PATH="$PATH:$HOME/.maestro/bin"
+            maestro --device $DEVICE_ID test maestro/cancel_booking.yaml
+
+        
+        - name: Maestro test 8
+          run: |
+            export PATH="$PATH:$HOME/.maestro/bin"
+            maestro --device $DEVICE_ID test maestro/room_view.yaml
+
+        - name: Maestro test 9
+          run: |
+            export PATH="$PATH:$HOME/.maestro/bin"
+            maestro --device $DEVICE_ID test maestro/calendar.yaml
