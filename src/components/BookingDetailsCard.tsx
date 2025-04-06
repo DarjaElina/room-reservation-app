@@ -1,4 +1,3 @@
-import React from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';

@@ -13,6 +13,7 @@ import { useTheme } from '@react-navigation/native';
 import { useI18nContext } from '../i18n/i18n-react';
 import useStyles from '../hooks/useStyles';
 import { useState } from 'react';
+import React from 'react';
 
 export default function Login() {
   const { colors } = useTheme();

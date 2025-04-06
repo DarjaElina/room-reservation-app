@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { View, Text, Pressable, Alert } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import useUpdateBooking from '@/src/hooks/useUpdateBooking';

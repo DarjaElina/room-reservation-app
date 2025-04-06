@@ -4,7 +4,6 @@ import { AntDesign, Entypo } from '@expo/vector-icons';
 import { useTheme } from '@react-navigation/native';
 import { useI18nContext } from '../i18n/i18n-react';
 import useStyles from '../hooks/useStyles';
-import React from 'react';
 
 interface RoomProps {
   code: string;
