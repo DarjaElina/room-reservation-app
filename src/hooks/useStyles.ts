@@ -234,8 +234,8 @@ const useStyles = () => {
       },
 
       // images & icons
-      userIcon: {
-        margin: 'auto',
+      userIconContainer: {
+        alignItems: 'center',
         marginBottom: vmin * 3,
       },
       roomItemImage: {

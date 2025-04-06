@@ -1,22 +1,23 @@
 appId: com.daria111.mobilefrontend
 ---
+- launchApp
 - assertVisible: 'MY-100 Myaskovsky Building Available'
-- assertNotVisible: 'tane-131  Sergei Taneyev Building  Available'
+- assertNotVisible: 'TA-100 Taneyev Building Available'
 - tapOn: 'MY-100 Myaskovsky Building Available'
-- assertVisible: 'Classroom'
+- assertVisible: 'Concert hall'
 - tapOn: 'Back'
 - scrollUntilVisible:
-    element: 'tane-131  Sergei Taneyev Building  Available'
-- tapOn: 'tane-131  Sergei Taneyev Building  Available'
-- assertVisible: 'Practice room'
+    element: 'TA-100 Taneyev Building Available'
+- tapOn: 'TA-100 Taneyev Building Available'
+- assertVisible: 'Classroom'
 - tapOn: 'Back'
 - tapOn: ' Type'
 - tapOn: 'Search'
-- inputText: 'practice'
+- inputText: 'classroom'
 - hideKeyboard
-- assertVisible: ' Practice Room'
-- longPressOn: ' Practice Room'
+- assertVisible: ' Classroom'
+- longPressOn: ' Classroom'
 - tapOn: 'Back'
 - assertNotVisible: 'MY-100 Myaskovsky Building Available'
-- assertVisible: 'tane-131  Sergei Taneyev Building  Available'
+- assertVisible: 'TA-100 Taneyev Building Available'
 - clearState

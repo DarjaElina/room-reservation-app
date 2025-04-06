@@ -31,4 +31,8 @@ appId: com.daria111.mobilefrontend
 - scrollUntilVisible:
     element: '21:00:00 Reservation from Booking App'
 - assertVisible: 'Jane Doe'
+- tapOn: "My Calendar, tab, 2 of 3"
+- assertVisible: "Cancel"
+- tapOn: "Cancel"
+- tapOn: "Yes, Cancel"
 - clearState

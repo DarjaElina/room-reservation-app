@@ -1,8 +1,8 @@
 appId: com.daria111.mobilefrontend
 ---
 - launchApp
-- assertVisible: 'My Calendar'
-- tapOn: 'My Calendar'
+- assertVisible: "My Calendar, tab, 2 of 3"
+- tapOn: "My Calendar, tab, 2 of 3"
 - assertVisible: 'You have no upcoming bookings.'
 - tapOn: 'Search, tab, 1 of 3'
 - tapOn: 'MY-100 Myaskovsky Building Available'
@@ -15,8 +15,12 @@ appId: com.daria111.mobilefrontend
 - tapOn: 'Reserve'
 - assertVisible: 'Booking created successfully.'
 - assertVisible: 'MY-100 Myaskovsky Building Available'
-- tapOn: 'My Calendar'
+- tapOn: "My Calendar, tab, 2 of 3"
 - assertVisible: 'MY-100'
 - runScript: ../src/scripts/getTomorrowDate.js
 - assertVisible: '${output.getTomorrowDate.commaFormat} at 06.00 - ${output.getTomorrowDate.commaFormat} at 07.00'
+- tapOn: "My Calendar, tab, 2 of 3"
+- assertVisible: "Cancel"
+- tapOn: "Cancel"
+- tapOn: "Yes, Cancel"
 - clearState

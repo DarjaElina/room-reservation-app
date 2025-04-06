@@ -65,13 +65,8 @@ export default function Login() {
         },
       ]}
     >
-      <View>
-        <FontAwesome5
-          style={styles.userIcon}
-          size={50}
-          name="user-circle"
-          color={colors.text}
-        />
+      <View style={styles.userIconContainer}>
+        <FontAwesome5 size={50} name="user-circle" color={colors.text} />
       </View>
       <Text
         style={[

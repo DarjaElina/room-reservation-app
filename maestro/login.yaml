@@ -1,12 +1,13 @@
 appId: com.daria111.mobilefrontend
-tags: ["login"]
+tags:
+    - login
 ---
 - launchApp
 - assertVisible: 'Log In'
 - tapOn: 'Username'
-- inputText: 'de10002'
+- inputText: 'jd10000'
 - tapOn: 'Password'
-- inputText: 'Password1)'
+- inputText: 'password'
 - tapOn:
     point: '50%,41%'
 - tapOn:

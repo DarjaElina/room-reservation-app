@@ -73,8 +73,11 @@ jobs:
         - name: Download and install the latest build on the iOS Simulator
           run: eas build:run -p ios --latest 
 
-        - name: Run Maestro UI tests
+        - name: Run Maestro Login test
           run: |
             export PATH="$PATH:$HOME/.maestro/bin"
             maestro --device $DEVICE_ID test maestro/login.yaml
-    
+
+        - name: Run Maestro full test flow
+          run: maestro test --exclude-tags=login maestro
+      

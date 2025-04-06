@@ -1,4 +1,4 @@
-appId: dev.daria111.mobilefrontend
+appId: com.daria111.mobilefrontend
 ---
 - launchApp
 - assertVisible: 'MY-100 Myaskovsky Building Available'

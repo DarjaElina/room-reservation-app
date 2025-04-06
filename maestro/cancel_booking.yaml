@@ -11,10 +11,10 @@ appId: com.daria111.mobilefrontend
 - tapOn: 'Reserve'
 - assertVisible: 'Booking created successfully.'
 - assertVisible: 'MY-100 Myaskovsky Building Available'
-- tapOn: 'My Calendar'
+- tapOn: 'My Calendar, tab, 2 of 3'
 - assertVisible: 'MY-100'
 - runScript: ../src/scripts/getTomorrowDate.js
-- assertVisible: '${output.getTomorrowDate.dotFormat} at 6.00 - ${output.getTomorrowDate.dotFormat} at 7.00'
+- assertVisible: '${output.getTomorrowDate.commaFormat} at 6.00 - ${output.getTomorrowDate.commaFormat} at 7.00'
 - assertVisible: 'Cancel'
 - tapOn: 'Cancel'
 - assertVisible: 'Cancel Booking'

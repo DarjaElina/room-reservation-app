@@ -40,5 +40,9 @@ appId: com.daria111.mobilefrontend
 - assertVisible: 'Booking updated successfully.'
 - tapOn: "My Calendar, tab, 2 of 3"
 - tapOn: "My Calendar, tab, 2 of 3"
-- assertVisible: '${output.getTomorrowDate.dotFormat} at 09.00 - ${output.getTomorrowDate.dotFormat} at 10.00'
+- assertVisible: '${output.getTomorrowDate.commaFormat} at 09.00 - ${output.getTomorrowDate.commaFormat} at 10.00'
+- tapOn: "My Calendar, tab, 2 of 3"
+- assertVisible: "Cancel"
+- tapOn: "Cancel"
+- tapOn: "Yes, Cancel"
 - clearState
