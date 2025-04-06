@@ -7,9 +7,7 @@ import { Reference } from '@apollo/client/utilities';
 
 const authStorage = new AuthStorage();
 
-const BACKEND_URL = __DEV__
-  ? process.env.EXPO_PUBLIC_BACKEND_URL
-  : process.env.EXPO_PUBLIC_BACKEND_URL_PROD;
+const BACKEND_URL = process.env.EXPO_PUBLIC_BACKEND_URL;
 
 const httpLink = createHttpLink({
   uri: BACKEND_URL,
