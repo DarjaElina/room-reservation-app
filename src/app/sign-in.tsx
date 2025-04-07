@@ -13,7 +13,6 @@ import { useTheme } from '@react-navigation/native';
 import { useI18nContext } from '../i18n/i18n-react';
 import useStyles from '../hooks/useStyles';
 import { useState } from 'react';
-import React from 'react';
 
 export default function Login() {
   const { colors } = useTheme();
@@ -63,33 +62,37 @@ export default function Login() {
         styles.flexContainer,
         {
           backgroundColor: colors.background,
+          justifyContent: 'center',
+          alignItems: 'center',
         },
       ]}
     >
-      <View style={styles.userIconContainer}>
-        <FontAwesome5 size={50} name="user-circle" color={colors.text} />
+      <View style={styles.container}>
+        <View style={styles.userIconContainer}>
+          <FontAwesome5 size={50} name="user-circle" color={colors.text} />
+        </View>
+        <Text
+          style={[
+            styles.heading,
+            {
+              color: colors.text,
+              textAlign: 'center',
+            },
+          ]}
+        >
+          {LL.LOGIN()}
+        </Text>
+        <UserMessage text={userMessage} type="error" />
+        <Form
+          control={control}
+          errors={errors}
+          fields={[
+            { name: 'username', label: LL.USERNAME() },
+            { name: 'password', label: LL.PASSWORD(), isPassword: true },
+          ]}
+        />
+        <Button isBig label={LL.LOGIN()} onSubmit={handleSubmit(onSubmit)} />
       </View>
-      <Text
-        style={[
-          styles.heading,
-          {
-            color: colors.text,
-            textAlign: 'center',
-          },
-        ]}
-      >
-        {LL.LOGIN()}
-      </Text>
-      <UserMessage text={userMessage} type="error" />
-      <Form
-        control={control}
-        errors={errors}
-        fields={[
-          { name: 'username', label: LL.USERNAME() },
-          { name: 'password', label: LL.PASSWORD(), isPassword: true },
-        ]}
-      />
-      <Button isBig label={LL.LOGIN()} onSubmit={handleSubmit(onSubmit)} />
     </KeyboardAwareScrollView>
   );
 }

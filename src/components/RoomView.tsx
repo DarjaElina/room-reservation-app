@@ -1,4 +1,11 @@
-import { View, Text, Pressable, Modal, ScrollView } from 'react-native';
+import {
+  View,
+  Text,
+  Pressable,
+  Modal,
+  ScrollView,
+  Platform,
+} from 'react-native';
 import RoomDescription from './RoomDescription';
 import { Image } from 'expo-image';
 import EquipmentList from './EquipmentList';
@@ -6,7 +13,6 @@ import useAuth from '@/src/hooks/useAuth';
 import { Redirect } from 'expo-router';
 import BookingList from './BookingList';
 import AntDesign from '@expo/vector-icons/AntDesign';
-import Entypo from '@expo/vector-icons/Entypo';
 import { useState } from 'react';
 import QueryResult from './QueryResult';
 import { BookingStatus, RoomType } from '@/__generated__/graphql';
@@ -70,7 +76,11 @@ export default function RoomView({ room }: { room: RoomViewProps }) {
           <View>
             <View style={[styles.headerContainer]}>
               <View
-                style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: Platform.OS === 'web' ? 20 : 10,
+                }}
               >
                 <Text
                   style={[
@@ -107,8 +117,8 @@ export default function RoomView({ room }: { room: RoomViewProps }) {
                   </View>
                 ) : (
                   <View style={styles.iconTextContainer}>
-                    <Entypo
-                      name="squared-cross"
+                    <AntDesign
+                      name="closesquare"
                       size={20}
                       color={colors.error}
                     />
@@ -118,7 +128,17 @@ export default function RoomView({ room }: { room: RoomViewProps }) {
                   </View>
                 )}
               </View>
-
+              <Text
+                onPress={() => setModalVisible(true)}
+                style={[
+                  styles.buttonText,
+                  {
+                    color: colors.text,
+                  },
+                ]}
+              >
+                {LL.SHOW_UPCOMING_RESERVATIONS()}
+              </Text>
               <Pressable
                 style={[styles.button, { backgroundColor: colors.border }]}
                 onPress={() =>
@@ -130,19 +150,7 @@ export default function RoomView({ room }: { room: RoomViewProps }) {
               >
                 <Text style={[styles.buttonText]}>{LL.RESERVE()}</Text>
               </Pressable>
-              <Text
-                onPress={() => setModalVisible(true)}
-                style={[
-                  styles.buttonText,
-                  {
-                    textDecorationLine: 'underline',
-                  },
-                ]}
-              >
-                {LL.SHOW_UPCOMING_RESERVATIONS()}
-              </Text>
             </View>
-
             <EquipmentList equipment={room.equipment} />
             <RoomDescription text={room.description} />
 
@@ -154,7 +162,7 @@ export default function RoomView({ room }: { room: RoomViewProps }) {
               <View
                 style={[
                   styles.modalContainer,
-                  { backgroundColor: colors.card },
+                  { backgroundColor: colors.background },
                 ]}
               >
                 <BookingList

@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useMemo } from 'react';
-import { useWindowDimensions, StyleSheet } from 'react-native';
+import { useWindowDimensions, StyleSheet, Platform } from 'react-native';
 import theme from '@/src/theme';
 
 const useStyles = () => {
@@ -46,7 +46,7 @@ const useStyles = () => {
         borderRadius: theme.borderRadius.medium,
         borderWidth: 1,
         fontFamily: 'Nunito-Regular',
-        width: isLargeScreen ? '70%' : '100%',
+        width: isLargeScreen ? '80%' : '100%',
         alignSelf: 'center',
       },
       searchbar: {
@@ -55,7 +55,7 @@ const useStyles = () => {
         justifyContent: 'center',
         borderWidth: 1,
         overflow: 'hidden',
-        width: isLargeScreen ? '70%' : '100%',
+        width: isLargeScreen ? '80%' : '100%',
         alignSelf: 'center',
       },
       datePressable: {
@@ -92,7 +92,7 @@ const useStyles = () => {
         margin: vmin * 3.5,
       },
       segmentedButtons: {
-        width: isLargeScreen ? '70%' : '100%',
+        width: isLargeScreen ? '80%' : '100%',
         alignSelf: 'center',
       },
 
@@ -125,6 +125,9 @@ const useStyles = () => {
       },
 
       // containers
+      container: {
+        width: isLargeScreen ? '60%' : '100%',
+      },
       scrollContainer: {
         justifyContent: 'center',
         paddingHorizontal: vw * (isLargeScreen ? 10 : 4),
@@ -132,6 +135,7 @@ const useStyles = () => {
       },
       flexContainer: {
         flex: 1,
+        justifyContent: 'flex-start',
       },
       itemContainer: {
         width: vmin * (isLargeScreen ? 35 : 44),
@@ -211,6 +215,8 @@ const useStyles = () => {
         marginVertical: vmin * 2,
         alignItems: 'center',
         justifyContent: 'center',
+        width: Platform.OS === 'web' ? '60%' : '100%',
+        alignSelf: 'center',
         ...shadows.light,
       },
       roomLinkContainer: {

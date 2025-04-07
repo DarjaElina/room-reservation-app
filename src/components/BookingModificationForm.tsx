@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Text, Pressable, Alert } from 'react-native';
+import { View, Text, Pressable, Alert, Platform } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import useUpdateBooking from '@/src/hooks/useUpdateBooking';
 import { router } from 'expo-router';
@@ -27,7 +27,10 @@ const BookingModificationForm: React.FC<BookingModificationFormProps> = ({
   const [title, setTitle] = useState(initialData.title);
   const { colors } = useTheme();
   const [updateBooking] = useUpdateBooking();
-  const [userMessage, setUserMessage] = useState<string | null>('');
+  const [userMessage, setUserMessage] = useState<{
+    message: string;
+    type: 'error' | 'success';
+  } | null>(null);
   const { LL } = useI18nContext();
   const styles = useStyles();
   const formatDate = (date: Date): string => {
@@ -51,7 +54,10 @@ const BookingModificationForm: React.FC<BookingModificationFormProps> = ({
         initialData.roomId,
         title
       );
-      setUserMessage(LL.BOOKING_UPDATED_SUCCESSFULLY());
+      setUserMessage({
+        message: LL.BOOKING_UPDATED_SUCCESSFULLY(),
+        type: 'success',
+      });
       setTitle('');
       setTimeout(() => {
         setUserMessage(null);
@@ -62,7 +68,12 @@ const BookingModificationForm: React.FC<BookingModificationFormProps> = ({
       if (error instanceof ApolloError) {
         const message =
           error.graphQLErrors?.[0]?.message || 'Something went wrong!';
-        Alert.alert('Error', message);
+        if (Platform.OS === 'web') {
+          setUserMessage({ message, type: 'error' });
+          setTimeout(() => {
+            setUserMessage(null);
+          }, 2000);
+        } else Alert.alert('Error', message);
       }
       console.log(error);
     }
@@ -88,11 +99,12 @@ const BookingModificationForm: React.FC<BookingModificationFormProps> = ({
 
         {
           backgroundColor: colors.background,
-          width: '100%',
+          width: Platform.OS === 'web' ? '60%' : '100%',
+          alignSelf: 'center',
         },
       ]}
     >
-      <UserMessage text={userMessage} type="success" />
+      <UserMessage text={userMessage?.message} type={userMessage?.type} />
       <TextInput
         mode="flat"
         style={[styles.input, { backgroundColor: '#ffffff' }]}
@@ -104,15 +116,20 @@ const BookingModificationForm: React.FC<BookingModificationFormProps> = ({
 
       <View style={styles.textContainer}>
         <Text
-          style={[styles.mediumText, styles.boldText, styles.textContainer]}
+          style={[
+            styles.mediumText,
+            styles.boldText,
+            styles.textContainer,
+            { color: colors.text },
+          ]}
         >
           {LL.STARTS()}:
         </Text>
         <Pressable
           onPress={() => handleNavigateToDatePicker('start')}
-          style={styles.datePressable}
+          style={[styles.datePressable, { backgroundColor: colors.card }]}
         >
-          <Text style={styles.mediumText}>
+          <Text style={[styles.mediumText, { color: colors.text }]}>
             {formatDate(new Date(initialData.startDate))}
           </Text>
         </Pressable>
@@ -131,9 +148,9 @@ const BookingModificationForm: React.FC<BookingModificationFormProps> = ({
         </Text>
         <Pressable
           onPress={() => handleNavigateToDatePicker('end')}
-          style={styles.datePressable}
+          style={[styles.datePressable, { backgroundColor: colors.card }]}
         >
-          <Text style={styles.mediumText}>
+          <Text style={[styles.mediumText, { color: colors.text }]}>
             {formatDate(new Date(initialData.endDate))}
           </Text>
         </Pressable>

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Text, View, Modal, Pressable } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import useSignOut from '@/src/hooks/useSignOut';
@@ -31,20 +31,14 @@ export default function SettingsScreen() {
       style={[
         styles.flexContainer,
         styles.scrollContainer,
-        { backgroundColor: colors.background, justifyContent: 'center' },
+        styles.container,
+        {
+          backgroundColor: colors.background,
+          justifyContent: 'center',
+          alignSelf: 'center',
+        },
       ]}
     >
-      <Pressable style={[styles.settingsLink, { borderColor: colors.border }]}>
-        <Text style={[styles.mediumText, { color: colors.text }]}>
-          Privacy Policy
-        </Text>
-      </Pressable>
-      <Pressable style={[styles.settingsLink, { borderColor: colors.border }]}>
-        <Text style={[styles.mediumText, { color: colors.text }]}>
-          Terms of Service
-        </Text>
-      </Pressable>
-
       <Pressable
         style={[styles.button, { backgroundColor: colors.primary }]}
         onPress={() => setModalVisible(true)}
@@ -66,7 +60,14 @@ export default function SettingsScreen() {
 
           <Pressable
             onPress={() => setModalVisible(false)}
-            style={[styles.button]}
+            style={[
+              styles.button,
+              {
+                backgroundColor: colors.primary,
+                width: 100,
+                alignSelf: 'center',
+              },
+            ]}
           >
             <Text style={[styles.buttonText]}>{LL.CLOSE()}</Text>
           </Pressable>

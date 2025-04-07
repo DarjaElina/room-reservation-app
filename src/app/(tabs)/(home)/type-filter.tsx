@@ -5,7 +5,6 @@ import useFilter from '@/src/hooks/useFilter';
 import { RoomType } from '@/__generated__/graphql';
 import { useState } from 'react';
 import { useDebounce } from 'use-debounce';
-import { useTheme } from '@react-navigation/native';
 import useStyles from '@/src/hooks/useStyles';
 
 export const RoomTypeLabels: Record<RoomType, string> = {
@@ -20,7 +19,6 @@ export const RoomTypeLabels: Record<RoomType, string> = {
 };
 
 export default function TypeFilter() {
-  const { colors } = useTheme();
   const [searchQuery, setSearchQuery] = useState('');
   const [debouncedSearchQuery] = useDebounce(searchQuery, 2000);
   const { types, setTypes } = useFilter();
@@ -35,15 +33,7 @@ export default function TypeFilter() {
     o.label.toLowerCase().includes(debouncedSearchQuery.toLowerCase())
   );
   return (
-    <View
-      style={[
-        styles.scrollContainer,
-        styles.flexContainer,
-        {
-          backgroundColor: colors.backgroundPrimary,
-        },
-      ]}
-    >
+    <View style={[styles.scrollContainer, styles.flexContainer]}>
       <SearchBar
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}

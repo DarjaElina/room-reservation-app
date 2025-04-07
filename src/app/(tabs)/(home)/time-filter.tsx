@@ -150,101 +150,110 @@ export default function TimeFilter() {
         },
       ]}
     >
-      <Text
+      <View
         style={[
-          styles.bigText,
-          styles.textContainer,
+          styles.container,
           {
-            color: colors.text,
-            textAlign: 'center',
+            alignSelf: 'center',
           },
         ]}
       >
-        {LL.SELECT_TIME_RANGE()}
-      </Text>
-      {Platform.OS === 'ios' || Platform.OS === 'android' ? (
-        <TextInput
-          activeUnderlineColor={colors.primary}
-          label="Start Date"
-          value={
-            startDate
-              ? `${startDate.toDateString()}, ${startDate.toLocaleTimeString(undefined, { timeStyle: 'short' })}`
-              : ''
-          }
-          onPressIn={showStartDatePicker}
-          style={[styles.input]}
-          placeholderTextColor={colors.text}
-          textColor={colors.text}
+        <Text
+          style={[
+            styles.bigText,
+            styles.textContainer,
+            {
+              color: colors.text,
+              textAlign: 'center',
+            },
+          ]}
+        >
+          {LL.SELECT_TIME_RANGE()}
+        </Text>
+        {Platform.OS === 'ios' || Platform.OS === 'android' ? (
+          <TextInput
+            activeUnderlineColor={colors.primary}
+            label="Start Date"
+            value={
+              startDate
+                ? `${startDate.toDateString()}, ${startDate.toLocaleTimeString(undefined, { timeStyle: 'short' })}`
+                : ''
+            }
+            onPressIn={showStartDatePicker}
+            style={[styles.input]}
+            placeholderTextColor={colors.text}
+            textColor={colors.text}
+          />
+        ) : (
+          <input
+            type="datetime-local"
+            value={startDate ? startDate.toISOString().slice(0, 16) : ''}
+            onChange={handleStartDateChange}
+            style={{
+              padding: 10,
+              borderRadius: 5,
+              border: '1px solid #ccc',
+              fontSize: 16,
+              margin: 10,
+            }}
+          />
+        )}
+        <DateTimePickerModal
+          isVisible={isStartDatePickerVisible}
+          mode="datetime"
+          onConfirm={handleStartDateConfirm}
+          onCancel={hideStartDatePicker}
+          minimumDate={new Date()}
+          minuteInterval={15}
         />
-      ) : (
-        <input
-          type="datetime-local"
-          value={startDate ? startDate.toISOString().slice(0, 16) : ''}
-          onChange={handleStartDateChange}
-          style={{
-            padding: 10,
-            borderRadius: 5,
-            border: '1px solid #ccc',
-            fontSize: 16,
-            margin: 10,
-          }}
+        {Platform.OS === 'ios' || Platform.OS === 'android' ? (
+          <TextInput
+            activeUnderlineColor={colors.primary}
+            label="End Date"
+            value={
+              endDate
+                ? `${endDate.toDateString()}, ${endDate.toLocaleTimeString(undefined, { timeStyle: 'short' })}`
+                : ''
+            }
+            onPressIn={showEndDatePicker}
+            style={[styles.input]}
+            placeholderTextColor={colors.text}
+            textColor={colors.text}
+          />
+        ) : (
+          <input
+            type="datetime-local"
+            value={endDate ? endDate.toISOString().slice(0, 16) : ''}
+            onChange={handleEndDateChange}
+            style={{
+              padding: 10,
+              borderRadius: 5,
+              border: '1px solid #ccc',
+              fontSize: 16,
+              margin: 10,
+            }}
+          />
+        )}
+        <DateTimePickerModal
+          isVisible={isEndDatePickerVisible}
+          mode="time"
+          onConfirm={handleEndDateConfirm}
+          onCancel={hideEndDatePicker}
+          minuteInterval={15}
         />
-      )}
-      <DateTimePickerModal
-        isVisible={isStartDatePickerVisible}
-        mode="datetime"
-        onConfirm={handleStartDateConfirm}
-        onCancel={hideStartDatePicker}
-        minimumDate={new Date()}
-        minuteInterval={15}
-      />
-      {Platform.OS === 'ios' || Platform.OS === 'android' ? (
-        <TextInput
-          activeUnderlineColor={colors.primary}
-          label="End Date"
-          value={
-            endDate
-              ? `${endDate.toDateString()}, ${endDate.toLocaleTimeString(undefined, { timeStyle: 'short' })}`
-              : ''
-          }
-          onPressIn={showEndDatePicker}
-          style={[styles.input]}
-          placeholderTextColor={colors.text}
-          textColor={colors.text}
-        />
-      ) : (
-        <input
-          type="datetime-local"
-          value={endDate ? endDate.toISOString().slice(0, 16) : ''}
-          onChange={handleEndDateChange}
-          style={{
-            padding: 10,
-            borderRadius: 5,
-            border: '1px solid #ccc',
-            fontSize: 16,
-            margin: 10,
-          }}
-        />
-      )}
-      <DateTimePickerModal
-        isVisible={isEndDatePickerVisible}
-        mode="time"
-        onConfirm={handleEndDateConfirm}
-        onCancel={hideEndDatePicker}
-        minuteInterval={15}
-      />
-      <Button
-        label="Search classrooms"
-        onSubmit={handleSearch}
-        style={styles.button}
-      />
-      {(startDate || endDate) && (
         <Button
-          label="Clear Dates"
-          onSubmit={Platform.OS === 'web' ? clearSearch : handleReset}
-          style={[styles.button, { backgroundColor: colors.primary }]}
+          label="Search classrooms"
+          onSubmit={handleSearch}
+          style={styles.button}
         />
-      )}
+        {(startDate || endDate) && (
+          <Button
+            label="Clear Dates"
+            onSubmit={Platform.OS === 'web' ? clearSearch : handleReset}
+            style={[styles.button, { backgroundColor: colors.primary }]}
+          />
+        )}
+      </View>
     </View>
   );
 }

@@ -15,6 +15,7 @@ export default function RoomDescription({ text }: DescriptionProp) {
         styles.mediumText,
         {
           color: colors.text,
+          padding: 5,
         },
       ]}
     >

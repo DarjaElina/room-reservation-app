@@ -21,13 +21,13 @@ export const lightColors: ColorTheme = {
 };
 
 export const darkColors: ColorTheme = {
-  background: 'rgb(21, 26, 31)',
-  card: 'rgb(38, 40, 39)',
-  text: 'rgb(245, 245, 245)',
-  border: '#71a9f7',
-  primary: '#71a9f7',
-  error: '#E9192D',
-  success: '#3F7D58',
+  background: 'rgb(18, 20, 22)',
+  card: 'rgb(30, 32, 34)',
+  text: '#ffffff',
+  border: '#7BB1FF',
+  primary: '#7BB1FF',
+  error: '#FF5C5C',
+  success: '#6FCF97',
 };
 export const customLightTheme = {
   ...DefaultTheme,

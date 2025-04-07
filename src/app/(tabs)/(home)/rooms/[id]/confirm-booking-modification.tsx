@@ -1,4 +1,4 @@
-import { View, Alert } from 'react-native';
+import { View, Alert, Platform } from 'react-native';
 import QueryResult from '@/src/components/QueryResult';
 import BookingDetailsCard from '@/src/components/BookingDetailsCard';
 import UserMessage from '@/src/components/UserMessage';
@@ -20,7 +20,10 @@ export default function ConfirmBookingModificationScreen() {
   }>();
   const { loading: roomLoading, room, error: roomError } = useRoom(id);
   const [updateBooking, { loading }] = useUpdateBooking();
-  const [userMessage, setUserMessage] = useState<string | null>('');
+  const [userMessage, setUserMessage] = useState<{
+    message: string;
+    type: 'error' | 'success';
+  } | null>(null);
   const [bookingTitle, setBookingTitle] = useState<string>('');
   const [error] = useState<string | null>(null);
   const { LL } = useI18nContext();
@@ -37,15 +40,25 @@ export default function ConfirmBookingModificationScreen() {
         id,
         bookingTitle.trim() || undefined
       );
-      setUserMessage(LL.BOOKING_UPDATED_SUCCESSFULLY());
+      setUserMessage({
+        message: LL.BOOKING_UPDATED_SUCCESSFULLY(),
+        type: 'success',
+      });
       setBookingTitle('');
       setTimeout(() => {
         setUserMessage(null);
         router.navigate('/(tabs)/(home)');
       }, 2000);
     } catch (error) {
-      if (error instanceof ApolloError) Alert.alert(error.message);
-      console.log(error);
+      if (error instanceof ApolloError) {
+        if (Platform.OS === 'web') {
+          setUserMessage({ message: error.message, type: 'error' });
+          setTimeout(() => {
+            setUserMessage(null);
+            router.navigate('/(tabs)/(home)');
+          }, 2000);
+        } else Alert.alert(error.message);
+      }
     }
   };
 
@@ -60,7 +73,7 @@ export default function ConfirmBookingModificationScreen() {
           },
         ]}
       >
-        <UserMessage text={userMessage} type="success" />
+        <UserMessage text={userMessage?.message} type={userMessage?.type} />
         {room && (
           <BookingDetailsCard
             roomCode={room.code}

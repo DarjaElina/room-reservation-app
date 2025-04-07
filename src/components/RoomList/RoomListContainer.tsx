@@ -3,6 +3,7 @@ import RoomItem from '../RoomItem';
 import { Link } from 'expo-router';
 import useStyles from '@/src/hooks/useStyles';
 import { useTheme } from '@react-navigation/native';
+import { Platform } from 'react-native';
 
 interface RoomListProps {
   rooms: {
@@ -41,7 +42,7 @@ export default function RoomListContainer({
       onEndReachedThreshold={0.5}
       showsVerticalScrollIndicator={false}
       horizontal={false}
-      numColumns={2}
+      numColumns={Platform.OS === 'web' ? 3 : 2}
       data={rooms}
       renderItem={({ item }) =>
         item ? (

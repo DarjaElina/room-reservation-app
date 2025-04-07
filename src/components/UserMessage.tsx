@@ -3,8 +3,8 @@ import { useTheme } from '@react-navigation/native';
 import useStyles from '../hooks/useStyles';
 
 interface UserNotificationProps {
-  text: string | null;
-  type: 'success' | 'error';
+  text: string | null | undefined;
+  type: 'success' | 'error' | undefined;
 }
 
 export default function UserMessage({ text, type }: UserNotificationProps) {

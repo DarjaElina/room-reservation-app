@@ -1,9 +1,10 @@
 import { View, Text } from 'react-native';
 import { Image } from 'expo-image';
-import { AntDesign, Entypo } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 import { useTheme } from '@react-navigation/native';
 import { useI18nContext } from '../i18n/i18n-react';
 import useStyles from '../hooks/useStyles';
+import { useColorScheme } from 'react-native';
 
 interface RoomProps {
   code: string;
@@ -24,12 +25,17 @@ export default function Room({
   const { colors } = useTheme();
   const { LL } = useI18nContext();
   const styles = useStyles();
+  const colorScheme = useColorScheme();
   return (
     <View
       testID="room-item"
       style={[
         styles.itemContainer,
-        { boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' },
+        {
+          boxShadow:
+            colorScheme === 'light' ? 'rgba(0, 0, 0, 0.24) 0px 3px 8px' : '',
+          backgroundColor: colors.card,
+        },
       ]}
     >
       <Image
@@ -62,12 +68,8 @@ export default function Room({
       </Text>
       <View style={styles.iconTextContainer}>
         {isFree ? (
-          <Text>
-            <AntDesign
-              name="checksquare"
-              size={styles.bigText.fontSize * 0.8}
-              color={colors.success}
-            />
+          <>
+            <AntDesign name="checksquare" size={20} color={colors.success} />
             <Text
               style={[
                 styles.mediumText,
@@ -78,14 +80,10 @@ export default function Room({
             >
               {LL.AVAILABLE()}
             </Text>
-          </Text>
+          </>
         ) : (
           <>
-            <Entypo
-              name="squared-cross"
-              size={styles.bigText.fontSize * 0.6}
-              color={colors.error}
-            />
+            <AntDesign name="closesquare" size={20} color={colors.error} />
             <Text
               style={[
                 styles.mediumText,

@@ -2,6 +2,7 @@ import { Searchbar } from 'react-native-paper';
 import { View } from 'react-native';
 import { useI18nContext } from '../i18n/i18n-react';
 import useStyles from '../hooks/useStyles';
+import { useTheme } from 'react-native-paper';
 
 interface SearchBarProps {
   searchQuery: string;
@@ -15,6 +16,7 @@ export default function SearchBar({
 }: SearchBarProps) {
   const { LL } = useI18nContext();
   const styles = useStyles();
+  const { colors } = useTheme();
   return (
     <View style={styles.inputContainer}>
       <Searchbar
@@ -24,7 +26,7 @@ export default function SearchBar({
         style={[
           styles.searchbar,
           {
-            backgroundColor: '#ffffff',
+            backgroundColor: colors.background,
           },
         ]}
         inputStyle={{ minHeight: 0 }}

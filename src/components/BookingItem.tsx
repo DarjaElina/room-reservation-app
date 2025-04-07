@@ -1,4 +1,4 @@
-import { View, Text, Pressable, Alert, Modal } from 'react-native';
+import { View, Text, Pressable, Alert, Modal, Platform } from 'react-native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import useCancelBooking from '@/src/hooks/useCancelBooking';
 import BookingModificationForm from './BookingModificationForm';
@@ -52,22 +52,29 @@ export default function BookingItem({
   };
 
   const confirmCancel = (id: string) => {
-    Alert.alert(
-      LL.CANCEL_BOOKING_TITLE(),
-      LL.CANCEL_BOOKING_MESSAGE(),
-      [
-        {
-          text: LL.CANCEL_BOOKING_NO(),
-          style: 'cancel',
-        },
-        {
-          text: LL.CANCEL_BOOKING_YES(),
-          onPress: () => handleCancel(id),
-          style: 'destructive',
-        },
-      ],
-      { cancelable: true }
-    );
+    if (Platform.OS === 'web') {
+      const confirm = window.confirm(LL.CANCEL_BOOKING_MESSAGE());
+      if (confirm) {
+        handleCancel(id);
+      }
+    } else {
+      Alert.alert(
+        LL.CANCEL_BOOKING_TITLE(),
+        LL.CANCEL_BOOKING_MESSAGE(),
+        [
+          {
+            text: LL.CANCEL_BOOKING_NO(),
+            style: 'cancel',
+          },
+          {
+            text: LL.CANCEL_BOOKING_YES(),
+            onPress: () => handleCancel(id),
+            style: 'destructive',
+          },
+        ],
+        { cancelable: true }
+      );
+    }
   };
 
   return (

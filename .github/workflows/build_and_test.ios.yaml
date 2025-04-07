@@ -82,3 +82,4 @@ jobs:
           run: |
             export PATH="$PATH:$HOME/.maestro/bin"
             maestro --device $DEVICE_ID --exclude-tags=login test maestro
+            
