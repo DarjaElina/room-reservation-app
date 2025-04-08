@@ -10,7 +10,6 @@ import { PaperProvider } from 'react-native-paper';
 import QueryResult from '../QueryResult';
 import { useI18nContext } from '@/src/i18n/i18n-react';
 import useStyles from '@/src/hooks/useStyles';
-
 export default function RoomListWrapper() {
   const [searchQuery, setSearchQuery] = useState('');
   const [debouncedSearchQuery] = useDebounce(searchQuery, 2000);

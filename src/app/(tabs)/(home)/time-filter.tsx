@@ -242,13 +242,13 @@ export default function TimeFilter() {
           minuteInterval={15}
         />
         <Button
-          label="Search classrooms"
+          label={LL.SEARCH_CLASSROOMS()}
           onSubmit={handleSearch}
           style={styles.button}
         />
         {(startDate || endDate) && (
           <Button
-            label="Clear Dates"
+            label={LL.CLEAR_DATES()}
             onSubmit={Platform.OS === 'web' ? clearSearch : handleReset}
             style={[styles.button, { backgroundColor: colors.primary }]}
           />

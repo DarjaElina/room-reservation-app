@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useTheme } from '@react-navigation/native';
 import { useI18nContext } from '../i18n/i18n-react';
 import useStyles from '../hooks/useStyles';
+import LoadingOverlay from './LoadingOverlay';
 
 interface BookingItemProps {
   startDate: Date;
@@ -25,7 +26,7 @@ export default function BookingItem({
   id,
   roomId,
 }: BookingItemProps) {
-  const [cancelBooking] = useCancelBooking();
+  const [cancelBooking, { loading }] = useCancelBooking();
   const formattedStartDate = new Date(startDate);
   const formattedEndDate = new Date(endDate);
   const [showModal, setShowModal] = useState(false);
@@ -76,6 +77,10 @@ export default function BookingItem({
       );
     }
   };
+
+  if (loading) {
+    return <LoadingOverlay />;
+  }
 
   return (
     <View
@@ -129,6 +134,7 @@ export default function BookingItem({
       {new Date(startDate) > new Date() ? (
         <View style={styles.flexButtonContainer}>
           <Pressable
+            disabled={loading}
             onPress={() => confirmCancel(id)}
             style={[
               styles.button,

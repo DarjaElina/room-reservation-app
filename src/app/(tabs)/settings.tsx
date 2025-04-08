@@ -9,10 +9,11 @@ import { loadLocaleAsync } from '@/src/i18n/i18n-util.async';
 import LanguagePicker from '@/src/components/LanguagePicker';
 import useStyles from '@/src/hooks/useStyles';
 import { Locales } from '@/src/i18n/i18n-types';
+import LoadingOverlay from '@/src/components/LoadingOverlay';
 
 export default function SettingsScreen() {
   const { colors } = useTheme();
-  const { signOut } = useSignOut();
+  const { signOut, loading } = useSignOut();
   const { LL, locale, setLocale } = useI18nContext();
   const [modalVisible, setModalVisible] = useState(false);
   const styles = useStyles();
@@ -25,6 +26,10 @@ export default function SettingsScreen() {
       })
       .then(setLocale);
   }, []);
+
+  if (loading) {
+    return <LoadingOverlay />;
+  }
 
   return (
     <View

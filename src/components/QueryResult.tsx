@@ -17,7 +17,13 @@ const QueryResult = ({ loading, error, data, children }: QueryResultProps) => {
   const styles = useStyles();
   if (loading) {
     return (
-      <View style={[styles.flexContainer, styles.scrollContainer]}>
+      <View
+        style={[
+          styles.flexContainer,
+          styles.scrollContainer,
+          { backgroundColor: colors.background },
+        ]}
+      >
         <ActivityIndicator
           testID="loading-indicator"
           size="large"
@@ -39,7 +45,13 @@ const QueryResult = ({ loading, error, data, children }: QueryResultProps) => {
   }
   if (error) {
     return (
-      <View style={[styles.flexContainer, styles.scrollContainer]}>
+      <View
+        style={[
+          styles.flexContainer,
+          styles.scrollContainer,
+          { backgroundColor: colors.background },
+        ]}
+      >
         <Text
           testID="error-text"
           style={[
@@ -56,7 +68,13 @@ const QueryResult = ({ loading, error, data, children }: QueryResultProps) => {
   }
   if (!data) {
     return (
-      <View style={[styles.flexContainer, styles.scrollContainer]}>
+      <View
+        style={[
+          styles.flexContainer,
+          styles.scrollContainer,
+          { backgroundColor: colors.background },
+        ]}
+      >
         <Text
           style={[
             styles.mediumText,

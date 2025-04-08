@@ -11,6 +11,7 @@ import { router } from 'expo-router';
 import { useI18nContext } from '@/src/i18n/i18n-react';
 import useStyles from '@/src/hooks/useStyles';
 import { ApolloError } from '@apollo/client';
+import LoadingOverlay from '@/src/components/LoadingOverlay';
 
 export default function ConfirmBookingCreationScreen() {
   const { bookingStartDate, bookingEndDate } = useBookingContext();
@@ -25,6 +26,10 @@ export default function ConfirmBookingCreationScreen() {
   const [error] = useState<string | null>(null);
   const { LL } = useI18nContext();
   const styles = useStyles();
+
+  if (loading) {
+    return <LoadingOverlay />;
+  }
 
   const handleSubmit = async () => {
     try {

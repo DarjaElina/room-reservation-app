@@ -1,9 +1,8 @@
-import { View, Text } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import Form from '@/src/components/Form';
-import Button from '@/src/components/Button';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import UserMessage from '../components/UserMessage';
 import useSignIn from '@/src/hooks/useSignIn';
@@ -13,11 +12,12 @@ import { useTheme } from '@react-navigation/native';
 import { useI18nContext } from '../i18n/i18n-react';
 import useStyles from '../hooks/useStyles';
 import { useState } from 'react';
+import LoadingOverlay from '../components/LoadingOverlay';
 
 export default function Login() {
   const { colors } = useTheme();
   const { LL } = useI18nContext();
-  const [signIn] = useSignIn();
+  const { signIn, loading } = useSignIn();
   const userSchema = z.object({
     username: z.string().regex(/^[a-z]{2}\d{5}$/, {
       message: "Username must be in the format 'ab12345'.",
@@ -55,6 +55,10 @@ export default function Login() {
     }
   };
 
+  if (loading) {
+    return <LoadingOverlay />;
+  }
+
   return (
     <KeyboardAwareScrollView
       contentContainerStyle={[
@@ -91,7 +95,13 @@ export default function Login() {
             { name: 'password', label: LL.PASSWORD(), isPassword: true },
           ]}
         />
-        <Button isBig label={LL.LOGIN()} onSubmit={handleSubmit(onSubmit)} />
+        <Pressable
+          disabled={loading}
+          onPress={handleSubmit(onSubmit)}
+          style={[styles.button, { backgroundColor: colors.primary }]}
+        >
+          {LL.LOGIN()}
+        </Pressable>
       </View>
     </KeyboardAwareScrollView>
   );

@@ -1,11 +1,4 @@
-import {
-  View,
-  Text,
-  Pressable,
-  Modal,
-  ScrollView,
-  Platform,
-} from 'react-native';
+import { View, Text, Pressable, Modal, ScrollView } from 'react-native';
 import RoomDescription from './RoomDescription';
 import { Image } from 'expo-image';
 import EquipmentList from './EquipmentList';
@@ -79,7 +72,7 @@ export default function RoomView({ room }: { room: RoomViewProps }) {
                 style={{
                   display: 'flex',
                   alignItems: 'flex-start',
-                  gap: Platform.OS === 'web' ? 20 : 10,
+                  gap: 15,
                 }}
               >
                 <Text

@@ -8,6 +8,7 @@ import UserMessage from './UserMessage';
 import { useI18nContext } from '../i18n/i18n-react';
 import useStyles from '../hooks/useStyles';
 import { ApolloError } from '@apollo/client';
+import LoadingOverlay from './LoadingOverlay';
 
 interface BookingModificationFormProps {
   initialData: {
@@ -26,7 +27,7 @@ const BookingModificationForm: React.FC<BookingModificationFormProps> = ({
 }) => {
   const [title, setTitle] = useState(initialData.title);
   const { colors } = useTheme();
-  const [updateBooking] = useUpdateBooking();
+  const [updateBooking, { loading }] = useUpdateBooking();
   const [userMessage, setUserMessage] = useState<{
     message: string;
     type: 'error' | 'success';
@@ -79,6 +80,10 @@ const BookingModificationForm: React.FC<BookingModificationFormProps> = ({
     }
   };
 
+  if (loading) {
+    return <LoadingOverlay />;
+  }
+
   const handleNavigateToDatePicker = (type: 'start' | 'end') => {
     onCancel();
     router.push({
@@ -95,12 +100,10 @@ const BookingModificationForm: React.FC<BookingModificationFormProps> = ({
   return (
     <View
       style={[
-        styles.itemContainer,
-
         {
           backgroundColor: colors.background,
-          width: Platform.OS === 'web' ? '60%' : '100%',
           alignSelf: 'center',
+          gap: 10,
         },
       ]}
     >

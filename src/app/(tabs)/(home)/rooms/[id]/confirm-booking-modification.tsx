@@ -11,6 +11,7 @@ import { router } from 'expo-router';
 import { ApolloError } from '@apollo/client';
 import { useI18nContext } from '@/src/i18n/i18n-react';
 import useStyles from '@/src/hooks/useStyles';
+import LoadingOverlay from '@/src/components/LoadingOverlay';
 
 export default function ConfirmBookingModificationScreen() {
   const { bookingStartDate, bookingEndDate } = useBookingContext();
@@ -61,6 +62,10 @@ export default function ConfirmBookingModificationScreen() {
       }
     }
   };
+
+  if (loading) {
+    return <LoadingOverlay />;
+  }
 
   return (
     <QueryResult data={room} loading={roomLoading} error={roomError}>

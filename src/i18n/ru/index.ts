@@ -58,6 +58,8 @@ const ru: Translation = {
   SELECT_BOOKING_TIME: 'Пожалуйста, выберите время бронирования.',
   SELECTED_LANGUAGE: 'Выбранный язык',
   SELECT_LANGUAGE: 'Выбрать язык',
+  SEARCH_CLASSROOMS: 'Поиск аудиторий',
+  CLEAR_DATES: 'Очистить даты',
 };
 
 export default ru;

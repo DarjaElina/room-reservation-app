@@ -59,6 +59,8 @@ const fi: Translation = {
   SELECT_BOOKING_TIME: 'Valitse varausaika.',
   SELECTED_LANGUAGE: 'Valittu kieli',
   SELECT_LANGUAGE: 'Valitse kieli',
+  SEARCH_CLASSROOMS: 'Etsi luokkia',
+  CLEAR_DATES: 'Tyhjennä päivämäärät',
 };
 
 export default fi;

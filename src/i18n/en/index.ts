@@ -59,6 +59,8 @@ const en = {
   SELECT_BOOKING_TIME: 'Please select booking time.',
   SELECTED_LANGUAGE: 'Selected language:',
   SELECT_LANGUAGE: 'Select language',
+  SEARCH_CLASSROOMS: 'Search classrooms',
+  CLEAR_DATES: 'Clear dates',
 } satisfies BaseTranslation;
 
 export default en;

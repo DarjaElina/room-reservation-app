@@ -3,7 +3,6 @@ import RoomItem from '../RoomItem';
 import { Link } from 'expo-router';
 import useStyles from '@/src/hooks/useStyles';
 import { useTheme } from '@react-navigation/native';
-import { Platform } from 'react-native';
 
 interface RoomListProps {
   rooms: {
@@ -37,18 +36,20 @@ export default function RoomListContainer({
   const { colors } = useTheme();
   return rooms.length > 0 ? (
     <FlatList
-      contentContainerStyle={styles.listContainer}
+      contentContainerStyle={[
+        styles.listContainer,
+        { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center' },
+      ]}
       onEndReached={onEndReach}
       onEndReachedThreshold={0.5}
       showsVerticalScrollIndicator={false}
       horizontal={false}
-      numColumns={Platform.OS === 'web' ? 3 : 2}
       data={rooms}
       renderItem={({ item }) =>
         item ? (
           <Link
             testID="room-item-link"
-            style={styles.roomLinkContainer}
+            style={[styles.roomLinkContainer]}
             href={{
               pathname: '/rooms/[id]',
               params: { id: item.id },

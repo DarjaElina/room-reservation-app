@@ -26,6 +26,8 @@ const useStyles = () => {
 
   return useMemo(() => {
     const isLargeScreen = width >= 768;
+    const isMediumScreen = width > 675 && width < 768;
+    const isSmallScreen = width <= 675;
 
     return StyleSheet.create({
       // inputs, checkboxes & searchbars
@@ -75,6 +77,8 @@ const useStyles = () => {
         paddingVertical: isLargeScreen ? vmin * 1 : vmin * 2.5,
         paddingHorizontal: isLargeScreen ? vmin * 1.5 : vmin * 3.5,
         marginVertical: vmin * 3,
+        minWidth: 150,
+        alignSelf: 'center',
       },
       buttonText: {
         fontSize: isLargeScreen ? 13 + vmin * 1 : 8 + vmin * 2.5,
@@ -138,8 +142,22 @@ const useStyles = () => {
         justifyContent: 'flex-start',
       },
       itemContainer: {
-        width: vmin * (isLargeScreen ? 35 : 44),
-        minHeight: vmin * 30,
+        maxWidth: vmin * 45,
+        minWidth: isSmallScreen
+          ? vmin * 70
+          : isMediumScreen
+            ? vmin * 40
+            : isLargeScreen
+              ? vmin * 35
+              : vmin * 35,
+        minHeight: isSmallScreen
+          ? vmin * 60
+          : isMediumScreen
+            ? vmin * 40
+            : isLargeScreen
+              ? vmin * 35
+              : vmin * 35,
+        width: '100%',
         gap: vmin * 1.5,
         padding: vmin * 2.6,
         borderRadius: theme.borderRadius.medium,
@@ -221,6 +239,7 @@ const useStyles = () => {
       },
       roomLinkContainer: {
         margin: vmin * 2,
+        maxWidth: '100%',
       },
 
       // headings
@@ -245,7 +264,7 @@ const useStyles = () => {
         marginBottom: vmin * 3,
       },
       roomItemImage: {
-        height: vmin * (isLargeScreen ? 15 : 20),
+        height: vmin * (isLargeScreen ? 20 : 35),
         borderRadius: theme.borderRadius.medium,
       },
       roomViewImage: {
@@ -275,6 +294,7 @@ const useStyles = () => {
         margin: isLargeScreen ? vmin * 4 : vmin * 3,
         ...shadows.medium,
         fontFamily: 'Nunito-Regular',
+        width: isLargeScreen ? '60%' : '100%',
       },
       timeSlot: {
         height: 25,
@@ -315,8 +335,9 @@ const useStyles = () => {
       // pickers
       picker: {
         width: '100%',
-        fontSize: isLargeScreen ? vmin * 2.5 : vmin * 2,
+        fontSize: isLargeScreen ? vmin * 3 : vmin * 4.5,
         fontFamily: 'Nunito-Regular',
+        padding: 15,
       },
     });
   }, [height, width]);

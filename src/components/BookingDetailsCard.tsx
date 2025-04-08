@@ -1,4 +1,4 @@
-import { View, Text, Pressable, Platform } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { useTheme } from '@react-navigation/native';
@@ -48,7 +48,6 @@ export default function BookingDetailsCard({
         styles.bookingDetailsCard,
         {
           backgroundColor: colors.card,
-          width: Platform.OS === 'web' ? '60%' : '100%',
           alignSelf: 'center',
         },
       ]}

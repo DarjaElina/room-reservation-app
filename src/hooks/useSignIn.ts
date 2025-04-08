@@ -3,7 +3,7 @@ import { AUTHENTICATE } from '@/src/graphql/mutations';
 import useAuthStorage from './useAuthStorage';
 
 const useSignIn = () => {
-  const [mutate] = useMutation(AUTHENTICATE);
+  const [mutate, { loading }] = useMutation(AUTHENTICATE);
   const apolloClient = useApolloClient();
   const authStorage = useAuthStorage();
 
@@ -26,7 +26,7 @@ const useSignIn = () => {
     }
   };
 
-  return [signIn];
+  return { signIn, loading };
 };
 
 export default useSignIn;
