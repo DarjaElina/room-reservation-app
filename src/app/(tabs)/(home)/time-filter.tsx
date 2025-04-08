@@ -1,4 +1,4 @@
-import { View, Text, Alert, Platform } from 'react-native';
+import { View, Alert, Platform } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { useState } from 'react';
@@ -9,6 +9,7 @@ import { router } from 'expo-router';
 import { useTheme } from '@react-navigation/native';
 import { useI18nContext } from '@/src/i18n/i18n-react';
 import useStyles from '@/src/hooks/useStyles';
+import CustomText from '@/src/components/CustomText';
 
 type FormData = {
   startDate: Date;
@@ -158,18 +159,17 @@ export default function TimeFilter() {
           },
         ]}
       >
-        <Text
+        <CustomText
           style={[
             styles.bigText,
             styles.textContainer,
             {
-              color: colors.text,
               textAlign: 'center',
             },
           ]}
         >
           {LL.SELECT_TIME_RANGE()}
-        </Text>
+        </CustomText>
         {Platform.OS === 'ios' || Platform.OS === 'android' ? (
           <TextInput
             activeUnderlineColor={colors.primary}
@@ -185,18 +185,27 @@ export default function TimeFilter() {
             textColor={colors.text}
           />
         ) : (
-          <input
-            type="datetime-local"
-            value={startDate ? startDate.toISOString().slice(0, 16) : ''}
-            onChange={handleStartDateChange}
-            style={{
-              padding: 10,
-              borderRadius: 5,
-              border: '1px solid #ccc',
-              fontSize: 16,
-              margin: 10,
-            }}
-          />
+          <>
+            <label
+              htmlFor="startDate"
+              style={{ color: colors.text, padding: 5 }}
+            >
+              Start date:
+            </label>
+            <input
+              id="startDate"
+              type="datetime-local"
+              value={startDate ? startDate.toISOString().slice(0, 16) : ''}
+              onChange={handleStartDateChange}
+              style={{
+                padding: 10,
+                borderRadius: 5,
+                border: '1px solid #ccc',
+                fontSize: 16,
+                margin: 10,
+              }}
+            />
+          </>
         )}
         <DateTimePickerModal
           isVisible={isStartDatePickerVisible}
@@ -221,18 +230,27 @@ export default function TimeFilter() {
             textColor={colors.text}
           />
         ) : (
-          <input
-            type="datetime-local"
-            value={endDate ? endDate.toISOString().slice(0, 16) : ''}
-            onChange={handleEndDateChange}
-            style={{
-              padding: 10,
-              borderRadius: 5,
-              border: '1px solid #ccc',
-              fontSize: 16,
-              margin: 10,
-            }}
-          />
+          <>
+            <label
+              htmlFor="startDate"
+              style={{ color: colors.text, padding: 5 }}
+            >
+              End date:
+            </label>
+            <input
+              id="endDate"
+              type="datetime-local"
+              value={endDate ? endDate.toISOString().slice(0, 16) : ''}
+              onChange={handleEndDateChange}
+              style={{
+                padding: 10,
+                borderRadius: 5,
+                border: '1px solid #ccc',
+                fontSize: 16,
+                margin: 10,
+              }}
+            />
+          </>
         )}
         <DateTimePickerModal
           isVisible={isEndDatePickerVisible}

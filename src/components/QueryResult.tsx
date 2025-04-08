@@ -33,7 +33,6 @@ const QueryResult = ({ loading, error, data, children }: QueryResultProps) => {
           style={[
             styles.mediumText,
             {
-              color: colors.text,
               textAlign: 'center',
             },
           ]}
@@ -79,7 +78,6 @@ const QueryResult = ({ loading, error, data, children }: QueryResultProps) => {
           style={[
             styles.mediumText,
             {
-              color: colors.text,
               textAlign: 'center',
             },
           ]}

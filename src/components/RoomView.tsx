@@ -1,4 +1,4 @@
-import { View, Text, Pressable, Modal, ScrollView } from 'react-native';
+import { View, Pressable, Modal, ScrollView } from 'react-native';
 import RoomDescription from './RoomDescription';
 import { Image } from 'expo-image';
 import EquipmentList from './EquipmentList';
@@ -13,7 +13,7 @@ import { useTheme } from '@react-navigation/native';
 import { router } from 'expo-router';
 import { useI18nContext } from '../i18n/i18n-react';
 import useStyles from '../hooks/useStyles';
-
+import CustomText from './CustomText';
 interface RoomViewProps {
   __typename?: 'Room';
   id: string;
@@ -40,13 +40,14 @@ export default function RoomView({ room }: { room: RoomViewProps }) {
   const { user, error, loading } = useAuth();
   const [modalVisible, setModalVisible] = useState(false);
   const styles = useStyles();
+  const { LL } = useI18nContext();
   const formatRoomType = (type: string) => {
     return type
       .toLowerCase()
       .replace(/_/g, ' ')
       .replace(/^./, (str) => str.toUpperCase());
   };
-  const { LL } = useI18nContext();
+
   if (!user) {
     return <Redirect href="/sign-in" />;
   }
@@ -75,28 +76,18 @@ export default function RoomView({ room }: { room: RoomViewProps }) {
                   gap: 15,
                 }}
               >
-                <Text
-                  style={[
-                    styles.boldText,
-                    styles.bigText,
-                    { color: colors.text },
-                  ]}
+                <CustomText
+                  fontFamily="Nunito-Bold"
+                  style={[styles.boldText, styles.bigText]}
                 >
                   {room.code}
-                </Text>
-                <Text style={[styles.mediumText, { color: colors.text }]}>
+                </CustomText>
+                <CustomText style={[styles.mediumText]}>
                   {formatRoomType(room.type)}
-                </Text>
-                <Text
-                  style={[
-                    styles.smallText,
-                    {
-                      color: colors.text,
-                    },
-                  ]}
-                >
+                </CustomText>
+                <CustomText style={[styles.smallText]}>
                   {room.venue.name}
-                </Text>
+                </CustomText>
                 {room.isFree ? (
                   <View style={styles.iconTextContainer}>
                     <AntDesign
@@ -104,9 +95,9 @@ export default function RoomView({ room }: { room: RoomViewProps }) {
                       size={20}
                       color={colors.success}
                     />
-                    <Text style={[styles.mediumText, { color: colors.text }]}>
+                    <CustomText style={[styles.mediumText]}>
                       {LL.AVAILABLE()}
-                    </Text>
+                    </CustomText>
                   </View>
                 ) : (
                   <View style={styles.iconTextContainer}>
@@ -115,13 +106,13 @@ export default function RoomView({ room }: { room: RoomViewProps }) {
                       size={20}
                       color={colors.error}
                     />
-                    <Text style={[styles.mediumText, { color: colors.text }]}>
+                    <CustomText style={[styles.mediumText]}>
                       {LL.OCCUPIED()}
-                    </Text>
+                    </CustomText>
                   </View>
                 )}
               </View>
-              <Text
+              <CustomText
                 onPress={() => setModalVisible(true)}
                 style={[
                   styles.buttonText,
@@ -131,7 +122,7 @@ export default function RoomView({ room }: { room: RoomViewProps }) {
                 ]}
               >
                 {LL.SHOW_UPCOMING_RESERVATIONS()}
-              </Text>
+              </CustomText>
               <Pressable
                 style={[styles.button, { backgroundColor: colors.border }]}
                 onPress={() =>
@@ -141,7 +132,9 @@ export default function RoomView({ room }: { room: RoomViewProps }) {
                   })
                 }
               >
-                <Text style={[styles.buttonText]}>{LL.RESERVE()}</Text>
+                <CustomText style={styles.buttonText}>
+                  {LL.RESERVE()}
+                </CustomText>
               </Pressable>
             </View>
             <EquipmentList equipment={room.equipment} />
@@ -178,11 +171,9 @@ export default function RoomView({ room }: { room: RoomViewProps }) {
                     },
                   ]}
                 >
-                  <Text
-                    style={[styles.buttonText, { color: colors.background }]}
-                  >
+                  <CustomText style={styles.buttonText}>
                     {LL.CLOSE()}
-                  </Text>
+                  </CustomText>
                 </Pressable>
               </View>
             </Modal>

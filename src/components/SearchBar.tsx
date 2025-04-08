@@ -2,7 +2,7 @@ import { Searchbar } from 'react-native-paper';
 import { View } from 'react-native';
 import { useI18nContext } from '../i18n/i18n-react';
 import useStyles from '../hooks/useStyles';
-import { useTheme } from 'react-native-paper';
+import { useTheme } from '@react-navigation/native';
 
 interface SearchBarProps {
   searchQuery: string;
@@ -26,7 +26,7 @@ export default function SearchBar({
         style={[
           styles.searchbar,
           {
-            backgroundColor: colors.background,
+            backgroundColor: colors.card,
           },
         ]}
         inputStyle={{ minHeight: 0 }}

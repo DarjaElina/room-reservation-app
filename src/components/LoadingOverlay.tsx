@@ -1,7 +1,8 @@
-import { ActivityIndicator, Text, View } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { useI18nContext } from '../i18n/i18n-react';
 import useStyles from '../hooks/useStyles';
+import CustomText from './CustomText';
 
 const LoadingOverlay = () => {
   const { colors } = useTheme();
@@ -17,11 +18,9 @@ const LoadingOverlay = () => {
       ]}
     >
       <ActivityIndicator size="large" color={colors.primary} />
-      <Text
-        style={[styles.mediumText, { color: colors.text, textAlign: 'center' }]}
-      >
+      <CustomText style={[styles.mediumText, { textAlign: 'center' }]}>
         {LL.LOADING()}
-      </Text>
+      </CustomText>
     </View>
   );
 };

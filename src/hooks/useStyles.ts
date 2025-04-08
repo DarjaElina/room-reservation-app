@@ -38,7 +38,6 @@ const useStyles = () => {
         backgroundColor: 'transparent',
         paddingVertical: vmin * 0.5,
         marginBottom: vmin * 4.5,
-        fontFamily: 'Nunito-Regular',
       },
       checkbox: {
         height: isLargeScreen ? vmin * 7 : vmin * 12,
@@ -47,7 +46,6 @@ const useStyles = () => {
         padding: isLargeScreen ? vmin * 1.5 : vmin * 3,
         borderRadius: theme.borderRadius.medium,
         borderWidth: 1,
-        fontFamily: 'Nunito-Regular',
         width: isLargeScreen ? '80%' : '100%',
         alignSelf: 'center',
       },
@@ -66,7 +64,6 @@ const useStyles = () => {
         borderRadius: 8,
         shadowColor: '#000',
         ...shadows.light,
-        fontFamily: 'Nunito-Regular',
       },
 
       // buttons
@@ -79,10 +76,11 @@ const useStyles = () => {
         marginVertical: vmin * 3,
         minWidth: 150,
         alignSelf: 'center',
+        backgroundColor: '#7BB1FF',
       },
       buttonText: {
         fontSize: isLargeScreen ? 13 + vmin * 1 : 8 + vmin * 2.5,
-        fontFamily: 'Nunito-Regular',
+        color: 'rgb(18, 20, 22)',
       },
       flexButtonContainer: {
         flexDirection: 'row',
@@ -106,26 +104,21 @@ const useStyles = () => {
       },
       bigText: {
         fontSize: isLargeScreen ? 10 + vmin * 2 : 10 + vmin * 3,
-        fontFamily: 'Nunito-Black',
       },
       smallText: {
         fontSize: isLargeScreen ? 5 + vmin * 1.3 : 5 + vmin * 2.3,
-        fontFamily: 'Nunito-Thin',
       },
       mediumText: {
         fontSize: isLargeScreen ? 7 + vmin * 1.5 : 7 + vmin * 2.3,
-        fontFamily: 'Nunito-Regular',
       },
       errorText: {
         marginTop: isLargeScreen ? 10 + vmin * 1.5 : 10 + vmin * 3.5,
         fontSize: 8 + vmin * 1.8,
-        fontFamily: 'Nunito-Regular',
       },
       userMessage: {
         fontSize: isLargeScreen ? 7 + vmin * 1.5 : 7 + vmin * 2.5,
         textAlign: 'center',
         marginVertical: vmin * 3.5,
-        fontFamily: 'Nunito-Regular',
       },
 
       // containers
@@ -247,14 +240,12 @@ const useStyles = () => {
         fontSize: isLargeScreen
           ? theme.fontSizes.small + vmin * 4
           : theme.fontSizes.medium + vmin * 4,
-        fontFamily: 'Nunito-Black',
         marginVertical: isLargeScreen ? vmin * 1 : vmin * 3,
       },
       subheading: {
         fontSize: isLargeScreen
           ? theme.fontSizes.small + vmin * 2
           : theme.fontSizes.medium + vmin * 2,
-        fontFamily: 'Nunito-Bold',
         marginVertical: isLargeScreen ? vmin * 1 : vmin * 3,
       },
 
@@ -293,7 +284,6 @@ const useStyles = () => {
         padding: isLargeScreen ? vmin * 4 : vmin * 3,
         margin: isLargeScreen ? vmin * 4 : vmin * 3,
         ...shadows.medium,
-        fontFamily: 'Nunito-Regular',
         width: isLargeScreen ? '60%' : '100%',
       },
       timeSlot: {
@@ -312,7 +302,6 @@ const useStyles = () => {
         zIndex: 1,
         width: '80%',
         padding: vmin * 0.7,
-        fontFamily: 'Nunito-Regular',
       },
       separator: {
         width: 1,
@@ -329,14 +318,12 @@ const useStyles = () => {
         width: '100%',
         marginBottom: vmin * 2,
         alignItems: 'center',
-        fontFamily: 'Nunito-Regular',
       },
 
       // pickers
       picker: {
         width: '100%',
         fontSize: isLargeScreen ? vmin * 3 : vmin * 4.5,
-        fontFamily: 'Nunito-Regular',
         padding: 15,
       },
     });

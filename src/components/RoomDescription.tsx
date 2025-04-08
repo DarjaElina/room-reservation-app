@@ -1,4 +1,4 @@
-import { Text } from 'react-native';
+import CustomText from './CustomText';
 import { useTheme } from '@react-navigation/native';
 import useStyles from '../hooks/useStyles';
 
@@ -9,8 +9,9 @@ interface DescriptionProp {
 export default function RoomDescription({ text }: DescriptionProp) {
   const { colors } = useTheme();
   const styles = useStyles();
+
   return (
-    <Text
+    <CustomText
       style={[
         styles.mediumText,
         {
@@ -20,6 +21,6 @@ export default function RoomDescription({ text }: DescriptionProp) {
       ]}
     >
       {text}
-    </Text>
+    </CustomText>
   );
 }

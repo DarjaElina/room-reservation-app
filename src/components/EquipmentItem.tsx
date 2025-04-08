@@ -1,6 +1,7 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import useStyles from '../hooks/useStyles';
+import CustomText from './CustomText';
 
 interface EquipmentProp {
   name: string;
@@ -18,7 +19,7 @@ export default function EquipmentItem({ name }: EquipmentProp) {
         },
       ]}
     >
-      <Text style={styles.smallText}>{name}</Text>
+      <CustomText style={[styles.smallText]}>{name}</CustomText>
     </View>
   );
 }

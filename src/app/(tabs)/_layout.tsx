@@ -4,10 +4,11 @@ import { useQuery } from '@apollo/client';
 import { CURRENT_USER } from '@/src/graphql/queries';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import theme from '@/src/theme';
-import { Text, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { ActivityIndicator } from 'react-native-paper';
 import { useTheme } from '@react-navigation/native';
 import { useI18nContext } from '@/src/i18n/i18n-react';
+import CustomText from '@/src/components/CustomText';
 
 export default function TabLayout() {
   const { loading, data } = useQuery(CURRENT_USER);
@@ -17,16 +18,7 @@ export default function TabLayout() {
     return (
       <View style={[styles.container]}>
         <ActivityIndicator size="large" color={colors.primary} />
-        <Text
-          style={[
-            styles.text,
-            {
-              color: colors.text,
-            },
-          ]}
-        >
-          {LL.LOADING()}
-        </Text>
+        <CustomText>{LL.LOADING()}</CustomText>
       </View>
     );
   }

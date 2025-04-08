@@ -1,7 +1,8 @@
-import { TouchableOpacity, Text, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useTheme } from '@react-navigation/native';
 import useStyles from '../hooks/useStyles';
+import CustomText from './CustomText';
 
 interface CheckBoxItemProps {
   item: { value: string; label: string };
@@ -19,6 +20,7 @@ export default function CheckBoxItem({
   onChange,
 }: CheckBoxItemProps) {
   const { colors } = useTheme();
+  const styles = useStyles();
   const handlePress = () => {
     const newValues = isActive
       ? updatedCheckedValues.filter((v) => v !== item.value)
@@ -27,7 +29,6 @@ export default function CheckBoxItem({
     setUpdatedCheckedValues(newValues);
     onChange(newValues);
   };
-  const styles = useStyles();
 
   return (
     <TouchableOpacity
@@ -40,16 +41,7 @@ export default function CheckBoxItem({
           size={24}
           color={isActive ? colors.primary : colors.text}
         />
-        <Text
-          style={[
-            styles.mediumText,
-            {
-              color: colors.text,
-            },
-          ]}
-        >
-          {item.label}
-        </Text>
+        <CustomText style={[styles.mediumText]}>{item.label}</CustomText>
       </View>
     </TouchableOpacity>
   );

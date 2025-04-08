@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Text, Pressable, Alert, Platform } from 'react-native';
+import { View, Pressable, Alert, Platform } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import useUpdateBooking from '@/src/hooks/useUpdateBooking';
 import { router } from 'expo-router';
@@ -9,6 +9,7 @@ import { useI18nContext } from '../i18n/i18n-react';
 import useStyles from '../hooks/useStyles';
 import { ApolloError } from '@apollo/client';
 import LoadingOverlay from './LoadingOverlay';
+import CustomText from './CustomText';
 
 interface BookingModificationFormProps {
   initialData: {
@@ -110,52 +111,49 @@ const BookingModificationForm: React.FC<BookingModificationFormProps> = ({
       <UserMessage text={userMessage?.message} type={userMessage?.type} />
       <TextInput
         mode="flat"
-        style={[styles.input, { backgroundColor: '#ffffff' }]}
+        style={[
+          styles.input,
+          {
+            backgroundColor: colors.card,
+            fontFamily: 'Nunito-Regular',
+          },
+        ]}
         value={title}
         onChangeText={setTitle}
         placeholder={LL.BOOKING_TITLE()}
         activeUnderlineColor={colors.primary}
+        textColor={colors.text}
       />
 
       <View style={styles.textContainer}>
-        <Text
-          style={[
-            styles.mediumText,
-            styles.boldText,
-            styles.textContainer,
-            { color: colors.text },
-          ]}
+        <CustomText
+          style={[styles.mediumText, styles.boldText, styles.textContainer]}
         >
           {LL.STARTS()}:
-        </Text>
+        </CustomText>
         <Pressable
           onPress={() => handleNavigateToDatePicker('start')}
           style={[styles.datePressable, { backgroundColor: colors.card }]}
         >
-          <Text style={[styles.mediumText, { color: colors.text }]}>
+          <CustomText style={[styles.mediumText]}>
             {formatDate(new Date(initialData.startDate))}
-          </Text>
+          </CustomText>
         </Pressable>
       </View>
 
       <View style={styles.textContainer}>
-        <Text
-          style={[
-            styles.mediumText,
-            styles.boldText,
-            styles.textContainer,
-            { color: colors.text },
-          ]}
+        <CustomText
+          style={[styles.mediumText, styles.boldText, styles.textContainer]}
         >
           {LL.ENDS()}:
-        </Text>
+        </CustomText>
         <Pressable
           onPress={() => handleNavigateToDatePicker('end')}
           style={[styles.datePressable, { backgroundColor: colors.card }]}
         >
-          <Text style={[styles.mediumText, { color: colors.text }]}>
+          <CustomText style={[styles.mediumText]}>
             {formatDate(new Date(initialData.endDate))}
-          </Text>
+          </CustomText>
         </Pressable>
       </View>
 
@@ -169,13 +167,13 @@ const BookingModificationForm: React.FC<BookingModificationFormProps> = ({
             },
           ]}
         >
-          <Text style={[styles.buttonText]}>{LL.SAVE()}</Text>
+          <CustomText style={styles.buttonText}>{LL.SAVE()}</CustomText>
         </Pressable>
         <Pressable
           onPress={onCancel}
           style={[styles.button, { backgroundColor: colors.error }]}
         >
-          <Text style={[styles.buttonText]}>{LL.CANCEL()}</Text>
+          <CustomText style={styles.buttonText}>{LL.CANCEL()}</CustomText>
         </Pressable>
       </View>
     </View>

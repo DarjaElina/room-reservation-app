@@ -1,5 +1,6 @@
 import { View, Text } from 'react-native';
 import useStyles from '../hooks/useStyles';
+import CustomText from './CustomText';
 
 interface SelectedTimeSlotProps {
   value?: string;
@@ -20,17 +21,18 @@ export default function SelectedTimeSlot({
   displayBookingUser,
 }: SelectedTimeSlotProps) {
   const styles = useStyles();
+
   return (
     <View
       testID="selected_time_slot"
       style={[styles.selectedTimeSlot, { backgroundColor: color }]}
     >
-      {value && <Text style={[{ color: '#fff' }]}>{value}</Text>}
+      {value && <Text style={{ color: '#fff' }}>{value}</Text>}
       {displayBookingTitle && (
-        <Text style={[{ color: '#fff' }]}>{bookingInfo?.title}</Text>
+        <CustomText style={{ color: '#fff' }}>{bookingInfo?.title}</CustomText>
       )}
       {displayBookingUser && (
-        <Text style={[{ color: '#fff' }]}>{bookingInfo?.user}</Text>
+        <CustomText style={{ color: '#fff' }}>{bookingInfo?.user}</CustomText>
       )}
     </View>
   );

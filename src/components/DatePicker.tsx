@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { View, TouchableOpacity, Text } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import useBookingContext from '@/src/hooks/useBookingContext';
-import { useEffect } from 'react';
 import { useTheme } from '@react-navigation/native';
 import useStyles from '../hooks/useStyles';
+import CustomText from './CustomText';
+import { useEffect } from 'react';
 
 interface DatePickerProps {
   dateToModify?: Date;
@@ -57,7 +58,7 @@ export default function DatePicker({ dateToModify }: DatePickerProps) {
       style={[
         styles.headerContainer,
         {
-          backgroundColor: colors.backgroundPrimary,
+          backgroundColor: colors.background,
         },
       ]}
     >
@@ -84,13 +85,13 @@ export default function DatePicker({ dateToModify }: DatePickerProps) {
           elevation: 3,
         }}
       >
-        <Text style={{ fontSize: 18, color: 'black' }}>
+        <CustomText style={{ fontSize: 18, color: 'black' }}>
           {date.toLocaleDateString('en-GB', {
             day: 'numeric',
             month: 'short',
             year: 'numeric',
           })}
-        </Text>
+        </CustomText>
       </TouchableOpacity>
       <DateTimePickerModal
         testID="date_time_picker_modal"

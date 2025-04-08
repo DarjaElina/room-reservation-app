@@ -1,8 +1,8 @@
-import { FlatList, Text } from 'react-native';
+import { FlatList } from 'react-native';
 import RoomItem from '../RoomItem';
 import { Link } from 'expo-router';
 import useStyles from '@/src/hooks/useStyles';
-import { useTheme } from '@react-navigation/native';
+import CustomText from '../CustomText';
 
 interface RoomListProps {
   rooms: {
@@ -33,7 +33,6 @@ export default function RoomListContainer({
   onEndReach,
 }: RoomListProps) {
   const styles = useStyles();
-  const { colors } = useTheme();
   return rooms.length > 0 ? (
     <FlatList
       contentContainerStyle={[
@@ -66,15 +65,6 @@ export default function RoomListContainer({
       keyExtractor={(item) => item.id}
     />
   ) : (
-    <Text
-      style={[
-        styles.userMessage,
-        {
-          color: colors.text,
-        },
-      ]}
-    >
-      No rooms found.
-    </Text>
+    <CustomText style={styles.userMessage}>No rooms found.</CustomText>
   );
 }

@@ -9,9 +9,9 @@ export default function Layout() {
       <Stack
         screenOptions={{
           headerStyle: {
-            backgroundColor: colors.backgroundPrimary,
+            backgroundColor: colors.card,
           },
-          headerTintColor: colors.textPrimary,
+          headerTintColor: colors.text,
           headerShadowVisible: true,
         }}
       >

@@ -1,4 +1,4 @@
-import { View, Text, Pressable, Alert, Modal, Platform } from 'react-native';
+import { View, Pressable, Alert, Modal, Platform } from 'react-native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import useCancelBooking from '@/src/hooks/useCancelBooking';
 import BookingModificationForm from './BookingModificationForm';
@@ -7,7 +7,7 @@ import { useTheme } from '@react-navigation/native';
 import { useI18nContext } from '../i18n/i18n-react';
 import useStyles from '../hooks/useStyles';
 import LoadingOverlay from './LoadingOverlay';
-
+import CustomText from './CustomText';
 interface BookingItemProps {
   startDate: Date;
   endDate: Date;
@@ -92,44 +92,20 @@ export default function BookingItem({
         },
       ]}
     >
-      <Text
-        style={[
-          styles.bigText,
-          styles.boldText,
-          {
-            color: colors.text,
-          },
-        ]}
-      >
+      <CustomText fontFamily="Nunito-Bold" style={styles.bigText}>
         {title}
-      </Text>
-      <Text
-        style={[
-          styles.bigText,
-          {
-            color: colors.text,
-          },
-        ]}
-      >
-        {roomCode}
-      </Text>
+      </CustomText>
+      <CustomText style={styles.bigText}>{roomCode}</CustomText>
       <View style={styles.bookingItemDateContainer}>
         <FontAwesome
           name="calendar"
           size={styles.mediumText.fontSize}
           color={colors.text}
         />
-        <Text
-          style={[
-            styles.mediumText,
-            {
-              color: colors.text,
-            },
-          ]}
-        >
+        <CustomText style={styles.mediumText}>
           {formattedStartDate.toLocaleString(undefined, options)} -{' '}
           {formattedEndDate.toLocaleString(undefined, options)}
-        </Text>
+        </CustomText>
       </View>
       {new Date(startDate) > new Date() ? (
         <View style={styles.flexButtonContainer}>
@@ -141,7 +117,7 @@ export default function BookingItem({
               { backgroundColor: colors.error, flexDirection: 'row' },
             ]}
           >
-            <Text
+            <CustomText
               style={[
                 styles.buttonText,
                 {
@@ -150,7 +126,7 @@ export default function BookingItem({
               ]}
             >
               {LL.CANCEL()}
-            </Text>
+            </CustomText>
           </Pressable>
           <Pressable
             onPress={() => setShowModal(true)}
@@ -159,7 +135,7 @@ export default function BookingItem({
               { backgroundColor: colors.primary, flexDirection: 'row' },
             ]}
           >
-            <Text style={[styles.buttonText]}>{LL.MODIFY()}</Text>
+            <CustomText style={styles.buttonText}>{LL.MODIFY()}</CustomText>
           </Pressable>
           <Modal
             visible={showModal}

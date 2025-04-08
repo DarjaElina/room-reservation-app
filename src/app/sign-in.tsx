@@ -1,4 +1,4 @@
-import { View, Text, Pressable } from 'react-native';
+import { View, Pressable } from 'react-native';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -13,6 +13,7 @@ import { useI18nContext } from '../i18n/i18n-react';
 import useStyles from '../hooks/useStyles';
 import { useState } from 'react';
 import LoadingOverlay from '../components/LoadingOverlay';
+import CustomText from '../components/CustomText';
 
 export default function Login() {
   const { colors } = useTheme();
@@ -35,7 +36,7 @@ export default function Login() {
   } = useForm<UserFormType>({
     resolver: zodResolver(userSchema),
   });
-
+  console.log(userMessage);
   const onSubmit: SubmitHandler<UserFormType> = async (data: UserFormType) => {
     const { username, password } = data;
     try {
@@ -46,6 +47,9 @@ export default function Login() {
         setUserMessage(
           error.message || 'An unexpected error occurred. Please try again.'
         );
+        setTimeout(() => {
+          setUserMessage('');
+        }, 5000);
       } else {
         setUserMessage('An unexpected error occurred. Please try again.');
       }
@@ -75,17 +79,16 @@ export default function Login() {
         <View style={styles.userIconContainer}>
           <FontAwesome5 size={50} name="user-circle" color={colors.text} />
         </View>
-        <Text
+        <CustomText
           style={[
             styles.heading,
             {
-              color: colors.text,
               textAlign: 'center',
             },
           ]}
         >
           {LL.LOGIN()}
-        </Text>
+        </CustomText>
         <UserMessage text={userMessage} type="error" />
         <Form
           control={control}
@@ -100,7 +103,7 @@ export default function Login() {
           onPress={handleSubmit(onSubmit)}
           style={[styles.button, { backgroundColor: colors.primary }]}
         >
-          {LL.LOGIN()}
+          <CustomText style={styles.buttonText}>{LL.LOGIN()}</CustomText>
         </Pressable>
       </View>
     </KeyboardAwareScrollView>

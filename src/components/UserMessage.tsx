@@ -1,6 +1,7 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import useStyles from '../hooks/useStyles';
+import CustomText from './CustomText';
 
 interface UserNotificationProps {
   text: string | null | undefined;
@@ -23,7 +24,7 @@ export default function UserMessage({ text, type }: UserNotificationProps) {
         },
       ]}
     >
-      <Text style={[styles.mediumText, { color: colors.text }]}>{text}</Text>
+      <CustomText style={styles.mediumText}>{text}</CustomText>
     </View>
   );
 }

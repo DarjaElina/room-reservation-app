@@ -1,10 +1,11 @@
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, View } from 'react-native';
 import BookingItem from './BookingItem';
 import useBookings from '@/src/hooks/useBookings';
 import QueryResult from './QueryResult';
 import { useTheme } from '@react-navigation/native';
 import useStyles from '../hooks/useStyles';
 import { BookingsQueryVariables } from '@/__generated__/graphql';
+import CustomText from './CustomText';
 
 interface BookingListProps {
   queryOptions: BookingsQueryVariables;
@@ -20,18 +21,7 @@ export default function BookingList({
   const styles = useStyles();
 
   if (!loading && bookings.length <= 0) {
-    return (
-      <Text
-        style={[
-          styles.userMessage,
-          {
-            color: colors.text,
-          },
-        ]}
-      >
-        {emptyMessage}
-      </Text>
-    );
+    return <CustomText style={styles.userMessage}>{emptyMessage}</CustomText>;
   }
 
   const sortedBookings = [...bookings].sort(

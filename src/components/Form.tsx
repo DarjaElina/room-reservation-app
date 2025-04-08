@@ -1,8 +1,9 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { Controller, Control, FieldErrors } from 'react-hook-form';
 import { TextInput } from 'react-native-paper';
 import { useTheme } from '@react-navigation/native';
 import useStyles from '../hooks/useStyles';
+import CustomText from './CustomText';
 
 interface FormProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -40,6 +41,7 @@ export default function Form({ control, errors, fields }: FormProps) {
                 style={{
                   backgroundColor: 'transparent',
                   color: colors.text,
+                  fontFamily: 'Nunito-Regular',
                 }}
                 placeholderTextColor={colors.text}
                 textColor={colors.text}
@@ -49,7 +51,7 @@ export default function Form({ control, errors, fields }: FormProps) {
             name={field.name}
           />
           {errors[field.name] && (
-            <Text
+            <CustomText
               style={[
                 styles.errorText,
                 {
@@ -58,7 +60,7 @@ export default function Form({ control, errors, fields }: FormProps) {
               ]}
             >
               {String(errors[field.name]?.message)}
-            </Text>
+            </CustomText>
           )}
         </View>
       ))}

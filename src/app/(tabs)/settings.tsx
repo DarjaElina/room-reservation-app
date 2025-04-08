@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { Text, View, Modal, Pressable } from 'react-native';
+import { View, Modal, Pressable } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import useSignOut from '@/src/hooks/useSignOut';
 import { useI18nContext } from '@/src/i18n/i18n-react';
@@ -10,6 +10,7 @@ import LanguagePicker from '@/src/components/LanguagePicker';
 import useStyles from '@/src/hooks/useStyles';
 import { Locales } from '@/src/i18n/i18n-types';
 import LoadingOverlay from '@/src/components/LoadingOverlay';
+import CustomText from '@/src/components/CustomText';
 
 export default function SettingsScreen() {
   const { colors } = useTheme();
@@ -48,7 +49,9 @@ export default function SettingsScreen() {
         style={[styles.button, { backgroundColor: colors.primary }]}
         onPress={() => setModalVisible(true)}
       >
-        <Text style={[styles.mediumText]}>{LL.SELECT_LANGUAGE()}</Text>
+        <CustomText style={styles.buttonText}>
+          {LL.SELECT_LANGUAGE()}
+        </CustomText>
       </Pressable>
 
       <Modal
@@ -68,24 +71,21 @@ export default function SettingsScreen() {
             style={[
               styles.button,
               {
-                backgroundColor: colors.primary,
                 width: 100,
                 alignSelf: 'center',
               },
             ]}
           >
-            <Text style={[styles.buttonText]}>{LL.CLOSE()}</Text>
+            <CustomText style={styles.buttonText}>{LL.CLOSE()}</CustomText>
           </Pressable>
         </View>
       </Modal>
       <Pressable
-        style={[
-          styles.button,
-          { backgroundColor: colors.primary, flexDirection: 'row' },
-        ]}
+        disabled={loading}
+        style={[styles.button, { flexDirection: 'row' }]}
         onPress={() => signOut()}
       >
-        <Text style={[styles.mediumText]}>{LL.LOGOUT()}</Text>
+        <CustomText style={styles.buttonText}>{LL.LOGOUT()}</CustomText>
       </Pressable>
     </View>
   );

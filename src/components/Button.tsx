@@ -1,6 +1,7 @@
-import { StyleSheet, Pressable, Text } from 'react-native';
+import { StyleSheet, Pressable } from 'react-native';
 import theme from '@/src/theme';
 import { useTheme } from '@react-navigation/native';
+import CustomText from './CustomText';
 type Props = {
   isBig?: boolean;
   isSmall?: boolean;
@@ -31,7 +32,7 @@ export default function Button({
 
   return (
     <Pressable style={buttonStyles} onPress={onSubmit}>
-      <Text
+      <CustomText
         style={[
           styles.buttonLabel,
           {
@@ -40,7 +41,7 @@ export default function Button({
         ]}
       >
         {label}
-      </Text>
+      </CustomText>
     </Pressable>
   );
 }

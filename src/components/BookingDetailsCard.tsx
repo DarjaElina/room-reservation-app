@@ -1,9 +1,10 @@
-import { View, Text, Pressable } from 'react-native';
+import { View, Pressable } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { useTheme } from '@react-navigation/native';
 import { useI18nContext } from '../i18n/i18n-react';
 import useStyles from '../hooks/useStyles';
+import CustomText from './CustomText';
 
 interface BookingDetailsCardProps {
   roomCode?: string | null;
@@ -54,22 +55,13 @@ export default function BookingDetailsCard({
     >
       <View style={[styles.iconTextContainer, { margin: 'auto' }]}>
         <FontAwesome5 name="calendar-check" size={24} color={colors.text} />
-        <Text
-          style={[
-            styles.subheading,
-            {
-              color: colors.text,
-            },
-          ]}
-        >
+        <CustomText style={styles.subheading}>
           {LL.BOOKING_DETAILS()}
-        </Text>
+        </CustomText>
       </View>
-      <Text>
-        <Text style={[styles.mediumText, { color: colors.text }]}>
-          {LL.TITLE()}
-        </Text>
-      </Text>
+      <CustomText>
+        <CustomText style={styles.mediumText}>{LL.TITLE()}</CustomText>
+      </CustomText>
       <TextInput
         mode="flat"
         style={[
@@ -86,47 +78,22 @@ export default function BookingDetailsCard({
         textColor={colors.text}
       />
       {error && (
-        <Text style={[styles.errorText, { color: colors.error }]}>{error}</Text>
+        <CustomText style={[styles.errorText, { color: colors.error }]}>
+          {error}
+        </CustomText>
       )}
-      <Text
-        style={[
-          styles.mediumText,
-          styles.textContainer,
-          { color: colors.text },
-        ]}
-      >
-        <Text style={[styles.mediumText, { color: colors.text }]}>
-          {LL.ROOM()}:
-        </Text>{' '}
+      <CustomText style={[styles.mediumText, styles.textContainer]}>
+        <CustomText style={[styles.mediumText]}>{LL.ROOM()}:</CustomText>{' '}
         {roomCode}
-      </Text>
-      <Text
-        style={[
-          styles.mediumText,
-          styles.textContainer,
-          { color: colors.text },
-        ]}
-      >
-        <Text
-          style={{
-            color: colors.text,
-          }}
-        >
-          {LL.STARTS()}:
-        </Text>{' '}
+      </CustomText>
+      <CustomText style={[styles.mediumText, styles.textContainer]}>
+        <CustomText>{LL.STARTS()}:</CustomText>{' '}
         {formatReadableDate(bookingStartDate)}
-      </Text>
-      <Text
-        style={[
-          styles.mediumText,
-          styles.textContainer,
-          {
-            color: colors.text,
-          },
-        ]}
-      >
-        <Text>{LL.ENDS()}:</Text> {formatReadableDate(bookingEndDate)}
-      </Text>
+      </CustomText>
+      <CustomText style={[styles.mediumText, styles.textContainer]}>
+        <CustomText>{LL.ENDS()}:</CustomText>{' '}
+        {formatReadableDate(bookingEndDate)}
+      </CustomText>
       <Pressable
         disabled={loading}
         onPress={onSubmit}
@@ -137,7 +104,7 @@ export default function BookingDetailsCard({
           },
         ]}
       >
-        <Text style={[styles.buttonText]}>{buttonText}</Text>
+        <CustomText style={styles.buttonText}>{buttonText}</CustomText>
       </Pressable>
     </View>
   );
