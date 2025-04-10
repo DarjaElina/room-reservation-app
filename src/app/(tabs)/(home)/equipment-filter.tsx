@@ -30,14 +30,10 @@ export default function EquipmentFilter() {
           styles.scrollContainer,
           styles.flexContainer,
 
-          { backgroundColor: colors.backgroundPrimary },
+          { backgroundColor: colors.background },
         ]}
       >
-        <SearchBar
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          placeholder="Search equipment..."
-        />
+        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <CheckBox
           options={options}
           checkedValues={selectedEquipment}

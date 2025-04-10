@@ -23,11 +23,7 @@ export default function BuildingFilter() {
   return (
     <QueryResult loading={loading} error={error} data={buildings}>
       <View style={[styles.scrollContainer, styles.flexContainer]}>
-        <SearchBar
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          placeholder="Search building by name..."
-        />
+        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <CheckBox
           options={options}
           checkedValues={selectedBuildings}

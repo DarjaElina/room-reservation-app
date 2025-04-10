@@ -9,7 +9,7 @@ export default function Index() {
       style={[
         styles.container,
         {
-          backgroundColor: colors.backgroundPrimary,
+          backgroundColor: colors.background,
         },
       ]}
     >

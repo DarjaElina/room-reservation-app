@@ -108,15 +108,26 @@ export default function RoomView({ room }: { room: RoomViewProps }) {
                     </CustomText>
                   </View>
                 )}
+                <CustomText
+                  onPress={() => setModalVisible(true)}
+                  style={[
+                    styles.mediumText,
+                    { textDecorationLine: 'underline' },
+                  ]}
+                >
+                  {LL.SHOW_UPCOMING_RESERVATIONS()}
+                </CustomText>
               </View>
-              <CustomText
-                onPress={() => setModalVisible(true)}
-                style={[styles.mediumText, { textDecorationLine: 'underline' }]}
-              >
-                {LL.SHOW_UPCOMING_RESERVATIONS()}
-              </CustomText>
+
               <Pressable
-                style={[styles.button, { backgroundColor: colors.border }]}
+                style={[
+                  styles.button,
+                  {
+                    backgroundColor: colors.border,
+                    margin: 0,
+                    alignSelf: 'flex-start',
+                  },
+                ]}
                 onPress={() =>
                   router.push({
                     pathname: '/(tabs)/(home)/rooms/[id]/create-booking',
@@ -157,8 +168,6 @@ export default function RoomView({ room }: { room: RoomViewProps }) {
                   style={[
                     styles.button,
                     {
-                      backgroundColor: colors.primary,
-                      width: '50%',
                       alignSelf: 'center',
                     },
                   ]}

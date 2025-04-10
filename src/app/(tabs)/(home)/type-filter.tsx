@@ -34,11 +34,7 @@ export default function TypeFilter() {
   );
   return (
     <View style={[styles.scrollContainer, styles.flexContainer]}>
-      <SearchBar
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        placeholder="Search room types..."
-      />
+      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <CheckBox
         options={filteredOptions}
         checkedValues={types}

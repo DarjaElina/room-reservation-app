@@ -1,8 +1,7 @@
-import { View, Alert, Platform } from 'react-native';
+import { View, Alert, Platform, Pressable } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { useState } from 'react';
-import Button from '@/src/components/Button';
 import { z, ZodType } from 'zod';
 import useFilter from '@/src/hooks/useFilter';
 import { router } from 'expo-router';
@@ -10,6 +9,10 @@ import { useTheme } from '@react-navigation/native';
 import { useI18nContext } from '@/src/i18n/i18n-react';
 import useStyles from '@/src/hooks/useStyles';
 import CustomText from '@/src/components/CustomText';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import { useEffect } from 'react';
+import nunitoRegular from '@/src/assets/fonts/Nunito-Regular.ttf';
 
 type FormData = {
   startDate: Date;
@@ -45,6 +48,17 @@ export default function TimeFilter() {
   const [isEndDatePickerVisible, setEndDatePickerVisibility] = useState(false);
   const { LL } = useI18nContext();
   const styles = useStyles();
+  const [fontsLoaded, error] = useFonts({
+    'Nunito-Regular': nunitoRegular,
+  });
+
+  useEffect(() => {
+    if (fontsLoaded || error) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded, error]);
+
+  if (!fontsLoaded && !error) return null;
 
   // Android/iOS Date Pickers
   const showStartDatePicker = () => setStartDatePickerVisibility(true);
@@ -188,7 +202,11 @@ export default function TimeFilter() {
           <>
             <label
               htmlFor="startDate"
-              style={{ color: colors.text, padding: 5 }}
+              style={{
+                color: colors.text,
+                padding: 5,
+                fontFamily: 'Nunito-Regular',
+              }}
             >
               Start date:
             </label>
@@ -233,7 +251,11 @@ export default function TimeFilter() {
           <>
             <label
               htmlFor="startDate"
-              style={{ color: colors.text, padding: 5 }}
+              style={{
+                color: colors.text,
+                padding: 5,
+                fontFamily: 'Nunito-Regular',
+              }}
             >
               End date:
             </label>
@@ -259,17 +281,20 @@ export default function TimeFilter() {
           onCancel={hideEndDatePicker}
           minuteInterval={15}
         />
-        <Button
-          label={LL.SEARCH_CLASSROOMS()}
-          onSubmit={handleSearch}
-          style={styles.button}
-        />
+        <Pressable onPress={handleSearch} style={styles.button}>
+          <CustomText style={styles.buttonText}>
+            {LL.SEARCH_CLASSROOMS()}
+          </CustomText>
+        </Pressable>
         {(startDate || endDate) && (
-          <Button
-            label={LL.CLEAR_DATES()}
-            onSubmit={Platform.OS === 'web' ? clearSearch : handleReset}
+          <Pressable
+            onPress={Platform.OS === 'web' ? clearSearch : handleReset}
             style={[styles.button, { backgroundColor: colors.primary }]}
-          />
+          >
+            <CustomText style={styles.buttonText}>
+              {LL.CLEAR_DATES()}
+            </CustomText>
+          </Pressable>
         )}
       </View>
     </View>

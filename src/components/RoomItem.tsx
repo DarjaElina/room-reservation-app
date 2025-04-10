@@ -86,7 +86,14 @@ export default function Room({
           ) : (
             <>
               <AntDesign name="closesquare" size={20} color={colors.error} />
-              <CustomText style={styles.mediumText}>{LL.OCCUPIED()}</CustomText>
+              <CustomText
+                style={[
+                  styles.mediumText,
+                  { display: isExtraSmallScreen ? 'none' : 'flex' },
+                ]}
+              >
+                {LL.OCCUPIED()}
+              </CustomText>
             </>
           )}
         </View>

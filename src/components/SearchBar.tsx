@@ -29,7 +29,10 @@ export default function SearchBar({
             backgroundColor: colors.card,
           },
         ]}
-        inputStyle={{ minHeight: 0 }}
+        inputStyle={{ minHeight: 0, color: colors.text }}
+        placeholderTextColor={colors.text}
+        iconColor={colors.text}
+        cursorColor={colors.text}
       />
     </View>
   );

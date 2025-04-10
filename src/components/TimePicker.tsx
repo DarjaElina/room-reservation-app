@@ -1,4 +1,4 @@
-import { FlatList, View } from 'react-native';
+import { FlatList, View, Platform } from 'react-native';
 import useBookingContext from '@/src/hooks/useBookingContext';
 import { FAB } from 'react-native-paper';
 import { Alert } from 'react-native';
@@ -101,7 +101,9 @@ export default function TimePicker({
         });
       setSelectedTimeValues([]);
     } else {
-      Alert.alert(LL.EMPTY_BOOKINGS(), LL.SELECT_BOOKING_TIME());
+      if (Platform.OS === 'web') {
+        window.alert(`${LL.EMPTY_BOOKINGS()}\n${LL.SELECT_BOOKING_TIME()}`);
+      } else Alert.alert(LL.EMPTY_BOOKINGS(), LL.SELECT_BOOKING_TIME());
     }
   };
 
