@@ -50,12 +50,12 @@ const useStyles = () => {
         alignSelf: 'center',
       },
       searchbar: {
-        height: isLargeScreen ? vmin * 6 : vmin * 12,
+        height: isLargeScreen ? vmin * 6 : vmin * 10,
         borderRadius: theme.borderRadius.medium,
         justifyContent: 'center',
         borderWidth: 1,
         overflow: 'hidden',
-        width: isLargeScreen ? '80%' : '100%',
+        width: '100%',
         alignSelf: 'center',
       },
       datePressable: {
@@ -94,14 +94,11 @@ const useStyles = () => {
         margin: vmin * 3.5,
       },
       segmentedButtons: {
-        width: isLargeScreen ? '80%' : '100%',
+        width: '100%',
         alignSelf: 'center',
       },
 
       // text
-      boldText: {
-        fontWeight: 'bold',
-      },
       bigText: {
         fontSize: isLargeScreen ? 10 + vmin * 2 : 10 + vmin * 3,
       },
@@ -136,22 +133,9 @@ const useStyles = () => {
       },
       itemContainer: {
         maxWidth: vmin * 45,
-        minWidth: isSmallScreen
-          ? vmin * 70
-          : isMediumScreen
-            ? vmin * 40
-            : isLargeScreen
-              ? vmin * 35
-              : vmin * 35,
-        minHeight: isSmallScreen
-          ? vmin * 60
-          : isMediumScreen
-            ? vmin * 40
-            : isLargeScreen
-              ? vmin * 35
-              : vmin * 35,
+        minWidth: vmin * 39,
         width: '100%',
-        gap: vmin * 1.5,
+        gap: vmin * 1,
         padding: vmin * 2.6,
         borderRadius: theme.borderRadius.medium,
         overflow: 'hidden',
@@ -255,7 +239,13 @@ const useStyles = () => {
         marginBottom: vmin * 3,
       },
       roomItemImage: {
-        height: vmin * (isLargeScreen ? 20 : 35),
+        height: isSmallScreen
+          ? vmin * 25
+          : isMediumScreen
+            ? vmin * 20
+            : isLargeScreen
+              ? vmin * 20
+              : vmin * 20,
         borderRadius: theme.borderRadius.medium,
       },
       roomViewImage: {

@@ -76,10 +76,7 @@ export default function RoomView({ room }: { room: RoomViewProps }) {
                   gap: 15,
                 }}
               >
-                <CustomText
-                  fontFamily="Nunito-Bold"
-                  style={[styles.boldText, styles.bigText]}
-                >
+                <CustomText fontFamily="Nunito-Bold" style={[styles.bigText]}>
                   {room.code}
                 </CustomText>
                 <CustomText style={[styles.mediumText]}>
@@ -114,12 +111,7 @@ export default function RoomView({ room }: { room: RoomViewProps }) {
               </View>
               <CustomText
                 onPress={() => setModalVisible(true)}
-                style={[
-                  styles.buttonText,
-                  {
-                    color: colors.text,
-                  },
-                ]}
+                style={[styles.mediumText, { textDecorationLine: 'underline' }]}
               >
                 {LL.SHOW_UPCOMING_RESERVATIONS()}
               </CustomText>

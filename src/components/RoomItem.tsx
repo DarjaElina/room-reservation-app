@@ -6,7 +6,7 @@ import { useI18nContext } from '../i18n/i18n-react';
 import useStyles from '../hooks/useStyles';
 import { useColorScheme } from 'react-native';
 import CustomText from './CustomText';
-
+import { useWindowDimensions } from 'react-native';
 interface RoomProps {
   code: string;
   venue: string;
@@ -27,6 +27,8 @@ export default function Room({
   const { LL } = useI18nContext();
   const styles = useStyles();
   const colorScheme = useColorScheme();
+  const { width } = useWindowDimensions();
+  const isExtraSmallScreen = width < 460;
   return (
     <View
       testID="room-item"
@@ -46,31 +48,48 @@ export default function Room({
         contentFit="cover"
         transition={1000}
       />
-      <CustomText
-        style={[
-          styles.bigText,
-          styles.boldText,
-          {
-            color: colors.text,
-            fontFamily: 'Nunito-Bold',
-          },
-        ]}
+      <View
+        style={{
+          display: 'flex',
+          flexDirection: isExtraSmallScreen ? 'row' : 'column',
+          justifyContent: 'space-between',
+          alignItems: 'flex-start',
+        }}
       >
-        {code}
-      </CustomText>
-      <CustomText style={styles.mediumText}>{venue}</CustomText>
-      <View style={styles.iconTextContainer}>
-        {isFree ? (
-          <>
-            <AntDesign name="checksquare" size={20} color={colors.success} />
-            <CustomText style={styles.mediumText}>{LL.AVAILABLE()}</CustomText>
-          </>
-        ) : (
-          <>
-            <AntDesign name="closesquare" size={20} color={colors.error} />
-            <CustomText style={styles.mediumText}>{LL.OCCUPIED()}</CustomText>
-          </>
-        )}
+        <View>
+          <CustomText
+            style={[
+              styles.bigText,
+              {
+                color: colors.text,
+                fontFamily: 'Nunito-Bold',
+              },
+            ]}
+          >
+            {code}
+          </CustomText>
+          <CustomText style={styles.mediumText}>{venue}</CustomText>
+        </View>
+        <View style={styles.iconTextContainer}>
+          {isFree ? (
+            <>
+              <AntDesign name="checksquare" size={20} color={colors.success} />
+              <CustomText
+                style={[
+                  styles.mediumText,
+                  { display: isExtraSmallScreen ? 'none' : 'flex' },
+                ]}
+              >
+                {LL.AVAILABLE()}
+              </CustomText>
+            </>
+          ) : (
+            <>
+              <AntDesign name="closesquare" size={20} color={colors.error} />
+              <CustomText style={styles.mediumText}>{LL.OCCUPIED()}</CustomText>
+            </>
+          )}
+        </View>
       </View>
     </View>
   );

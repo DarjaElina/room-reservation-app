@@ -126,9 +126,7 @@ const BookingModificationForm: React.FC<BookingModificationFormProps> = ({
       />
 
       <View style={styles.textContainer}>
-        <CustomText
-          style={[styles.mediumText, styles.boldText, styles.textContainer]}
-        >
+        <CustomText style={[styles.mediumText, styles.textContainer]}>
           {LL.STARTS()}:
         </CustomText>
         <Pressable
@@ -142,9 +140,7 @@ const BookingModificationForm: React.FC<BookingModificationFormProps> = ({
       </View>
 
       <View style={styles.textContainer}>
-        <CustomText
-          style={[styles.mediumText, styles.boldText, styles.textContainer]}
-        >
+        <CustomText style={[styles.mediumText, styles.textContainer]}>
           {LL.ENDS()}:
         </CustomText>
         <Pressable

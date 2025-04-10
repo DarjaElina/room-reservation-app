@@ -1,8 +1,8 @@
 appId: com.daria111.mobilefrontend
 ---
 - launchApp
-- assertVisible: 'MY-100 Myaskovsky Building Available'
-- tapOn: 'MY-100 Myaskovsky Building Available'
+- assertVisible: 'M-100 M-Building Available'
+- tapOn: 'M-100 M-Building Available'
 - assertVisible: 'Reserve'
 - tapOn: 'Reserve'
 - runScript: ../src/scripts/getTodayDate.js
@@ -25,8 +25,8 @@ appId: com.daria111.mobilefrontend
 - assertVisible: 'Ends: ${output.getTomorrowDate.commaFormat} at 10:00 PM'
 - tapOn: 'Reserve'
 - assertVisible: 'Booking created successfully.'
-- assertVisible: 'MY-100 Myaskovsky Building Available'
-- tapOn: 'MY-100 Myaskovsky Building Available'
+- assertVisible: 'M-100 M-Building Available'
+- tapOn: 'M-100 M-Building Available'
 - tapOn: 'Reserve'
 - scrollUntilVisible:
     element: '21:00:00 Reservation from Booking App'

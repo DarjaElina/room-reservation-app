@@ -29,16 +29,6 @@ const QueryResult = ({ loading, error, data, children }: QueryResultProps) => {
           size="large"
           color={colors.primary}
         />
-        <Text
-          style={[
-            styles.mediumText,
-            {
-              textAlign: 'center',
-            },
-          ]}
-        >
-          {LL.LOADING()}
-        </Text>
       </View>
     );
   }

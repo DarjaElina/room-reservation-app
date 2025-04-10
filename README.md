@@ -1,50 +1,48 @@
-# Welcome to your Expo app 👋
+## Booking App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is a final project implemented for Full Stack Open Course at Helsinki University.
 
-## Get started
+This application is a booking platform designed for conservatory students and teachers, allowing to book different study facilities, such as practice rooms, classrooms etc.
 
-1. Install dependencies
+This repo contains frontend part of the application, developed with Expo and React Native.
 
-   ```bash
-   npm install
-   ```
+Application main features:
 
-2. Start the app
+1) JSON Web token Authentication
+2) CRUD operations (create, update, cancel and view bookings)
 
-   ```bash
-    npx expo start
-   ```
+This app uses three CI/CD pipelines, one implemented as a GitHub actions workflow, and 2 others as EAS workflow.
 
-In the output, you'll find options to open the app in a
+Pipelines are made to lint, test and the deploy the application to the web and create development builds for Android and IOS accordingly.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Additional features:
+1) Localization using typesafe-i18n
+2) Dark/light mode using react navigation native theming
+3) App works both on web and native platforms
+4) Maestro and Jest tests
+5) App uses two backends, staging for testing and development builds, and production for web production version
+6) Custom TimePicker component
+7) Automatic username generation and email based registration for test mode (in actual app users will be added by admin)
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Steps to open the project:
 
-## Get a fresh project
+### Using Expo go
 
-When you're ready, run:
+1) Clone this repo
+2) Navigate to the project directory
+3) Run npm install
+4) Npm start 
 
-```bash
-npm run reset-project
-```
+### Using IOS development build and X Code
+// Steps
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### Using android build on your device or Androud Studio
+// Steps
 
-## Learn more
 
-To learn more about developing your project with Expo, look at the following resources:
+### Deployed web application lives here
+// Link to the web version
+You can login using username jd10000 and password password, or if you'd like to test the user activation flow, go to this link, enter your email address and system will generate a username for you and you will be able to set your password
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
 
-## Join the community
 
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.

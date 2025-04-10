@@ -1,12 +1,12 @@
 appId: com.daria111.mobilefrontend
 ---
 - launchApp
-- assertVisible: 'MY-100 Myaskovsky Building Available'
-- assertNotVisible: 'TA-101 Taneyev Building Available'
+- assertVisible: 'M-100 M-Building Available'
+- assertNotVisible: 'T-101 T-Building Available'
 - tapOn: ' Building'
-- assertVisible: ' Taneyev Building'
+- assertVisible: ' T-Building'
 - tapOn: ' Taneyev Building'
 - tapOn: 'Back'
-- assertVisible: 'TA-101 Taneyev Building Available'
-- assertNotVisible: 'MY-100 Myaskovsky Building Available'
+- assertVisible: 'T-101 T-Building Available'
+- assertNotVisible: 'M-100 M-Building Available'
 - clearState

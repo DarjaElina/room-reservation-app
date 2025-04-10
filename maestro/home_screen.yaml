@@ -1,21 +1,21 @@
 appId: com.daria111.mobilefrontend
 ---
 - launchApp
-- assertVisible: 'MY-100 Myaskovsky Building Available'
-- assertNotVisible: 'TA-100 Taneyev Building Available'
+- assertVisible: 'M-100 M-Building Available'
+- assertNotVisible: 'T-100 T-Building Available'
 - tapOn:
     id: 'search-bar'
-- inputText: 'TA-100'
-- assertVisible: 'TA-100 Taneyev Building Available'
+- inputText: 'T-100'
+- assertVisible: 'T-100 T-Building Available'
 - tapOn: '󰅖'
-- assertVisible: 'MY-100 Myaskovsky Building Available'
+- assertVisible: 'M-100 M-Building Available'
 - tapOn:
     id: 'search-bar'
 - inputText: 'NonExistentRoom'
 - assertVisible: 'No rooms found.'
 - tapOn: '󰅖'
-- assertVisible: 'MY-100 Myaskovsky Building Available'
-- assertNotVisible: 'TA-100 Taneyev Building Available'
+- assertVisible: 'M-100 M-Building Available'
+- assertNotVisible: 'T-100 T-Building Available'
 - scrollUntilVisible:
-    element: 'TA-100 Taneyev Building Available'
+    element: 'T-100 T-Building Available'
 - clearState

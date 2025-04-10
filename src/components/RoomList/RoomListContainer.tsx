@@ -37,7 +37,11 @@ export default function RoomListContainer({
     <FlatList
       contentContainerStyle={[
         styles.listContainer,
-        { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center' },
+        {
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          justifyContent: 'space-evenly',
+        },
       ]}
       onEndReached={onEndReach}
       onEndReachedThreshold={0.5}

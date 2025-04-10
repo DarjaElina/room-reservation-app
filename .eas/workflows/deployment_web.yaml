@@ -38,3 +38,6 @@ jobs:
         
         - name: Export app as a production website
           run: npx expo export --platform web
+
+        - name: Deploy app
+          run: eas deploy --prod

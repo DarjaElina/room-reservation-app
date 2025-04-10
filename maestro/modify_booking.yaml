@@ -1,7 +1,7 @@
 appId: com.daria111.mobilefrontend
 ---
 - launchApp
-- tapOn: 'MY-100 Myaskovsky Building Available'
+- tapOn: 'M-100 M-Building Available'
 - tapOn: 'Reserve'
 - tapOn:
     point: '92%,13%'
@@ -10,9 +10,9 @@ appId: com.daria111.mobilefrontend
 - assertVisible: 'Booking Details'
 - tapOn: 'Reserve'
 - assertVisible: 'Booking created successfully.'
-- assertVisible: 'MY-100 Myaskovsky Building Available'
+- assertVisible: 'M-100 M-Building Available'
 - tapOn: "My Calendar, tab, 2 of 3"
-- assertVisible: 'MY-100'
+- assertVisible: 'M-100'
 - runScript: ../src/scripts/getTomorrowDate.js
 - assertVisible: '${output.getTomorrowDate.commaFormat} at 06.00 - ${output.getTomorrowDate.commaFormat} at 07.00'
 - assertVisible: 'Modify'

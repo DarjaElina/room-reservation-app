@@ -1,9 +1,9 @@
 appId: com.daria111.mobilefrontend
 ---
 - launchApp
-- assertVisible: 'MY-100 Myaskovsky Building Available'
-- tapOn: 'MY-100 Myaskovsky Building Available'
-- assertVisible: 'MY-100'
+- assertVisible: 'M-100 M-Building Available'
+- tapOn: 'M-100 M-Building Available'
+- assertVisible: 'M-100'
 - assertVisible: 'Reserve'
 - scrollUntilVisible:
     element: 'Show upcoming reservations'
@@ -23,13 +23,13 @@ appId: com.daria111.mobilefrontend
 - assertVisible: 'Booking Details'
 - tapOn: 'Reserve'
 - assertVisible: 'Booking created successfully.'
-- assertVisible: 'MY-100 Myaskovsky Building Available'
-- tapOn: 'MY-100 Myaskovsky Building Available'
+- assertVisible: 'M-100 M-Building Available'
+- tapOn: 'M-100 M-Building Available'
 - scrollUntilVisible:
     element: 'Show upcoming reservations'
 - tapOn: 'Show upcoming reservations'
 - assertVisible: 'Reservation from Booking App'
-- assertVisible: 'MY-100'
+- assertVisible: 'M-100'
 - assertVisible: '${output.getTomorrowDate.commaFormat} at 06.00 - ${output.getTomorrowDate.commaFormat} at 07.00'
 - tapOn: 'Close'
 - clearState

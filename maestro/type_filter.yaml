@@ -1,14 +1,14 @@
 appId: com.daria111.mobilefrontend
 ---
 - launchApp
-- assertVisible: 'MY-100 Myaskovsky Building Available'
-- assertNotVisible: 'TA-100 Taneyev Building Available'
-- tapOn: 'MY-100 Myaskovsky Building Available'
+- assertVisible: 'M-100 M-Building Available'
+- assertNotVisible: 'T-100 T-Building Available'
+- tapOn: 'M-100 M-Building Available'
 - assertVisible: 'Concert hall'
 - tapOn: 'Back'
 - scrollUntilVisible:
-    element: 'TA-100 Taneyev Building Available'
-- tapOn: 'TA-100 Taneyev Building Available'
+    element: 'T-100 T-Building Available'
+- tapOn: 'T-100 T-Building Available'
 - assertVisible: 'Classroom'
 - tapOn: 'Back'
 - tapOn: ' Type'
@@ -18,6 +18,6 @@ appId: com.daria111.mobilefrontend
 - assertVisible: ' Classroom'
 - longPressOn: ' Classroom'
 - tapOn: 'Back'
-- assertNotVisible: 'MY-100 Myaskovsky Building Available'
-- assertVisible: 'TA-100 Taneyev Building Available'
+- assertNotVisible: 'M-100 M-Building Available'
+- assertVisible: 'T-100 T-Building Available'
 - clearState
