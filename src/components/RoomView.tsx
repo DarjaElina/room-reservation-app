@@ -74,6 +74,7 @@ export default function RoomView({ room }: { room: RoomViewProps }) {
                   display: 'flex',
                   alignItems: 'flex-start',
                   gap: 15,
+                  maxWidth: '60%',
                 }}
               >
                 <CustomText fontFamily="Nunito-Bold" style={[styles.bigText]}>

@@ -69,11 +69,12 @@ const useStyles = () => {
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 6,
-        paddingVertical: isLargeScreen ? vmin * 1 : vmin * 1.3,
+        paddingVertical: isLargeScreen ? vmin * 1 : vmin * 1.5,
         paddingHorizontal: isLargeScreen ? vmin * 1.5 : vmin * 2,
         marginVertical: vmin * 2.5,
         alignSelf: 'center',
         backgroundColor: '#7BB1FF',
+        minWidth: 130,
       },
       buttonText: {
         fontSize: isLargeScreen ? 13 + vmin * 1 : 8 + vmin * 2.5,
