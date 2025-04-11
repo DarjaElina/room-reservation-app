@@ -24,14 +24,17 @@ export default function SettingsScreen() {
   const styles = useStyles();
   const { loading: userLoading, data } = useQuery(CURRENT_USER);
 
-  const onLocaleSelected = useCallback((locale: Locales) => {
-    setUserLocale(locale)
-      .then(async (locale) => {
-        await loadLocaleAsync(locale);
-        return locale;
-      })
-      .then(setLocale);
-  }, []);
+  const onLocaleSelected = useCallback(
+    (locale: Locales) => {
+      setUserLocale(locale)
+        .then(async (locale) => {
+          await loadLocaleAsync(locale);
+          return locale;
+        })
+        .then(setLocale);
+    },
+    [setLocale]
+  );
 
   useEffect(() => {
     const localeKey = locale.slice(0, 2) as keyof typeof quotes;

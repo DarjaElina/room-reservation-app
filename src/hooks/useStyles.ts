@@ -287,7 +287,7 @@ const useStyles = () => {
         padding: 15,
       },
     });
-  }, [height, width]);
+  }, [vh, vmin, vw, width]);
 };
 
 export default useStyles;

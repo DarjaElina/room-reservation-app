@@ -33,5 +33,5 @@ module.exports = {
       version: 'detect',
     },
   },
-  ignorePatterns: ['.eslintrc.js', '*.config.js', 'src/scripts/*.js'],
+  ignorePatterns: ['.eslintrc.js', '*.config.js', 'src/scripts/*.js', 'dist'],
 };

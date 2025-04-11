@@ -22,7 +22,7 @@ export default function DatePicker({ dateToModify }: DatePickerProps) {
     if (dateToModify) {
       setDate(dateToModify);
     }
-  }, []);
+  }, [dateToModify, setDate]);
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
