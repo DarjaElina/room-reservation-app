@@ -1,0 +1,62 @@
+name: Deploy to web
+
+env:
+  DEPLOY: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip') }}
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
+      
+jobs:
+  test_and_lint:
+      runs-on: ubuntu-latest
+      
+      steps:
+        - uses: actions/checkout@v4
+        - uses: actions/setup-node@v4
+          with:
+            node-version: '20'
+        
+        - name: Install dependencies
+          run: npm ci
+
+        - name: Run ESLint
+          run: npm run lint
+
+        - name: Run Prettier
+          run: npm run format
+        
+        - name: Run Jest tests
+          run: npm run test
+
+        - name: Setup EAS
+          uses: expo/expo-github-action@v8
+          with:
+            eas-version: latest
+            token: ${{ secrets.EXPO_TOKEN }}
+        
+        - name: Build app
+          run: npx expo export --platform web
+            
+        - name: Deploy
+          run: eas deploy
+
+        - name: Build Success
+          if: ${{ success() && env.DEPLOY == 'true' }}
+          run: |
+            curl -H "Content-Type: application/json" \
+                  -X POST \
+                  -d '{"content": "A new version of Booking app frontend deployed to production"}' \
+                  ${{ secrets.DISCORD_WEBHOOK }}
+
+        - name: Build Fail
+          if: ${{ failure() }}
+          run: |
+            curl -H "Content-Type: application/json" \
+                  -X POST \
+                  -d '{"content": "commit https://github.com/${{ github.repository }}/commit/${{ github.sha }} by ${{ github.actor }} broke the build"}' \
+                ${{ secrets.DISCORD_WEBHOOK }}
