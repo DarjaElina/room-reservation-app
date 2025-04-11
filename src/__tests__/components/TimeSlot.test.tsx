@@ -19,9 +19,19 @@ jest.mock('@react-navigation/native', () => {
     }),
   };
 });
+jest.mock('expo-font', () => {
+  const module: typeof import('expo-font') = {
+    ...jest.requireActual('expo-font'),
+    useFonts: () => [true, null],
+    isLoaded: jest.fn(() => true),
+    loadAsync: jest.fn(),
+  };
+
+  return module;
+});
 jest.mock('@/src/hooks/useBookingContext');
 
-describe('UserMessage Component', () => {
+describe('TimeSlot Component', () => {
   const booking = {
     startDate: '2025-02-05T10:00:00Z',
     endDate: '2025-02-05T11:00:00Z',

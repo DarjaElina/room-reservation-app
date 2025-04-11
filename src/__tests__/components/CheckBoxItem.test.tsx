@@ -5,6 +5,7 @@ import {
   userEvent,
   waitFor,
 } from '@testing-library/react-native';
+jest.useFakeTimers();
 jest.mock('@react-navigation/native', () => {
   return {
     useTheme: () => ({
@@ -22,7 +23,16 @@ jest.mock('@react-navigation/native', () => {
   };
 });
 
-jest.mock('expo-font');
+jest.mock('expo-font', () => {
+  const module: typeof import('expo-font') = {
+    ...jest.requireActual('expo-font'),
+    useFonts: () => [true, null],
+    isLoaded: jest.fn(() => true),
+    loadAsync: jest.fn(),
+  };
+
+  return module;
+});
 
 describe('CheckBoxItem Component', () => {
   const setUpdatedCheckedValues = jest.fn();

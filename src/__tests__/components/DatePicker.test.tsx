@@ -6,6 +6,7 @@ import {
   waitFor,
 } from '@testing-library/react-native';
 import { BookingProvider } from '@/src/context/BookingContext';
+jest.useFakeTimers();
 jest.mock('@react-navigation/native', () => {
   return {
     useTheme: () => ({
@@ -23,7 +24,16 @@ jest.mock('@react-navigation/native', () => {
   };
 });
 
-jest.mock('expo-font');
+jest.mock('expo-font', () => {
+  const module: typeof import('expo-font') = {
+    ...jest.requireActual('expo-font'),
+    useFonts: () => [true, null],
+    isLoaded: jest.fn(() => true),
+    loadAsync: jest.fn(),
+  };
+
+  return module;
+});
 
 describe('DatePicker Component', () => {
   const currentDate = new Date().toLocaleDateString('en-GB', {

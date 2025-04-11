@@ -50,7 +50,16 @@ jest.mock('@/src/i18n/i18n-react', () => {
   };
 });
 
-jest.mock('expo-font');
+jest.mock('expo-font', () => {
+  const module: typeof import('expo-font') = {
+    ...jest.requireActual('expo-font'),
+    useFonts: () => [true, null],
+    isLoaded: jest.fn(() => true),
+    loadAsync: jest.fn(),
+  };
+
+  return module;
+});
 
 describe('BookingItem Component', () => {
   it('renders initial booking details correctly', async () => {

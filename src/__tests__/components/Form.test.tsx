@@ -10,6 +10,17 @@ import { renderHook } from '@testing-library/react-native';
 import { useForm } from 'react-hook-form';
 jest.useFakeTimers();
 
+jest.mock('expo-font', () => {
+  const module: typeof import('expo-font') = {
+    ...jest.requireActual('expo-font'),
+    useFonts: () => [true, null],
+    isLoaded: jest.fn(() => true),
+    loadAsync: jest.fn(),
+  };
+
+  return module;
+});
+
 jest.mock('@react-navigation/native', () => {
   return {
     useTheme: () => ({
