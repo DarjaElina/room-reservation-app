@@ -7,21 +7,6 @@ const useStyles = () => {
   const vw = width / 100;
   const vmin = Math.min(height, width) / 100;
 
-  const shadows = {
-    light: {
-      shadowOffset: { width: 0, height: 1 },
-      shadowOpacity: 0.1,
-      shadowRadius: vmin * 0.5,
-      elevation: 3,
-    },
-    medium: {
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.2,
-      shadowRadius: vmin * 0.8,
-      elevation: 5,
-    },
-  };
-
   return useMemo(() => {
     const isLargeScreen = width >= 768;
     const isMediumScreen = width > 675 && width < 768;
@@ -60,8 +45,6 @@ const useStyles = () => {
         paddingVertical: vmin * 2,
         paddingHorizontal: vmin * 3,
         borderRadius: 8,
-        shadowColor: '#000',
-        ...shadows.light,
       },
 
       // buttons
@@ -95,14 +78,6 @@ const useStyles = () => {
         width: '100%',
         alignSelf: 'center',
       },
-      // bigButton: {
-      //   width: 150,
-      //   height: 68,
-      // },
-      // smallButton: {
-      //   width: 100,
-      //   height: 35,
-      // },
 
       // text
       bigText: {
@@ -167,7 +142,6 @@ const useStyles = () => {
         paddingVertical: isLargeScreen ? vmin * 1 : vmin * 1.8,
         paddingHorizontal: isLargeScreen ? vmin * 2.5 : vmin * 3.5,
         borderRadius: 6,
-        ...shadows.medium,
         margin: vmin * 1,
       },
       roomDescriptionContainer: {
@@ -184,7 +158,7 @@ const useStyles = () => {
       bookingItemContainer: {
         padding: vmin * 4.5,
         borderRadius: 12,
-        ...shadows.light,
+        // ...shadows.light,
         margin: vmin * 4,
         marginHorizontal: isLargeScreen ? vmin * 10 : vmin * 4,
         gap: vmin * 2,
@@ -216,7 +190,6 @@ const useStyles = () => {
         justifyContent: 'center',
         width: isLargeScreen ? '60%' : '100%',
         alignSelf: 'center',
-        ...shadows.light,
       },
       roomLinkContainer: {
         margin: vmin * 2,
@@ -273,14 +246,12 @@ const useStyles = () => {
         borderRadius: 12,
         padding: isLargeScreen ? vmin * 4 : vmin * 3,
         margin: isLargeScreen ? vmin * 4 : vmin * 3,
-        ...shadows.medium,
         width: isLargeScreen ? '60%' : '100%',
       },
       timeSlot: {
         height: 25,
         borderTopWidth: 1,
         position: 'relative',
-        backgroundColor: '#F6F5F5',
       },
       selectedTimeSlot: {
         display: 'flex',
@@ -296,7 +267,6 @@ const useStyles = () => {
       separator: {
         width: 1,
         position: 'absolute',
-        backgroundColor: 'grey',
         left: '20%',
         height: '100%',
       },

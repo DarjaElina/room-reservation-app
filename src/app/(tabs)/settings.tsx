@@ -34,9 +34,11 @@ export default function SettingsScreen() {
   }, []);
 
   useEffect(() => {
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    setQuote(quotes[randomIndex]);
-  }, []);
+    const localeKey = locale.slice(0, 2) as keyof typeof quotes;
+    const localizedQuotes = quotes[localeKey] || quotes.en;
+    const randomIndex = Math.floor(Math.random() * localizedQuotes.length);
+    setQuote(localizedQuotes[randomIndex]);
+  }, [locale]);
 
   if (loading || userLoading) {
     return <LoadingOverlay />;
@@ -56,8 +58,8 @@ export default function SettingsScreen() {
       ]}
     >
       <CustomText style={[styles.bigText, { textAlign: 'center' }]}>
-        Hello, {data?.currentUser?.givenName} {data?.currentUser?.familyName}!
-        ✨
+        {LL.HELLO()}, {data?.currentUser?.givenName}{' '}
+        {data?.currentUser?.familyName}! ✨
       </CustomText>
       <View>
         <Pressable

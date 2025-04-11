@@ -88,7 +88,6 @@ export default function BookingItem({
         styles.bookingItemContainer,
         {
           backgroundColor: colors.card,
-          shadowOpacity: colors.shadowOpacity,
         },
       ]}
     >

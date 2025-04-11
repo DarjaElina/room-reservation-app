@@ -34,7 +34,9 @@ const dateValidationSchema: ZodType<FormData> = z
 const validateDates = (startDate: Date, endDate: Date) => {
   const result = dateValidationSchema.safeParse({ startDate, endDate });
   if (!result.success) {
-    Alert.alert(result.error.errors[0].message);
+    if (Platform.OS === 'web') {
+      window.alert(result.error.errors[0].message);
+    } else Alert.alert(result.error.errors[0].message);
     return false;
   }
   return true;
@@ -95,7 +97,9 @@ export default function TimeFilter() {
         hideEndDatePicker();
       }
     } else {
-      Alert.alert('Please, select start date first.');
+      if (Platform.OS === 'web') {
+        window.alert(LL.SELECT_START_DATE());
+      } else Alert.alert(LL.SELECT_START_DATE());
     }
   };
 
@@ -127,7 +131,10 @@ export default function TimeFilter() {
         setEndDate(date);
       }
     } else {
-      Alert.alert('Please select a start date first.');
+      if (Platform.OS === 'web') {
+        window.alert(LL.SELECT_START_DATE());
+      }
+      Alert.alert(LL.SELECT_START_DATE());
     }
   };
 
@@ -135,7 +142,9 @@ export default function TimeFilter() {
     if (startDate && endDate) {
       router.replace('/(tabs)/(home)');
     } else {
-      Alert.alert('Please select both start and end dates.');
+      if (Platform.OS === 'web') {
+        window.alert(LL.SELECT_START_AND_END());
+      } else Alert.alert(LL.SELECT_START_AND_END());
     }
   };
 
@@ -145,13 +154,22 @@ export default function TimeFilter() {
   };
 
   const handleReset = () => {
-    Alert.alert('Are you sure?', 'This will reset your date selections.', [
-      {
-        text: 'Cancel',
-        style: 'cancel',
-      },
-      { text: 'Yes, Clear', onPress: clearSearch },
-    ]);
+    if (Platform.OS === 'web') {
+      const confirm = window.confirm(
+        `${LL.RESET_CONFIRM()} ${LL.RESET_WARNING()}`
+      );
+      if (confirm) {
+        clearSearch();
+      }
+    } else {
+      Alert.alert(LL.RESET_CONFIRM(), LL.RESET_WARNING(), [
+        {
+          text: LL.CANCEL(),
+          style: 'cancel',
+        },
+        { text: LL.CLEAR(), onPress: clearSearch },
+      ]);
+    }
   };
 
   return (
@@ -208,7 +226,7 @@ export default function TimeFilter() {
                 fontFamily: 'Nunito-Regular',
               }}
             >
-              Start date:
+              {LL.STARTS()}:
             </label>
             <input
               id="startDate"
@@ -225,14 +243,16 @@ export default function TimeFilter() {
             />
           </>
         )}
-        <DateTimePickerModal
-          isVisible={isStartDatePickerVisible}
-          mode="datetime"
-          onConfirm={handleStartDateConfirm}
-          onCancel={hideStartDatePicker}
-          minimumDate={new Date()}
-          minuteInterval={15}
-        />
+        {Platform.OS === 'ios' || Platform.OS === 'android' ? (
+          <DateTimePickerModal
+            isVisible={isStartDatePickerVisible}
+            mode="datetime"
+            onConfirm={handleStartDateConfirm}
+            onCancel={hideStartDatePicker}
+            minimumDate={new Date()}
+            minuteInterval={15}
+          />
+        ) : null}
         {Platform.OS === 'ios' || Platform.OS === 'android' ? (
           <TextInput
             activeUnderlineColor={colors.primary}
@@ -257,7 +277,7 @@ export default function TimeFilter() {
                 fontFamily: 'Nunito-Regular',
               }}
             >
-              End date:
+              {LL.ENDS()}:
             </label>
             <input
               id="endDate"
@@ -274,13 +294,15 @@ export default function TimeFilter() {
             />
           </>
         )}
-        <DateTimePickerModal
-          isVisible={isEndDatePickerVisible}
-          mode="time"
-          onConfirm={handleEndDateConfirm}
-          onCancel={hideEndDatePicker}
-          minuteInterval={15}
-        />
+        {Platform.OS === 'ios' || Platform.OS === 'android' ? (
+          <DateTimePickerModal
+            isVisible={isEndDatePickerVisible}
+            mode="time"
+            onConfirm={handleEndDateConfirm}
+            onCancel={hideEndDatePicker}
+            minuteInterval={15}
+          />
+        ) : null}
         <Pressable onPress={handleSearch} style={styles.button}>
           <CustomText style={styles.buttonText}>
             {LL.SEARCH_CLASSROOMS()}
@@ -288,7 +310,7 @@ export default function TimeFilter() {
         </Pressable>
         {(startDate || endDate) && (
           <Pressable
-            onPress={Platform.OS === 'web' ? clearSearch : handleReset}
+            onPress={handleReset}
             style={[styles.button, { backgroundColor: colors.primary }]}
           >
             <CustomText style={styles.buttonText}>

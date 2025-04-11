@@ -61,6 +61,7 @@ const en = {
   SELECT_LANGUAGE: 'Select language',
   SEARCH_CLASSROOMS: 'Search classrooms',
   CLEAR_DATES: 'Clear dates',
+  HELLO: 'Hello',
 } satisfies BaseTranslation;
 
 export default en;

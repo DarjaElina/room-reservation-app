@@ -1,10 +1,11 @@
-import { Pressable, Text } from 'react-native';
+import { Pressable } from 'react-native';
 import { memo } from 'react';
 import SelectedTimeSlot from './SelectedTimeSlot';
 import BookedTimeSlot from './BookedTimeSlot';
 import useBookingContext from '@/src/hooks/useBookingContext';
 import useStyles from '../hooks/useStyles';
 import { useTheme } from '@react-navigation/native';
+import CustomText from './CustomText';
 
 export interface TimeSlotType {
   hour: number;
@@ -41,11 +42,14 @@ const TimeSlot = memo(function TimeSlotItem({
       onPress={() => onSelect(timeSlot)}
       style={[
         styles.timeSlot,
-        { borderColor: index !== 0 && index % 4 === 0 ? 'gray' : 'lightgray' },
+        {
+          borderColor: index % 4 === 0 ? colors.border : colors.borderLight,
+          backgroundColor: colors.card,
+        },
       ]}
     >
       {index % 4 === 0 ? (
-        <Text style={{ padding: 2 }}>{timeSlot.value}</Text>
+        <CustomText style={{ padding: 2 }}>{timeSlot.value}</CustomText>
       ) : null}
       {selectedTimeValues.find((i) => i.value === timeSlot.value) ? (
         <SelectedTimeSlot

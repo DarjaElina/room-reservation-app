@@ -78,11 +78,6 @@ export default function DatePicker({ dateToModify }: DatePickerProps) {
           paddingVertical: 8,
           paddingHorizontal: 12,
           borderRadius: 8,
-          shadowColor: '#000',
-          shadowOffset: { width: 0, height: 2 },
-          shadowOpacity: 0.2,
-          shadowRadius: 4,
-          elevation: 3,
         }}
       >
         <CustomText style={{ fontSize: 18, color: 'black' }}>

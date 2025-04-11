@@ -60,6 +60,7 @@ const ru: Translation = {
   SELECT_LANGUAGE: 'Выбрать язык',
   SEARCH_CLASSROOMS: 'Поиск аудиторий',
   CLEAR_DATES: 'Очистить даты',
+  HELLO: 'Привет',
 };
 
 export default ru;

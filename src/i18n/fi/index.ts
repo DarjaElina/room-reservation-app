@@ -61,6 +61,7 @@ const fi: Translation = {
   SELECT_LANGUAGE: 'Valitse kieli',
   SEARCH_CLASSROOMS: 'Etsi luokkia',
   CLEAR_DATES: 'Tyhjennä päivämäärät',
+  HELLO: 'Hei',
 };
 
 export default fi;

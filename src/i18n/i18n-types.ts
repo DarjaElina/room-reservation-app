@@ -251,6 +251,10 @@ type RootTranslation = {
 	 * C​l​e​a​r​ ​d​a​t​e​s
 	 */
 	CLEAR_DATES: string
+	/**
+	 * H​e​l​l​o
+	 */
+	HELLO: string
 }
 
 export type TranslationFunctions = {
@@ -490,6 +494,10 @@ export type TranslationFunctions = {
 	 * Clear dates
 	 */
 	CLEAR_DATES: () => LocalizedString
+	/**
+	 * Hello
+	 */
+	HELLO: () => LocalizedString
 }
 
 export type Formatters = {}
