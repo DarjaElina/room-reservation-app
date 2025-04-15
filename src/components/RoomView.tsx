@@ -121,10 +121,12 @@ export default function RoomView({ room }: { room: RoomViewProps }) {
               </View>
 
               <Pressable
-                style={[
+                style={({ hovered }) => [
                   styles.button,
                   {
-                    backgroundColor: colors.border,
+                    backgroundColor: hovered
+                      ? colors.primaryHovered
+                      : colors.primary,
                     margin: 0,
                     alignSelf: 'flex-start',
                   },
@@ -166,10 +168,12 @@ export default function RoomView({ room }: { room: RoomViewProps }) {
 
                 <Pressable
                   onPress={() => setModalVisible(false)}
-                  style={[
+                  style={({ hovered }) => [
                     styles.button,
                     {
-                      alignSelf: 'center',
+                      backgroundColor: hovered
+                        ? colors.primaryHovered
+                        : colors.primary,
                     },
                   ]}
                 >

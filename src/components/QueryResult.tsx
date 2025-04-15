@@ -47,6 +47,7 @@ const QueryResult = ({ loading, error, data, children }: QueryResultProps) => {
             styles.errorText,
             {
               color: colors.error,
+              textAlign: 'center',
             },
           ]}
         >

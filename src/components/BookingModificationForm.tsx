@@ -156,10 +156,10 @@ const BookingModificationForm: React.FC<BookingModificationFormProps> = ({
       <View style={styles.flexButtonContainer}>
         <Pressable
           onPress={handleSave}
-          style={[
+          style={({ hovered }) => [
             styles.button,
             {
-              backgroundColor: colors.primary,
+              backgroundColor: hovered ? colors.primaryHovered : colors.primary,
             },
           ]}
         >
@@ -167,7 +167,12 @@ const BookingModificationForm: React.FC<BookingModificationFormProps> = ({
         </Pressable>
         <Pressable
           onPress={onCancel}
-          style={[styles.button, { backgroundColor: colors.error }]}
+          style={({ hovered }) => [
+            styles.button,
+            {
+              backgroundColor: hovered ? '#FF3C5C' : colors.error,
+            },
+          ]}
         >
           <CustomText style={styles.buttonText}>{LL.CANCEL()}</CustomText>
         </Pressable>

@@ -303,7 +303,15 @@ export default function TimeFilter() {
             minuteInterval={15}
           />
         ) : null}
-        <Pressable onPress={handleSearch} style={styles.button}>
+        <Pressable
+          onPress={handleSearch}
+          style={({ hovered }) => [
+            styles.button,
+            {
+              backgroundColor: hovered ? colors.primaryHovered : colors.primary,
+            },
+          ]}
+        >
           <CustomText style={styles.buttonText}>
             {LL.SEARCH_CLASSROOMS()}
           </CustomText>
@@ -311,7 +319,14 @@ export default function TimeFilter() {
         {(startDate || endDate) && (
           <Pressable
             onPress={handleReset}
-            style={[styles.button, { backgroundColor: colors.primary }]}
+            style={({ hovered }) => [
+              styles.button,
+              {
+                backgroundColor: hovered
+                  ? colors.primaryHovered
+                  : colors.primary,
+              },
+            ]}
           >
             <CustomText style={styles.buttonText}>
               {LL.CLEAR_DATES()}

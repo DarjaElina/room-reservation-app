@@ -43,9 +43,11 @@ export default function Form({ control, errors, fields }: FormProps) {
                   color: colors.text,
                   fontFamily: 'Nunito-Regular',
                 }}
-                placeholderTextColor={colors.text}
                 textColor={colors.text}
                 accessibilityLabel={field.label}
+                underlineColor={colors.text}
+                placeholderTextColor={'#ffffff'}
+                theme={{ colors: { onSurfaceVariant: colors.text } }}
               />
             )}
             name={field.name}

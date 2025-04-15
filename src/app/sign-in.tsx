@@ -36,7 +36,6 @@ export default function Login() {
   } = useForm<UserFormType>({
     resolver: zodResolver(userSchema),
   });
-  console.log(userMessage);
   const onSubmit: SubmitHandler<UserFormType> = async (data: UserFormType) => {
     const { username, password } = data;
     try {
@@ -101,7 +100,12 @@ export default function Login() {
         <Pressable
           disabled={loading}
           onPress={handleSubmit(onSubmit)}
-          style={[styles.button, { backgroundColor: colors.primary }]}
+          style={({ hovered }) => [
+            styles.button,
+            {
+              backgroundColor: hovered ? colors.primaryHovered : colors.primary,
+            },
+          ]}
         >
           <CustomText style={styles.buttonText}>{LL.LOGIN()}</CustomText>
         </Pressable>

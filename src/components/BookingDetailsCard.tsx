@@ -97,10 +97,10 @@ export default function BookingDetailsCard({
       <Pressable
         disabled={loading}
         onPress={onSubmit}
-        style={[
+        style={({ hovered }) => [
           styles.button,
           {
-            backgroundColor: colors.primary,
+            backgroundColor: hovered ? colors.primaryHovered : colors.primary,
           },
         ]}
       >

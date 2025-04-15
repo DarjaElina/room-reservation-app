@@ -49,7 +49,7 @@ export default function RoomListContainer({
         item ? (
           <Link
             testID="room-item-link"
-            style={[styles.roomLinkContainer]}
+            style={styles.roomLinkContainer}
             href={{
               pathname: '/rooms/[id]',
               params: { id: item.id },

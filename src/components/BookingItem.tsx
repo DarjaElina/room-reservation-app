@@ -111,27 +111,24 @@ export default function BookingItem({
           <Pressable
             disabled={loading}
             onPress={() => confirmCancel(id)}
-            style={[
+            style={({ hovered }) => [
               styles.button,
-              { backgroundColor: colors.error, flexDirection: 'row' },
+              {
+                backgroundColor: hovered ? '#FF3C5C' : colors.error,
+              },
             ]}
           >
-            <CustomText
-              style={[
-                styles.buttonText,
-                {
-                  backgroundColor: colors.error,
-                },
-              ]}
-            >
-              {LL.CANCEL()}
-            </CustomText>
+            <CustomText style={[styles.buttonText]}>{LL.CANCEL()}</CustomText>
           </Pressable>
           <Pressable
             onPress={() => setShowModal(true)}
-            style={[
+            style={({ hovered }) => [
               styles.button,
-              { backgroundColor: colors.primary, flexDirection: 'row' },
+              {
+                backgroundColor: hovered
+                  ? colors.primaryHovered
+                  : colors.primary,
+              },
             ]}
           >
             <CustomText style={styles.buttonText}>{LL.MODIFY()}</CustomText>

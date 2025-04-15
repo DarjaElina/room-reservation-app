@@ -66,7 +66,12 @@ export default function SettingsScreen() {
       </CustomText>
       <View>
         <Pressable
-          style={[styles.button, { backgroundColor: colors.primary }]}
+          style={({ hovered }) => [
+            styles.button,
+            {
+              backgroundColor: hovered ? colors.primaryHovered : colors.primary,
+            },
+          ]}
           onPress={() => setModalVisible(true)}
         >
           <CustomText style={styles.buttonText}>
@@ -90,11 +95,12 @@ export default function SettingsScreen() {
 
             <Pressable
               onPress={() => setModalVisible(false)}
-              style={[
+              style={({ hovered }) => [
                 styles.button,
                 {
-                  width: 100,
-                  alignSelf: 'center',
+                  backgroundColor: hovered
+                    ? colors.primaryHovered
+                    : colors.primary,
                 },
               ]}
             >
@@ -104,7 +110,12 @@ export default function SettingsScreen() {
         </Modal>
         <Pressable
           disabled={loading}
-          style={[styles.button, { flexDirection: 'row' }]}
+          style={({ hovered }) => [
+            styles.button,
+            {
+              backgroundColor: hovered ? colors.primaryHovered : colors.primary,
+            },
+          ]}
           onPress={() => signOut()}
         >
           <CustomText style={styles.buttonText}>{LL.LOGOUT()}</CustomText>
