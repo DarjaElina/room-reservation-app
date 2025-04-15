@@ -19,7 +19,7 @@ appId: com.daria111.mobilefrontend
 - tapOn: '21:00:00'
 - tapOn: 'Confirm'
 - assertVisible: 'Booking Details'
-- assertVisible: 'Room: MY-100'
+- assertVisible: 'Room: M-100'
 - runScript: ../src/scripts/getTomorrowDate.js
 - assertVisible: 'Starts: ${output.getTomorrowDate.commaFormat} at 9:00 PM'
 - assertVisible: 'Ends: ${output.getTomorrowDate.commaFormat} at 10:00 PM'

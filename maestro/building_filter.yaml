@@ -5,7 +5,7 @@ appId: com.daria111.mobilefrontend
 - assertNotVisible: 'T-101 T-Building Available'
 - tapOn: ' Building'
 - assertVisible: ' T-Building'
-- tapOn: ' Taneyev Building'
+- tapOn: ' T-Building'
 - tapOn: 'Back'
 - assertVisible: 'T-101 T-Building Available'
 - assertNotVisible: 'M-100 M-Building Available'

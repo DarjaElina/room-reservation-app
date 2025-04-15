@@ -31,5 +31,11 @@ appId: com.daria111.mobilefrontend
 - assertVisible: 'Reservation from Booking App'
 - assertVisible: 'M-100'
 - assertVisible: '${output.getTomorrowDate.commaFormat} at 06.00 - ${output.getTomorrowDate.commaFormat} at 07.00'
+- assertVisible: 'Cancel'
+- tapOn: 'Cancel'
+- assertVisible: 'Cancel Booking'
+- assertVisible: 'Are you sure you want to cancel this booking?'
+- tapOn: 'Yes, Cancel'
+- assertVisible: 'You have no upcoming bookings.'
 - tapOn: 'Close'
 - clearState

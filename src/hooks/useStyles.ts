@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useWindowDimensions, StyleSheet } from 'react-native';
+import { useWindowDimensions, StyleSheet, Platform } from 'react-native';
 
 const useStyles = () => {
   const { height, width } = useWindowDimensions();
@@ -34,7 +34,7 @@ const useStyles = () => {
       },
       searchbar: {
         height: isLargeScreen ? vmin * 6 : vmin * 10,
-        borderRadius: 10,
+        borderRadius: 20,
         justifyContent: 'center',
         borderWidth: 1,
         overflow: 'hidden',
@@ -113,9 +113,7 @@ const useStyles = () => {
         justifyContent: 'flex-start',
       },
       itemContainer: {
-        maxWidth: vmin * 45,
-        minWidth: vmin * 39,
-        width: '100%',
+        width: Platform.OS === 'web' ? vmin * 39 : vmin * 45,
         gap: vmin * 1,
         padding: vmin * 2.6,
         borderRadius: 12,
@@ -193,7 +191,6 @@ const useStyles = () => {
       },
       roomLinkContainer: {
         margin: vmin * 2,
-        maxWidth: '100%',
       },
 
       // headings

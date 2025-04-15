@@ -12,7 +12,7 @@ appId: com.daria111.mobilefrontend
 - assertVisible: 'Music stands'
 - tapOn: 'Back'
 - scrollUntilVisible:
-    element: '-100 M-Building Available'
+    element: 'M-100 M-Building Available'
     direction: 'UP'
 - tapOn: ' Tools'
 - assertVisible: ' Music stands'

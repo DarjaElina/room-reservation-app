@@ -33,20 +33,17 @@ export default function RoomListContainer({
   onEndReach,
 }: RoomListProps) {
   const styles = useStyles();
-  return rooms.length > 0 ? (
+  if (rooms.length === 0) {
+    return <CustomText style={styles.userMessage}>No rooms found.</CustomText>;
+  }
+  return (
     <FlatList
-      contentContainerStyle={[
-        styles.listContainer,
-        {
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          justifyContent: 'space-evenly',
-        },
-      ]}
+      contentContainerStyle={[styles.listContainer]}
       onEndReached={onEndReach}
       onEndReachedThreshold={0.5}
       showsVerticalScrollIndicator={false}
       horizontal={false}
+      numColumns={2}
       data={rooms}
       renderItem={({ item }) =>
         item ? (
@@ -68,7 +65,5 @@ export default function RoomListContainer({
       }
       keyExtractor={(item) => item.id}
     />
-  ) : (
-    <CustomText style={styles.userMessage}>No rooms found.</CustomText>
   );
 }

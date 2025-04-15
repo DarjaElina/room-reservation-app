@@ -62,7 +62,7 @@ export default function SettingsScreen() {
     >
       <CustomText style={[styles.bigText, { textAlign: 'center' }]}>
         {LL.HELLO()}, {data?.currentUser?.givenName}{' '}
-        {data?.currentUser?.familyName}! ✨
+        {data?.currentUser?.familyName}! ⭐️
       </CustomText>
       <View>
         <Pressable
@@ -111,11 +111,14 @@ export default function SettingsScreen() {
         </Pressable>
       </View>
       <CustomText
-        style={{
-          marginTop: 30,
-          opacity: 0.8,
-          textAlign: 'center',
-        }}
+        style={[
+          styles.mediumText,
+          {
+            marginTop: 30,
+            opacity: 0.8,
+            textAlign: 'center',
+          },
+        ]}
       >
         {quote}
       </CustomText>

@@ -1,8 +1,9 @@
-import { View } from 'react-native';
+import { Platform, View } from 'react-native';
 import { useState } from 'react';
 import { useDebounce } from 'use-debounce';
 import useRooms from '@/src/hooks/useRooms';
 import RoomListContainer from './RoomListContainer';
+import RoomListContainerWeb from './RoomListContainerWeb';
 import SearchBar from '../SearchBar';
 import FilterButtons from '../FilterButtons';
 import useFilter from '@/src/hooks/useFilter';
@@ -16,7 +17,7 @@ export default function RoomListWrapper() {
   const { startDate, endDate, buildings, equipment, types } = useFilter();
 
   const { rooms, loading, error, fetchMore } = useRooms({
-    first: 4,
+    first: 6,
     searchKeyword: debouncedSearchQuery,
     startsAt: startDate?.getTime() ?? undefined,
     endsAt: endDate?.getTime() ?? undefined,
@@ -42,7 +43,11 @@ export default function RoomListWrapper() {
             placeholder={LL.SEARCH_ROOMS_BY_CODE()}
           />
           <FilterButtons />
-          <RoomListContainer rooms={roomNodes} onEndReach={onEndReach} />
+          {Platform.OS === 'web' ? (
+            <RoomListContainerWeb rooms={roomNodes} fetchMore={fetchMore} />
+          ) : (
+            <RoomListContainer rooms={roomNodes} onEndReach={onEndReach} />
+          )}
         </View>
       </QueryResult>
     </PaperProvider>
