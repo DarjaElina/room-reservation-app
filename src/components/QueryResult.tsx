@@ -1,8 +1,9 @@
-import { View, Text, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { useI18nContext } from '../i18n/i18n-react';
 import { ApolloError } from '@apollo/client';
 import useStyles from '../hooks/useStyles';
+import CustomText from './CustomText';
 
 interface QueryResultProps {
   loading: boolean;
@@ -41,18 +42,15 @@ const QueryResult = ({ loading, error, data, children }: QueryResultProps) => {
           { backgroundColor: colors.background },
         ]}
       >
-        <Text
+        <CustomText
+          isError
           testID="error-text"
-          style={[
-            styles.errorText,
-            {
-              color: colors.error,
-              textAlign: 'center',
-            },
-          ]}
+          style={{
+            textAlign: 'center',
+          }}
         >
           {LL.ERROR()}: {error.message}
-        </Text>
+        </CustomText>
       </View>
     );
   }
@@ -65,16 +63,13 @@ const QueryResult = ({ loading, error, data, children }: QueryResultProps) => {
           { backgroundColor: colors.background },
         ]}
       >
-        <Text
-          style={[
-            styles.mediumText,
-            {
-              textAlign: 'center',
-            },
-          ]}
+        <CustomText
+          style={{
+            textAlign: 'center',
+          }}
         >
           {LL.NOTHING_TO_SHOW()}
-        </Text>
+        </CustomText>
       </View>
     );
   }

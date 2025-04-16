@@ -193,13 +193,10 @@ export default function TimeFilter() {
         ]}
       >
         <CustomText
-          style={[
-            styles.bigText,
-            styles.textContainer,
-            {
-              textAlign: 'center',
-            },
-          ]}
+          isBig
+          style={{
+            textAlign: 'center',
+          }}
         >
           {LL.SELECT_TIME_RANGE()}
         </CustomText>

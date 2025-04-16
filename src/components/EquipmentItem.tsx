@@ -19,7 +19,7 @@ export default function EquipmentItem({ name }: EquipmentProp) {
         },
       ]}
     >
-      <CustomText style={[styles.smallText]}>{name}</CustomText>
+      <CustomText isSmall>{name}</CustomText>
     </View>
   );
 }

@@ -61,7 +61,7 @@ export default function BookingDetailsCard({
         </CustomText>
       </View>
       <CustomText>
-        <CustomText style={styles.mediumText}>{LL.TITLE()}</CustomText>
+        <CustomText>{LL.TITLE()}</CustomText>
       </CustomText>
       <TextInput
         mode="flat"
@@ -78,20 +78,15 @@ export default function BookingDetailsCard({
         placeholderTextColor={colors.text}
         textColor={colors.text}
       />
-      {error && (
-        <CustomText style={[styles.errorText, { color: colors.error }]}>
-          {error}
-        </CustomText>
-      )}
-      <CustomText style={[styles.mediumText, styles.textContainer]}>
-        <CustomText style={[styles.mediumText]}>{LL.ROOM()}:</CustomText>{' '}
-        {roomCode}
+      {error && <CustomText isError>{error}</CustomText>}
+      <CustomText style={{ marginBottom: 10 }}>
+        <CustomText>{LL.ROOM()}:</CustomText> {roomCode}
       </CustomText>
-      <CustomText style={[styles.mediumText, styles.textContainer]}>
+      <CustomText style={{ marginBottom: 10 }}>
         <CustomText>{LL.STARTS()}:</CustomText>{' '}
         {formatReadableDate(bookingStartDate)}
       </CustomText>
-      <CustomText style={[styles.mediumText, styles.textContainer]}>
+      <CustomText style={{ marginBottom: 10 }}>
         <CustomText>{LL.ENDS()}:</CustomText>{' '}
         {formatReadableDate(bookingEndDate)}
       </CustomText>

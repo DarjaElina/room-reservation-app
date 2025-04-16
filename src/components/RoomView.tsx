@@ -78,15 +78,11 @@ export default function RoomView({ room }: { room: RoomViewProps }) {
                   maxWidth: '60%',
                 }}
               >
-                <CustomText fontFamily="Nunito-Bold" style={[styles.bigText]}>
+                <CustomText fontFamily="Nunito-Bold" isBig>
                   {room.code}
                 </CustomText>
-                <CustomText style={[styles.mediumText]}>
-                  {formatRoomType(room.type)}
-                </CustomText>
-                <CustomText style={[styles.smallText]}>
-                  {room.venue.name}
-                </CustomText>
+                <CustomText>{formatRoomType(room.type)}</CustomText>
+                <CustomText isSmall>{room.venue.name}</CustomText>
                 {room.isFree ? (
                   <View style={styles.iconTextContainer}>
                     <AntDesign
@@ -94,9 +90,7 @@ export default function RoomView({ room }: { room: RoomViewProps }) {
                       size={20}
                       color={colors.success}
                     />
-                    <CustomText style={[styles.mediumText]}>
-                      {LL.AVAILABLE()}
-                    </CustomText>
+                    <CustomText>{LL.AVAILABLE()}</CustomText>
                   </View>
                 ) : (
                   <View style={styles.iconTextContainer}>
@@ -105,17 +99,12 @@ export default function RoomView({ room }: { room: RoomViewProps }) {
                       size={20}
                       color={colors.error}
                     />
-                    <CustomText style={[styles.mediumText]}>
-                      {LL.OCCUPIED()}
-                    </CustomText>
+                    <CustomText>{LL.OCCUPIED()}</CustomText>
                   </View>
                 )}
                 <CustomText
                   onPress={() => setModalVisible(true)}
-                  style={[
-                    styles.mediumText,
-                    { textDecorationLine: 'underline' },
-                  ]}
+                  style={{ textDecorationLine: 'underline' }}
                 >
                   {LL.SHOW_UPCOMING_RESERVATIONS()}
                 </CustomText>

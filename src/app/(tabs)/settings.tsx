@@ -94,7 +94,6 @@ export default function SettingsScreen() {
       </View>
       <CustomText
         style={[
-          styles.mediumText,
           {
             marginTop: 30,
             opacity: 0.8,

@@ -48,7 +48,6 @@ export default function Form({ control, errors, fields }: FormProps) {
                 textColor={colors.text}
                 accessibilityLabel={field.label}
                 underlineColor={colors.text}
-                // placeholderTextColor={colors.text}
                 theme={{ colors: { onSurfaceVariant: colors.text } }}
                 activeOutlineColor="transparent"
               />
@@ -56,14 +55,7 @@ export default function Form({ control, errors, fields }: FormProps) {
             name={field.name}
           />
           {errors[field.name] && (
-            <CustomText
-              style={[
-                styles.errorText,
-                {
-                  color: colors.error,
-                },
-              ]}
-            >
+            <CustomText isError style={{ margin: 2.5 }}>
               {String(errors[field.name]?.message)}
             </CustomText>
           )}

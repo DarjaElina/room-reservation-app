@@ -1,9 +1,10 @@
 import { ScrollView } from 'react-native';
 import RoomItem from '../RoomItem';
-import { Link } from 'expo-router';
 import useStyles from '@/src/hooks/useStyles';
 import CustomText from '../CustomText';
 import { NativeScrollEvent } from 'react-native';
+import { useRouter } from 'expo-router';
+import PressableCard from '../PressableCard';
 
 interface RoomListProps {
   rooms: {
@@ -34,6 +35,7 @@ export default function RoomListContainerWeb({
   fetchMore,
 }: RoomListProps) {
   const styles = useStyles();
+  const router = useRouter();
 
   const isCloseToBottom = ({
     layoutMeasurement,
@@ -65,21 +67,19 @@ export default function RoomListContainerWeb({
       }}
     >
       {rooms.map((item) => (
-        <Link
-          key={item.id}
+        <PressableCard
           testID="room-item-link"
-          style={styles.roomLinkContainer}
-          href={{
-            pathname: '/rooms/[id]',
-            params: { id: item.id },
-          }}
+          key={item.id}
+          onPress={() =>
+            router.push({ pathname: '/rooms/[id]', params: { id: item.id } })
+          }
         >
           <RoomItem
             code={item.code}
             venue={item.venue.name}
             isFree={item.isFree}
           />
-        </Link>
+        </PressableCard>
       ))}
     </ScrollView>
   );

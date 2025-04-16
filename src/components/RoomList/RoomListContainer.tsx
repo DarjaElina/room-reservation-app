@@ -1,8 +1,9 @@
 import { FlatList } from 'react-native';
 import RoomItem from '../RoomItem';
-import { Link } from 'expo-router';
 import useStyles from '@/src/hooks/useStyles';
 import CustomText from '../CustomText';
+import { useRouter } from 'expo-router';
+import PressableCard from '../PressableCard';
 
 interface RoomListProps {
   rooms: {
@@ -33,6 +34,7 @@ export default function RoomListContainer({
   onEndReach,
 }: RoomListProps) {
   const styles = useStyles();
+  const router = useRouter();
   if (rooms.length === 0) {
     return <CustomText style={styles.userMessage}>No rooms found.</CustomText>;
   }
@@ -47,20 +49,19 @@ export default function RoomListContainer({
       data={rooms}
       renderItem={({ item }) =>
         item ? (
-          <Link
+          <PressableCard
             testID="room-item-link"
-            style={styles.roomLinkContainer}
-            href={{
-              pathname: '/rooms/[id]',
-              params: { id: item.id },
-            }}
+            key={item.id}
+            onPress={() =>
+              router.push({ pathname: '/rooms/[id]', params: { id: item.id } })
+            }
           >
             <RoomItem
               code={item.code}
               venue={item.venue.name}
               isFree={item.isFree}
             />
-          </Link>
+          </PressableCard>
         ) : null
       }
       keyExtractor={(item) => item.id}

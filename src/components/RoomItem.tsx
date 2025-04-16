@@ -4,7 +4,6 @@ import { AntDesign } from '@expo/vector-icons';
 import { useTheme } from '@react-navigation/native';
 import { useI18nContext } from '../i18n/i18n-react';
 import useStyles from '../hooks/useStyles';
-import { useColorScheme } from 'react-native';
 import CustomText from './CustomText';
 import { useWindowDimensions } from 'react-native';
 interface RoomProps {
@@ -26,21 +25,10 @@ export default function Room({
   const { colors } = useTheme();
   const { LL } = useI18nContext();
   const styles = useStyles();
-  const colorScheme = useColorScheme();
   const { width } = useWindowDimensions();
   const isExtraSmallScreen = width < 460;
   return (
-    <View
-      testID="room-item"
-      style={[
-        styles.itemContainer,
-        {
-          boxShadow:
-            colorScheme === 'light' ? 'rgba(0, 0, 0, 0.24) 0px 3px 8px' : '',
-          backgroundColor: colors.card,
-        },
-      ]}
-    >
+    <View testID="room-item">
       <Image
         style={styles.roomItemImage}
         source={pictureUrl}
@@ -58,27 +46,21 @@ export default function Room({
       >
         <View>
           <CustomText
-            style={[
-              styles.bigText,
-              {
-                color: colors.text,
-                fontFamily: 'Nunito-Bold',
-              },
-            ]}
+            isBig
+            style={{
+              fontFamily: 'Nunito-Bold',
+            }}
           >
             {code}
           </CustomText>
-          <CustomText style={styles.mediumText}>{venue}</CustomText>
+          <CustomText>{venue}</CustomText>
         </View>
         <View style={styles.iconTextContainer}>
           {isFree ? (
             <>
               <AntDesign name="checksquare" size={20} color={colors.success} />
               <CustomText
-                style={[
-                  styles.mediumText,
-                  { display: isExtraSmallScreen ? 'none' : 'flex' },
-                ]}
+                style={{ display: isExtraSmallScreen ? 'none' : 'flex' }}
               >
                 {LL.AVAILABLE()}
               </CustomText>
@@ -87,10 +69,7 @@ export default function Room({
             <>
               <AntDesign name="closesquare" size={20} color={colors.error} />
               <CustomText
-                style={[
-                  styles.mediumText,
-                  { display: isExtraSmallScreen ? 'none' : 'flex' },
-                ]}
+                style={{ display: isExtraSmallScreen ? 'none' : 'flex' }}
               >
                 {LL.OCCUPIED()}
               </CustomText>

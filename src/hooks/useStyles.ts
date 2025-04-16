@@ -31,6 +31,8 @@ const useStyles = () => {
         borderWidth: 1,
         width: isLargeScreen ? '80%' : '100%',
         alignSelf: 'center',
+        transitionDuration: '150ms',
+        transitionProperty: 'background-color',
       },
       searchbar: {
         height: isLargeScreen ? vmin * 6 : vmin * 10,
@@ -45,6 +47,7 @@ const useStyles = () => {
         paddingVertical: vmin * 2,
         paddingHorizontal: vmin * 3,
         borderRadius: 8,
+        borderWidth: 1,
       },
 
       // buttons
@@ -88,10 +91,6 @@ const useStyles = () => {
       },
       mediumText: {
         fontSize: isLargeScreen ? 7 + vmin * 1.5 : 7 + vmin * 2.3,
-      },
-      errorText: {
-        marginTop: isLargeScreen ? 10 + vmin * 1.5 : 10 + vmin * 3.5,
-        fontSize: 8 + vmin * 1.8,
       },
       userMessage: {
         fontSize: isLargeScreen ? 7 + vmin * 1.5 : 7 + vmin * 2.5,
@@ -156,7 +155,6 @@ const useStyles = () => {
       bookingItemContainer: {
         padding: vmin * 4.5,
         borderRadius: 12,
-        // ...shadows.light,
         margin: vmin * 4,
         marginHorizontal: isLargeScreen ? vmin * 10 : vmin * 4,
         gap: vmin * 2,
@@ -176,9 +174,6 @@ const useStyles = () => {
         padding: vmin * 2,
         marginBottom: vmin * 3,
       },
-      textContainer: {
-        marginBottom: vmin * 2,
-      },
       userMessageContainer: {
         borderWidth: 1,
         borderRadius: 12,
@@ -189,7 +184,7 @@ const useStyles = () => {
         width: isLargeScreen ? '60%' : '100%',
         alignSelf: 'center',
       },
-      roomLinkContainer: {
+      pressableCard: {
         margin: vmin * 2,
       },
 

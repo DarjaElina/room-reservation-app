@@ -19,12 +19,11 @@ export default function UserMessage({ text, type }: UserNotificationProps) {
       style={[
         styles.userMessageContainer,
         {
-          backgroundColor: colors.background,
           borderColor: type === 'success' ? colors.success : colors.error,
         },
       ]}
     >
-      <CustomText style={styles.mediumText}>{text}</CustomText>
+      <CustomText>{text}</CustomText>
     </View>
   );
 }

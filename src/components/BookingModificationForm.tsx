@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Alert, Platform, Pressable } from 'react-native';
+import { View, Alert, Platform } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import useUpdateBooking from '@/src/hooks/useUpdateBooking';
 import { router } from 'expo-router';
@@ -11,6 +11,7 @@ import { ApolloError } from '@apollo/client';
 import LoadingOverlay from './LoadingOverlay';
 import CustomText from './CustomText';
 import CustomButton from './CustomButton';
+import PressableOutlineButton from './PressableOutlineButton';
 
 interface BookingModificationFormProps {
   initialData: {
@@ -78,7 +79,6 @@ const BookingModificationForm: React.FC<BookingModificationFormProps> = ({
           }, 2000);
         } else Alert.alert('Error', message);
       }
-      console.log(error);
     }
   };
 
@@ -102,8 +102,9 @@ const BookingModificationForm: React.FC<BookingModificationFormProps> = ({
   return (
     <View
       style={[
+        styles.bookingItemContainer,
         {
-          backgroundColor: colors.background,
+          backgroundColor: colors.card,
           alignSelf: 'center',
           gap: 10,
         },
@@ -115,7 +116,6 @@ const BookingModificationForm: React.FC<BookingModificationFormProps> = ({
         style={[
           styles.input,
           {
-            backgroundColor: colors.card,
             fontFamily: 'Nunito-Regular',
           },
         ]}
@@ -126,32 +126,22 @@ const BookingModificationForm: React.FC<BookingModificationFormProps> = ({
         textColor={colors.text}
       />
 
-      <View style={styles.textContainer}>
-        <CustomText style={[styles.mediumText, styles.textContainer]}>
-          {LL.STARTS()}:
-        </CustomText>
-        <Pressable
+      <View>
+        <CustomText style={{ marginBottom: 4 }}>{LL.STARTS()}:</CustomText>
+        <PressableOutlineButton
           onPress={() => handleNavigateToDatePicker('start')}
-          style={[styles.datePressable, { backgroundColor: colors.card }]}
         >
-          <CustomText style={[styles.mediumText]}>
-            {formatDate(new Date(initialData.startDate))}
-          </CustomText>
-        </Pressable>
+          <CustomText>{formatDate(new Date(initialData.startDate))}</CustomText>
+        </PressableOutlineButton>
       </View>
 
-      <View style={styles.textContainer}>
-        <CustomText style={[styles.mediumText, styles.textContainer]}>
-          {LL.ENDS()}:
-        </CustomText>
-        <Pressable
+      <View>
+        <CustomText style={{ marginBottom: 4 }}>{LL.ENDS()}:</CustomText>
+        <PressableOutlineButton
           onPress={() => handleNavigateToDatePicker('end')}
-          style={[styles.datePressable, { backgroundColor: colors.card }]}
         >
-          <CustomText style={[styles.mediumText]}>
-            {formatDate(new Date(initialData.endDate))}
-          </CustomText>
-        </Pressable>
+          <CustomText>{formatDate(new Date(initialData.endDate))}</CustomText>
+        </PressableOutlineButton>
       </View>
 
       <View style={styles.flexButtonContainer}>
