@@ -237,6 +237,8 @@ export default function TimeFilter() {
                 border: '1px solid #ccc',
                 fontSize: 16,
                 margin: 10,
+                width: '100%',
+                alignSelf: 'center',
               }}
             />
           </>
@@ -288,6 +290,8 @@ export default function TimeFilter() {
                 border: '1px solid #ccc',
                 fontSize: 16,
                 margin: 10,
+                width: '100%',
+                alignSelf: 'center',
               }}
             />
           </>
