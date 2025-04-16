@@ -1,4 +1,4 @@
-import { View, Pressable, Alert, Modal, Platform } from 'react-native';
+import { View, Alert, Modal, Platform } from 'react-native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import useCancelBooking from '@/src/hooks/useCancelBooking';
 import BookingModificationForm from './BookingModificationForm';
@@ -8,6 +8,7 @@ import { useI18nContext } from '../i18n/i18n-react';
 import useStyles from '../hooks/useStyles';
 import LoadingOverlay from './LoadingOverlay';
 import CustomText from './CustomText';
+import CustomButton from './CustomButton';
 interface BookingItemProps {
   startDate: Date;
   endDate: Date;
@@ -108,31 +109,15 @@ export default function BookingItem({
       </View>
       {new Date(startDate) > new Date() ? (
         <View style={styles.flexButtonContainer}>
-          <Pressable
-            disabled={loading}
+          <CustomButton
             onPress={() => confirmCancel(id)}
-            style={({ hovered }) => [
-              styles.button,
-              {
-                backgroundColor: hovered ? '#FF3C5C' : colors.error,
-              },
-            ]}
-          >
-            <CustomText style={[styles.buttonText]}>{LL.CANCEL()}</CustomText>
-          </Pressable>
-          <Pressable
+            label={LL.CANCEL()}
+            variant="error"
+          />
+          <CustomButton
             onPress={() => setShowModal(true)}
-            style={({ hovered }) => [
-              styles.button,
-              {
-                backgroundColor: hovered
-                  ? colors.primaryHovered
-                  : colors.primary,
-              },
-            ]}
-          >
-            <CustomText style={styles.buttonText}>{LL.MODIFY()}</CustomText>
-          </Pressable>
+            label={LL.MODIFY()}
+          />
           <Modal
             visible={showModal}
             animationType="slide"

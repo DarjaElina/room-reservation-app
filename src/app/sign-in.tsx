@@ -1,4 +1,4 @@
-import { View, Pressable } from 'react-native';
+import { View } from 'react-native';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -14,6 +14,7 @@ import useStyles from '../hooks/useStyles';
 import { useState } from 'react';
 import LoadingOverlay from '../components/LoadingOverlay';
 import CustomText from '../components/CustomText';
+import CustomButton from '../components/CustomButton';
 
 export default function Login() {
   const { colors } = useTheme();
@@ -97,18 +98,7 @@ export default function Login() {
             { name: 'password', label: LL.PASSWORD(), isPassword: true },
           ]}
         />
-        <Pressable
-          disabled={loading}
-          onPress={handleSubmit(onSubmit)}
-          style={({ hovered }) => [
-            styles.button,
-            {
-              backgroundColor: hovered ? colors.primaryHovered : colors.primary,
-            },
-          ]}
-        >
-          <CustomText style={styles.buttonText}>{LL.LOGIN()}</CustomText>
-        </Pressable>
+        <CustomButton onPress={handleSubmit(onSubmit)} label={LL.LOGIN()} />
       </View>
     </KeyboardAwareScrollView>
   );

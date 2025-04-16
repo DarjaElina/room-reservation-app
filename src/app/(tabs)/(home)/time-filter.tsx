@@ -1,4 +1,4 @@
-import { View, Alert, Platform, Pressable } from 'react-native';
+import { View, Alert, Platform } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { useState } from 'react';
@@ -13,6 +13,7 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import nunitoRegular from '@/src/assets/fonts/Nunito-Regular.ttf';
+import CustomButton from '@/src/components/CustomButton';
 
 type FormData = {
   startDate: Date;
@@ -303,35 +304,9 @@ export default function TimeFilter() {
             minuteInterval={15}
           />
         ) : null}
-        <Pressable
-          onPress={handleSearch}
-          style={({ hovered }) => [
-            styles.button,
-            {
-              backgroundColor: hovered ? colors.primaryHovered : colors.primary,
-            },
-          ]}
-        >
-          <CustomText style={styles.buttonText}>
-            {LL.SEARCH_CLASSROOMS()}
-          </CustomText>
-        </Pressable>
+        <CustomButton onPress={handleSearch} label={LL.SEARCH_CLASSROOMS()} />
         {(startDate || endDate) && (
-          <Pressable
-            onPress={handleReset}
-            style={({ hovered }) => [
-              styles.button,
-              {
-                backgroundColor: hovered
-                  ? colors.primaryHovered
-                  : colors.primary,
-              },
-            ]}
-          >
-            <CustomText style={styles.buttonText}>
-              {LL.CLEAR_DATES()}
-            </CustomText>
-          </Pressable>
+          <CustomButton onPress={handleReset} label={LL.CLEAR_DATES()} />
         )}
       </View>
     </View>

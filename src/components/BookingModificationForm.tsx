@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Pressable, Alert, Platform } from 'react-native';
+import { View, Alert, Platform, Pressable } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import useUpdateBooking from '@/src/hooks/useUpdateBooking';
 import { router } from 'expo-router';
@@ -10,6 +10,7 @@ import useStyles from '../hooks/useStyles';
 import { ApolloError } from '@apollo/client';
 import LoadingOverlay from './LoadingOverlay';
 import CustomText from './CustomText';
+import CustomButton from './CustomButton';
 
 interface BookingModificationFormProps {
   initialData: {
@@ -154,28 +155,8 @@ const BookingModificationForm: React.FC<BookingModificationFormProps> = ({
       </View>
 
       <View style={styles.flexButtonContainer}>
-        <Pressable
-          onPress={handleSave}
-          style={({ hovered }) => [
-            styles.button,
-            {
-              backgroundColor: hovered ? colors.primaryHovered : colors.primary,
-            },
-          ]}
-        >
-          <CustomText style={styles.buttonText}>{LL.SAVE()}</CustomText>
-        </Pressable>
-        <Pressable
-          onPress={onCancel}
-          style={({ hovered }) => [
-            styles.button,
-            {
-              backgroundColor: hovered ? '#FF3C5C' : colors.error,
-            },
-          ]}
-        >
-          <CustomText style={styles.buttonText}>{LL.CANCEL()}</CustomText>
-        </Pressable>
+        <CustomButton onPress={handleSave} label={LL.SAVE()} />
+        <CustomButton onPress={onCancel} label={LL.CANCEL()} variant="error" />
       </View>
     </View>
   );

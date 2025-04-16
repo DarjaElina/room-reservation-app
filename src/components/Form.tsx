@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { View, Platform } from 'react-native';
 import { Controller, Control, FieldErrors } from 'react-hook-form';
 import { TextInput } from 'react-native-paper';
 import { useTheme } from '@react-navigation/native';
@@ -30,8 +30,10 @@ export default function Form({ control, errors, fields }: FormProps) {
               fieldState: { error },
             }) => (
               <TextInput
+                autoFocus={true}
                 mode="flat"
-                label={field.label}
+                placeholder={field.label}
+                label={Platform.OS === 'web' ? '' : field.label}
                 secureTextEntry={field.isPassword}
                 onBlur={onBlur}
                 onChangeText={onChange}
@@ -46,8 +48,9 @@ export default function Form({ control, errors, fields }: FormProps) {
                 textColor={colors.text}
                 accessibilityLabel={field.label}
                 underlineColor={colors.text}
-                placeholderTextColor={'#ffffff'}
+                // placeholderTextColor={colors.text}
                 theme={{ colors: { onSurfaceVariant: colors.text } }}
+                activeOutlineColor="transparent"
               />
             )}
             name={field.name}

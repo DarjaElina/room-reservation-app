@@ -1,5 +1,5 @@
 import { useCallback, useState, useEffect } from 'react';
-import { View, Modal, Pressable } from 'react-native';
+import { View, Modal } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import useSignOut from '@/src/hooks/useSignOut';
 import { useI18nContext } from '@/src/i18n/i18n-react';
@@ -14,6 +14,7 @@ import CustomText from '@/src/components/CustomText';
 import { useQuery } from '@apollo/client';
 import { CURRENT_USER } from '@/src/graphql/queries';
 import { quotes } from '@/src/constants/Quotes';
+import CustomButton from '@/src/components/CustomButton';
 
 export default function SettingsScreen() {
   const { colors } = useTheme();
@@ -65,19 +66,10 @@ export default function SettingsScreen() {
         {data?.currentUser?.familyName}! ⭐️
       </CustomText>
       <View>
-        <Pressable
-          style={({ hovered }) => [
-            styles.button,
-            {
-              backgroundColor: hovered ? colors.primaryHovered : colors.primary,
-            },
-          ]}
+        <CustomButton
           onPress={() => setModalVisible(true)}
-        >
-          <CustomText style={styles.buttonText}>
-            {LL.SELECT_LANGUAGE()}
-          </CustomText>
-        </Pressable>
+          label={LL.SELECT_LANGUAGE()}
+        />
 
         <Modal
           visible={modalVisible}
@@ -92,34 +84,13 @@ export default function SettingsScreen() {
               onLocaleSelected={onLocaleSelected}
               locales={locales}
             />
-
-            <Pressable
+            <CustomButton
               onPress={() => setModalVisible(false)}
-              style={({ hovered }) => [
-                styles.button,
-                {
-                  backgroundColor: hovered
-                    ? colors.primaryHovered
-                    : colors.primary,
-                },
-              ]}
-            >
-              <CustomText style={styles.buttonText}>{LL.CLOSE()}</CustomText>
-            </Pressable>
+              label={LL.CLOSE()}
+            />
           </View>
         </Modal>
-        <Pressable
-          disabled={loading}
-          style={({ hovered }) => [
-            styles.button,
-            {
-              backgroundColor: hovered ? colors.primaryHovered : colors.primary,
-            },
-          ]}
-          onPress={() => signOut()}
-        >
-          <CustomText style={styles.buttonText}>{LL.LOGOUT()}</CustomText>
-        </Pressable>
+        <CustomButton onPress={signOut} label={LL.LOGOUT()} />
       </View>
       <CustomText
         style={[

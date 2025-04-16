@@ -1,4 +1,4 @@
-import { View, Pressable, Modal, ScrollView } from 'react-native';
+import { View, Modal, ScrollView } from 'react-native';
 import RoomDescription from './RoomDescription';
 import { Image } from 'expo-image';
 import EquipmentList from './EquipmentList';
@@ -14,6 +14,7 @@ import { router } from 'expo-router';
 import { useI18nContext } from '../i18n/i18n-react';
 import useStyles from '../hooks/useStyles';
 import CustomText from './CustomText';
+import CustomButton from './CustomButton';
 interface RoomViewProps {
   __typename?: 'Room';
   id: string;
@@ -119,29 +120,16 @@ export default function RoomView({ room }: { room: RoomViewProps }) {
                   {LL.SHOW_UPCOMING_RESERVATIONS()}
                 </CustomText>
               </View>
-
-              <Pressable
-                style={({ hovered }) => [
-                  styles.button,
-                  {
-                    backgroundColor: hovered
-                      ? colors.primaryHovered
-                      : colors.primary,
-                    margin: 0,
-                    alignSelf: 'flex-start',
-                  },
-                ]}
+              <CustomButton
                 onPress={() =>
                   router.push({
                     pathname: '/(tabs)/(home)/rooms/[id]/create-booking',
                     params: { id: room.id },
                   })
                 }
-              >
-                <CustomText style={styles.buttonText}>
-                  {LL.RESERVE()}
-                </CustomText>
-              </Pressable>
+                label={LL.RESERVE()}
+                style={{ margin: 0, alignSelf: 'flex-start' }}
+              />
             </View>
             <EquipmentList equipment={room.equipment} />
             <RoomDescription text={room.description} />
@@ -165,22 +153,10 @@ export default function RoomView({ room }: { room: RoomViewProps }) {
                   }}
                   emptyMessage={LL.NO_UPCOMING_BOOKINGS()}
                 />
-
-                <Pressable
+                <CustomButton
                   onPress={() => setModalVisible(false)}
-                  style={({ hovered }) => [
-                    styles.button,
-                    {
-                      backgroundColor: hovered
-                        ? colors.primaryHovered
-                        : colors.primary,
-                    },
-                  ]}
-                >
-                  <CustomText style={styles.buttonText}>
-                    {LL.CLOSE()}
-                  </CustomText>
-                </Pressable>
+                  label={LL.CLOSE()}
+                />
               </View>
             </Modal>
           </View>

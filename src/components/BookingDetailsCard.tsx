@@ -1,10 +1,11 @@
-import { View, Pressable } from 'react-native';
+import { View } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { useTheme } from '@react-navigation/native';
 import { useI18nContext } from '../i18n/i18n-react';
 import useStyles from '../hooks/useStyles';
 import CustomText from './CustomText';
+import CustomButton from './CustomButton';
 
 interface BookingDetailsCardProps {
   roomCode?: string | null;
@@ -94,18 +95,7 @@ export default function BookingDetailsCard({
         <CustomText>{LL.ENDS()}:</CustomText>{' '}
         {formatReadableDate(bookingEndDate)}
       </CustomText>
-      <Pressable
-        disabled={loading}
-        onPress={onSubmit}
-        style={({ hovered }) => [
-          styles.button,
-          {
-            backgroundColor: hovered ? colors.primaryHovered : colors.primary,
-          },
-        ]}
-      >
-        <CustomText style={styles.buttonText}>{buttonText}</CustomText>
-      </Pressable>
+      <CustomButton onPress={onSubmit} label={buttonText} />
     </View>
   );
 }
