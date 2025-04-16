@@ -1,4 +1,4 @@
-import { Pressable } from 'react-native';
+import { Pressable, ViewStyle } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { ReactNode } from 'react';
 
@@ -9,7 +9,7 @@ export default function PressableOutlineButton({
 }: {
   onPress: () => void;
   children: ReactNode;
-  style?: any;
+  style?: ViewStyle;
 }) {
   const { colors } = useTheme();
 

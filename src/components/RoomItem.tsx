@@ -49,16 +49,17 @@ export default function Room({
             isBig
             style={{
               fontFamily: 'Nunito-Bold',
+              marginBottom: 2,
             }}
           >
             {code}
           </CustomText>
-          <CustomText>{venue}</CustomText>
+          <CustomText style={{ marginBottom: 2.5 }}>{venue}</CustomText>
         </View>
         <View style={styles.iconTextContainer}>
           {isFree ? (
             <>
-              <AntDesign name="checksquare" size={20} color={colors.success} />
+              <AntDesign name="checksquare" size={23} color={colors.success} />
               <CustomText
                 style={{ display: isExtraSmallScreen ? 'none' : 'flex' }}
               >
@@ -67,7 +68,7 @@ export default function Room({
             </>
           ) : (
             <>
-              <AntDesign name="closesquare" size={20} color={colors.error} />
+              <AntDesign name="closesquare" size={23} color={colors.error} />
               <CustomText
                 style={{ display: isExtraSmallScreen ? 'none' : 'flex' }}
               >

@@ -84,13 +84,13 @@ const useStyles = () => {
 
       // text
       bigText: {
-        fontSize: isLargeScreen ? 10 + vmin * 2 : 10 + vmin * 3,
+        fontSize: isLargeScreen ? 8 + vmin * 2 : 10 + vmin * 3,
       },
       smallText: {
         fontSize: isLargeScreen ? 5 + vmin * 1.3 : 5 + vmin * 2.3,
       },
       mediumText: {
-        fontSize: isLargeScreen ? 7 + vmin * 1.5 : 7 + vmin * 2.3,
+        fontSize: isLargeScreen ? 6 + vmin * 1.5 : 7 + vmin * 2.3,
       },
       userMessage: {
         fontSize: isLargeScreen ? 7 + vmin * 1.5 : 7 + vmin * 2.5,
@@ -112,8 +112,7 @@ const useStyles = () => {
         justifyContent: 'flex-start',
       },
       itemContainer: {
-        width: Platform.OS === 'web' ? vmin * 39 : vmin * 45,
-        gap: vmin * 1,
+        width: Platform.OS === 'web' ? vmin * 38 : vmin * 45,
         padding: vmin * 2.6,
         borderRadius: 12,
         overflow: 'hidden',
@@ -121,7 +120,7 @@ const useStyles = () => {
       iconTextContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: vmin * 1.5,
+        gap: vmin,
       },
       listContainer: {
         padding: vmin * 2.5,
@@ -212,6 +211,7 @@ const useStyles = () => {
               ? vmin * 20
               : vmin * 20,
         borderRadius: 12,
+        marginVertical: isLargeScreen ? vmin : vmin * 2.5,
       },
       roomViewImage: {
         width: '100%',
