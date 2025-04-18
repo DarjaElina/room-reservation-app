@@ -30,7 +30,6 @@ export default function Form({ control, errors, fields }: FormProps) {
               fieldState: { error },
             }) => (
               <TextInput
-                autoFocus={true}
                 mode="flat"
                 placeholder={field.label}
                 label={Platform.OS === 'web' ? '' : field.label}

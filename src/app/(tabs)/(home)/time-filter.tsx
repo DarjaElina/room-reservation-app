@@ -1,7 +1,4 @@
 import { View, Alert, Platform } from 'react-native';
-import { TextInput } from 'react-native-paper';
-import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import { useState } from 'react';
 import { z, ZodType } from 'zod';
 import useFilter from '@/src/hooks/useFilter';
 import { router } from 'expo-router';
@@ -14,6 +11,9 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import nunitoRegular from '@/src/assets/fonts/Nunito-Regular.ttf';
 import CustomButton from '@/src/components/CustomButton';
+import TimeFilter from '@/src/components/TimeFilter/TimeFilter';
+import TimeFilterWeb from '@/src/components/TimeFilter/TimeFilterWeb';
+import { useState } from 'react';
 
 type FormData = {
   startDate: Date;
@@ -22,8 +22,8 @@ type FormData = {
 
 const dateValidationSchema: ZodType<FormData> = z
   .object({
-    startDate: z.coerce.date().refine((data) => data > new Date(), {
-      message: 'Start date must be in the future',
+    startDate: z.coerce.date().refine((data) => data >= new Date(), {
+      message: 'Start date must be in the future.',
     }),
     endDate: z.coerce.date(),
   })
@@ -32,23 +32,26 @@ const dateValidationSchema: ZodType<FormData> = z
     path: ['endDate'],
   });
 
-const validateDates = (startDate: Date, endDate: Date) => {
+const validateDates = (startDate: Date | null, endDate: Date | null) => {
   const result = dateValidationSchema.safeParse({ startDate, endDate });
   if (!result.success) {
-    if (Platform.OS === 'web') {
-      window.alert(result.error.errors[0].message);
-    } else Alert.alert(result.error.errors[0].message);
-    return false;
+    Alert.alert(result.error.errors[0].message);
+    return { success: false, message: result.error.errors[0].message };
   }
-  return true;
+  return { success: true };
 };
 
-export default function TimeFilter() {
+export default function TimeFilterScreen() {
   const { colors } = useTheme();
   const { startDate, setStartDate, endDate, setEndDate } = useFilter();
-  const [isStartDatePickerVisible, setStartDatePickerVisibility] =
-    useState(false);
-  const [isEndDatePickerVisible, setEndDatePickerVisibility] = useState(false);
+  const [webErrorMessages, setWebErrorMessages] = useState<{
+    startDate: string | undefined;
+    endDate: string | undefined;
+  }>({
+    startDate: '',
+    endDate: '',
+  });
+
   const { LL } = useI18nContext();
   const styles = useStyles();
   const [fontsLoaded, error] = useFonts({
@@ -63,82 +66,6 @@ export default function TimeFilter() {
 
   if (!fontsLoaded && !error) return null;
 
-  // Android/iOS Date Pickers
-  const showStartDatePicker = () => setStartDatePickerVisibility(true);
-  const hideStartDatePicker = () => setStartDatePickerVisibility(false);
-  const showEndDatePicker = () => setEndDatePickerVisibility(true);
-  const hideEndDatePicker = () => setEndDatePickerVisibility(false);
-
-  const handleStartDateConfirm = (date: Date) => {
-    const clonedDate = new Date(date);
-    if (
-      validateDates(
-        date,
-        new Date(clonedDate.setHours(clonedDate.getHours() + 1))
-      )
-    ) {
-      setStartDate(date);
-      const endDateTime = new Date(date);
-      endDateTime.setHours(date.getHours() + 1);
-      setEndDate(endDateTime);
-      hideStartDatePicker();
-    }
-  };
-
-  const handleEndDateConfirm = (time: {
-    getHours: () => number;
-    getMinutes: () => number;
-  }) => {
-    if (startDate) {
-      const endDateTime = new Date(startDate);
-      endDateTime.setHours(time.getHours());
-      endDateTime.setMinutes(time.getMinutes());
-      if (validateDates(startDate, endDateTime)) {
-        setEndDate(endDateTime);
-        hideEndDatePicker();
-      }
-    } else {
-      if (Platform.OS === 'web') {
-        window.alert(LL.SELECT_START_DATE());
-      } else Alert.alert(LL.SELECT_START_DATE());
-    }
-  };
-
-  // Web Input Change Handlers
-  const handleStartDateChange = (e: {
-    target: { value: string | number | Date };
-  }) => {
-    const date = new Date(e.target.value);
-    const clonedDate = new Date(date);
-    if (
-      validateDates(
-        date,
-        new Date(clonedDate.setHours(clonedDate.getHours() + 1))
-      )
-    ) {
-      setStartDate(date);
-      const endDateTime = new Date(date);
-      endDateTime.setHours(date.getHours() + 1);
-      setEndDate(endDateTime);
-    }
-  };
-
-  const handleEndDateChange = (e: {
-    target: { value: string | number | Date };
-  }) => {
-    if (startDate) {
-      const date = new Date(e.target.value);
-      if (validateDates(startDate, date)) {
-        setEndDate(date);
-      }
-    } else {
-      if (Platform.OS === 'web') {
-        window.alert(LL.SELECT_START_DATE());
-      }
-      Alert.alert(LL.SELECT_START_DATE());
-    }
-  };
-
   const handleSearch = () => {
     if (startDate && endDate) {
       router.replace('/(tabs)/(home)');
@@ -152,6 +79,10 @@ export default function TimeFilter() {
   const clearSearch = () => {
     setStartDate(null);
     setEndDate(null);
+    setWebErrorMessages({
+      startDate: '',
+      endDate: '',
+    });
   };
 
   const handleReset = () => {
@@ -201,110 +132,24 @@ export default function TimeFilter() {
           {LL.SELECT_TIME_RANGE()}
         </CustomText>
         {Platform.OS === 'ios' || Platform.OS === 'android' ? (
-          <TextInput
-            activeUnderlineColor={colors.primary}
-            label="Start Date"
-            value={
-              startDate
-                ? `${startDate.toDateString()}, ${startDate.toLocaleTimeString(undefined, { timeStyle: 'short' })}`
-                : ''
-            }
-            onPressIn={showStartDatePicker}
-            style={[styles.input]}
-            placeholderTextColor={colors.text}
-            textColor={colors.text}
+          <TimeFilter
+            startDate={startDate}
+            setStartDate={setStartDate}
+            endDate={endDate}
+            setEndDate={setEndDate}
+            validateDates={validateDates}
           />
         ) : (
-          <>
-            <label
-              htmlFor="startDate"
-              style={{
-                color: colors.text,
-                padding: 5,
-                fontFamily: 'Nunito-Regular',
-              }}
-            >
-              {LL.STARTS()}:
-            </label>
-            <input
-              id="startDate"
-              type="datetime-local"
-              value={startDate ? startDate.toISOString().slice(0, 16) : ''}
-              onChange={handleStartDateChange}
-              style={{
-                padding: 10,
-                borderRadius: 5,
-                border: '1px solid #ccc',
-                fontSize: 16,
-                margin: 10,
-                width: '100%',
-                alignSelf: 'center',
-              }}
-            />
-          </>
+          <TimeFilterWeb
+            startDate={startDate}
+            setStartDate={setStartDate}
+            endDate={endDate}
+            setEndDate={setEndDate}
+            validateDates={validateDates}
+            errorMessages={webErrorMessages}
+            setErrorMessages={setWebErrorMessages}
+          />
         )}
-        {Platform.OS === 'ios' || Platform.OS === 'android' ? (
-          <DateTimePickerModal
-            isVisible={isStartDatePickerVisible}
-            mode="datetime"
-            onConfirm={handleStartDateConfirm}
-            onCancel={hideStartDatePicker}
-            minimumDate={new Date()}
-            minuteInterval={15}
-          />
-        ) : null}
-        {Platform.OS === 'ios' || Platform.OS === 'android' ? (
-          <TextInput
-            activeUnderlineColor={colors.primary}
-            label="End Date"
-            value={
-              endDate
-                ? `${endDate.toDateString()}, ${endDate.toLocaleTimeString(undefined, { timeStyle: 'short' })}`
-                : ''
-            }
-            onPressIn={showEndDatePicker}
-            style={[styles.input]}
-            placeholderTextColor={colors.text}
-            textColor={colors.text}
-          />
-        ) : (
-          <>
-            <label
-              htmlFor="startDate"
-              style={{
-                color: colors.text,
-                padding: 5,
-                fontFamily: 'Nunito-Regular',
-              }}
-            >
-              {LL.ENDS()}:
-            </label>
-            <input
-              id="endDate"
-              type="datetime-local"
-              value={endDate ? endDate.toISOString().slice(0, 16) : ''}
-              onChange={handleEndDateChange}
-              style={{
-                padding: 10,
-                borderRadius: 5,
-                border: '1px solid #ccc',
-                fontSize: 16,
-                margin: 10,
-                width: '100%',
-                alignSelf: 'center',
-              }}
-            />
-          </>
-        )}
-        {Platform.OS === 'ios' || Platform.OS === 'android' ? (
-          <DateTimePickerModal
-            isVisible={isEndDatePickerVisible}
-            mode="time"
-            onConfirm={handleEndDateConfirm}
-            onCancel={hideEndDatePicker}
-            minuteInterval={15}
-          />
-        ) : null}
         <CustomButton onPress={handleSearch} label={LL.SEARCH_CLASSROOMS()} />
         {(startDate || endDate) && (
           <CustomButton onPress={handleReset} label={LL.CLEAR_DATES()} />
