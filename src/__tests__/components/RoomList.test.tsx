@@ -1,10 +1,10 @@
 import { screen, render } from '@testing-library/react-native';
 import RoomListContainer from '@/src/components/RoomList/RoomListContainer';
 import { Room } from '@/__generated__/graphql';
-import React, { ReactNode } from 'react';
+import React from 'react';
 
 jest.mock('expo-router', () => ({
-  Link: ({ children }: { children: ReactNode }) => <>{children}</>,
+  useRouter: jest.fn(),
 }));
 
 const mockNavigation = jest.fn();

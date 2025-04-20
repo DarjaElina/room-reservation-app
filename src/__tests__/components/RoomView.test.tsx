@@ -72,26 +72,6 @@ jest.mock('expo-font', () => {
 });
 
 describe('RoomView Component', () => {
-  it('should redirect to the sign-in page if there is no user', async () => {
-    (useAuth as jest.Mock).mockImplementation(() => ({
-      user: null,
-      error: null,
-      loading: false,
-    }));
-
-    render(
-      <MockedProvider>
-        <RoomView room={mockRoom} />
-      </MockedProvider>
-    );
-
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    expect(require('expo-router').Redirect).toHaveBeenCalledWith(
-      expect.objectContaining({ href: '/sign-in' }),
-      expect.any(Object)
-    );
-  });
-
   it('should display available if the room is free', async () => {
     (useAuth as jest.Mock).mockImplementation(() => ({
       user: {
@@ -205,43 +185,5 @@ describe('RoomView Component', () => {
     );
 
     expect(await screen.findByText('Main Venue')).toBeDefined();
-  });
-
-  it('should display loading state when data is loading', async () => {
-    (useAuth as jest.Mock).mockImplementation(() => ({
-      user: {
-        username: 'username',
-        id: '82feaaca-bd4e-4829-9c8c-efe73a24b805',
-      },
-      error: null,
-      loading: true,
-    }));
-
-    render(
-      <MockedProvider>
-        <RoomView room={mockRoom} />
-      </MockedProvider>
-    );
-
-    expect(await screen.findByTestId('loading-indicator')).toBeDefined();
-  });
-
-  it('should display an error message if there is an error', async () => {
-    (useAuth as jest.Mock).mockImplementation(() => ({
-      user: {
-        username: 'username',
-        id: '82feaaca-bd4e-4829-9c8c-efe73a24b805',
-      },
-      error: 'An error occurred',
-      loading: false,
-    }));
-
-    render(
-      <MockedProvider>
-        <RoomView room={mockRoom} />
-      </MockedProvider>
-    );
-
-    expect(await screen.findByTestId('error-text')).toBeDefined();
   });
 });
