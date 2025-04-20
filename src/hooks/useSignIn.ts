@@ -13,9 +13,11 @@ const useSignIn = () => {
         variables: { username, password },
       });
 
-      const token = data?.authenticate?.value;
-      if (token) {
-        await authStorage?.setAccessToken(token);
+      const accessToken = data?.authenticate?.accessToken;
+      const refreshToken = data?.authenticate?.refreshToken;
+      if (accessToken && refreshToken) {
+        await authStorage?.setToken(accessToken, 'access');
+        await authStorage?.setToken(refreshToken, 'refresh');
         apolloClient.resetStore();
       } else {
         throw new Error('Authentication failed, no token returned.');

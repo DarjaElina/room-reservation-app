@@ -36,7 +36,7 @@ export default function Form({ control, errors, fields }: FormProps) {
                 secureTextEntry={field.isPassword}
                 onBlur={onBlur}
                 onChangeText={onChange}
-                value={value}
+                value={value ?? ''}
                 autoCapitalize="none"
                 activeUnderlineColor={error ? colors.error : colors.primary}
                 style={{

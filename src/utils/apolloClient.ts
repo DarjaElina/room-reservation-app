@@ -1,71 +1,52 @@
-import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
+/* eslint-disable no-case-declarations */
+import { ApolloClient, ApolloLink } from '@apollo/client';
+import { cache } from './apolloCache';
+import { authLink, httpLink, errorLink } from './apolloLinks';
+import { REFRESH_TOKEN } from '../graphql/mutations';
 import AuthStorage from './authStorage';
-import { relayStylePagination } from '@apollo/client/utilities';
-import { StoreObject } from '@apollo/client/utilities';
-import { Reference } from '@apollo/client/utilities';
+import { setContext } from '@apollo/client/link/context';
+import { router } from 'expo-router';
 
 const authStorage = new AuthStorage();
 
-const BACKEND_URL = __DEV__
-  ? process.env.EXPO_PUBLIC_BACKEND_URL_STAGING
-  : process.env.EXPO_PUBLIC_BACKEND_URL_PROD;
-
-const httpLink = createHttpLink({
-  uri: BACKEND_URL,
-});
-
-const cache = new InMemoryCache({
-  typePolicies: {
-    Query: {
-      fields: {
-        rooms: relayStylePagination(),
+export const refreshToken = async () => {
+  try {
+    const refreshToken = (await authStorage.getToken('refresh')) || '';
+    const refreshResolverResponse = await apolloClient.mutate({
+      mutation: REFRESH_TOKEN,
+      variables: {
+        token: refreshToken,
       },
-    },
-    Room: {
-      fields: {
-        equipment: {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          merge(existing = [], incoming: any[], { readField }) {
-            if (
-              readField(
-                'id',
-                incoming as unknown as Reference | StoreObject | undefined
-              )
-            ) {
-              return [...existing, ...incoming];
-            }
-            return incoming;
-          },
-        },
-      },
-    },
-  },
-});
+    });
 
-const createApolloClient = (authStorage: AuthStorage) => {
-  const authLink = setContext(async (_, { headers }) => {
-    try {
-      const accessToken = await authStorage.getAccessToken();
-      return {
-        headers: {
-          ...headers,
-          authorization: accessToken ? `Bearer ${accessToken}` : '',
-        },
-      };
-    } catch (e) {
-      console.log(e);
-      return {
-        headers,
-      };
+    const accessToken = refreshResolverResponse.data?.refreshToken.accessToken;
+    if (accessToken) await authStorage.setToken(accessToken, 'access');
+    return accessToken;
+  } catch {
+    return null;
+  }
+};
+
+export const getRefreshTokenLink = setContext(async (_, previousContext) => {
+  if (previousContext?.headers?._needsRefresh) {
+    const token = await refreshToken();
+    if (!token) {
+      authStorage.removeToken('access');
+      authStorage.removeToken('refresh');
+      apolloClient.clearStore();
+      router.navigate('/sign-in');
     }
-  });
+  }
+  return previousContext;
+});
+
+const createApolloClient = () => {
   return new ApolloClient({
-    link: authLink.concat(httpLink),
+    link: ApolloLink.from([errorLink, getRefreshTokenLink, authLink, httpLink]),
     cache,
   });
 };
 
-const apolloClient = createApolloClient(authStorage);
+const apolloClient = createApolloClient();
 
 export default apolloClient;

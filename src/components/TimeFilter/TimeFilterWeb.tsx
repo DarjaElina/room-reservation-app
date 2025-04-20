@@ -1,4 +1,3 @@
-import { View } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { useI18nContext } from '@/src/i18n/i18n-react';
 import { TimeFilterProps } from './TimeFilter';
@@ -96,7 +95,7 @@ const TimeFilterWeb = ({
   };
 
   return (
-    <View>
+    <>
       <label
         htmlFor="startDate"
         style={{
@@ -161,7 +160,7 @@ const TimeFilterWeb = ({
       {errorMessages.endDate && (
         <CustomText isError>{errorMessages.endDate}</CustomText>
       )}
-    </View>
+    </>
   );
 };
 

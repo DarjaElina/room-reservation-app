@@ -1,18 +1,18 @@
 import { Tabs } from 'expo-router';
 import { Redirect } from 'expo-router';
-import { useQuery } from '@apollo/client';
-import { CURRENT_USER } from '@/src/graphql/queries';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useI18nContext } from '@/src/i18n/i18n-react';
 import LoadingOverlay from '@/src/components/LoadingOverlay';
+import useAuth from '@/src/hooks/useAuth';
 
 export default function TabLayout() {
-  const { loading, data } = useQuery(CURRENT_USER);
+  const { user, loading, error } = useAuth();
   const { LL } = useI18nContext();
   if (loading) {
     return <LoadingOverlay />;
   }
-  if (!data?.currentUser) {
+  if (!user || error) {
+    console.log('we should redirect now');
     return <Redirect href="/sign-in" />;
   }
 

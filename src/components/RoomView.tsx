@@ -3,11 +3,9 @@ import RoomDescription from './RoomDescription';
 import { Image } from 'expo-image';
 import EquipmentList from './EquipmentList';
 import useAuth from '@/src/hooks/useAuth';
-import { Redirect } from 'expo-router';
 import BookingList from './BookingList';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useState } from 'react';
-import QueryResult from './QueryResult';
 import { BookingStatus, RoomType } from '@/__generated__/graphql';
 import { useTheme } from '@react-navigation/native';
 import { router } from 'expo-router';
@@ -38,7 +36,7 @@ interface RoomViewProps {
 
 export default function RoomView({ room }: { room: RoomViewProps }) {
   const { colors } = useTheme();
-  const { user, error, loading } = useAuth();
+  const { user } = useAuth();
   const [modalVisible, setModalVisible] = useState(false);
   const styles = useStyles();
   const { LL } = useI18nContext();
@@ -48,109 +46,103 @@ export default function RoomView({ room }: { room: RoomViewProps }) {
       .replace(/_/g, ' ')
       .replace(/^./, (str) => str.toUpperCase());
   };
-
-  if (!user) {
-    return <Redirect href="/sign-in" />;
-  }
   const blurhash =
     '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
   return (
-    <QueryResult error={error} loading={loading} data={user}>
-      <View style={[styles.flexContainer]}>
-        <ScrollView
-          contentContainerStyle={styles.scrollContainer}
-          style={[{ backgroundColor: colors.background }]}
-        >
-          <Image
-            style={styles.roomViewImage}
-            source="https://nlr.ru/eng/dep/artupload/eng/article/RA2510/NA19217.jpg"
-            placeholder={{ blurhash }}
-            contentFit="cover"
-            transition={1000}
-          />
-          <View>
-            <View style={[styles.headerContainer]}>
-              <View
-                style={{
-                  display: 'flex',
-                  alignItems: 'flex-start',
-                  gap: 15,
-                  maxWidth: '60%',
-                }}
+    <View style={[styles.flexContainer]}>
+      <ScrollView
+        contentContainerStyle={styles.scrollContainer}
+        style={[{ backgroundColor: colors.background }]}
+      >
+        <Image
+          style={styles.roomViewImage}
+          source="https://nlr.ru/eng/dep/artupload/eng/article/RA2510/NA19217.jpg"
+          placeholder={{ blurhash }}
+          contentFit="cover"
+          transition={1000}
+        />
+        <View>
+          <View style={[styles.headerContainer]}>
+            <View
+              style={{
+                display: 'flex',
+                alignItems: 'flex-start',
+                gap: 15,
+                maxWidth: '60%',
+              }}
+            >
+              <CustomText fontFamily="Nunito-Bold" isBig>
+                {room.code}
+              </CustomText>
+              <CustomText>{formatRoomType(room.type)}</CustomText>
+              <CustomText isSmall>{room.venue.name}</CustomText>
+              {room.isFree ? (
+                <View style={styles.iconTextContainer}>
+                  <AntDesign
+                    name="checksquare"
+                    size={20}
+                    color={colors.success}
+                  />
+                  <CustomText>{LL.AVAILABLE()}</CustomText>
+                </View>
+              ) : (
+                <View style={styles.iconTextContainer}>
+                  <AntDesign
+                    name="closesquare"
+                    size={20}
+                    color={colors.error}
+                  />
+                  <CustomText>{LL.OCCUPIED()}</CustomText>
+                </View>
+              )}
+              <CustomText
+                onPress={() => setModalVisible(true)}
+                style={{ textDecorationLine: 'underline' }}
               >
-                <CustomText fontFamily="Nunito-Bold" isBig>
-                  {room.code}
-                </CustomText>
-                <CustomText>{formatRoomType(room.type)}</CustomText>
-                <CustomText isSmall>{room.venue.name}</CustomText>
-                {room.isFree ? (
-                  <View style={styles.iconTextContainer}>
-                    <AntDesign
-                      name="checksquare"
-                      size={20}
-                      color={colors.success}
-                    />
-                    <CustomText>{LL.AVAILABLE()}</CustomText>
-                  </View>
-                ) : (
-                  <View style={styles.iconTextContainer}>
-                    <AntDesign
-                      name="closesquare"
-                      size={20}
-                      color={colors.error}
-                    />
-                    <CustomText>{LL.OCCUPIED()}</CustomText>
-                  </View>
-                )}
-                <CustomText
-                  onPress={() => setModalVisible(true)}
-                  style={{ textDecorationLine: 'underline' }}
-                >
-                  {LL.SHOW_UPCOMING_RESERVATIONS()}
-                </CustomText>
-              </View>
+                {LL.SHOW_UPCOMING_RESERVATIONS()}
+              </CustomText>
+            </View>
+            <CustomButton
+              onPress={() =>
+                router.push({
+                  pathname: '/(tabs)/(home)/rooms/[id]/create-booking',
+                  params: { id: room.id },
+                })
+              }
+              label={LL.RESERVE()}
+              style={{ margin: 0, alignSelf: 'flex-start' }}
+            />
+          </View>
+          <EquipmentList equipment={room.equipment} />
+          <RoomDescription text={room.description} />
+
+          <Modal
+            visible={modalVisible}
+            animationType="slide"
+            onRequestClose={() => setModalVisible(false)}
+          >
+            <View
+              style={[
+                styles.modalContainer,
+                { backgroundColor: colors.background },
+              ]}
+            >
+              <BookingList
+                queryOptions={{
+                  roomId: room.id,
+                  userId: user?.id,
+                  status: BookingStatus.Active,
+                }}
+                emptyMessage={LL.NO_UPCOMING_BOOKINGS()}
+              />
               <CustomButton
-                onPress={() =>
-                  router.push({
-                    pathname: '/(tabs)/(home)/rooms/[id]/create-booking',
-                    params: { id: room.id },
-                  })
-                }
-                label={LL.RESERVE()}
-                style={{ margin: 0, alignSelf: 'flex-start' }}
+                onPress={() => setModalVisible(false)}
+                label={LL.CLOSE()}
               />
             </View>
-            <EquipmentList equipment={room.equipment} />
-            <RoomDescription text={room.description} />
-
-            <Modal
-              visible={modalVisible}
-              animationType="slide"
-              onRequestClose={() => setModalVisible(false)}
-            >
-              <View
-                style={[
-                  styles.modalContainer,
-                  { backgroundColor: colors.background },
-                ]}
-              >
-                <BookingList
-                  queryOptions={{
-                    roomId: room.id,
-                    userId: user.id,
-                    status: BookingStatus.Active,
-                  }}
-                  emptyMessage={LL.NO_UPCOMING_BOOKINGS()}
-                />
-                <CustomButton
-                  onPress={() => setModalVisible(false)}
-                  label={LL.CLOSE()}
-                />
-              </View>
-            </Modal>
-          </View>
-        </ScrollView>
-      </View>
-    </QueryResult>
+          </Modal>
+        </View>
+      </ScrollView>
+    </View>
   );
 }

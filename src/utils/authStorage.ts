@@ -1,6 +1,9 @@
 import { Platform } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
-import { AuthStorageContextType } from '@/src/context/AuthStorageContext';
+import {
+  AuthStorageContextType,
+  TokenType,
+} from '@/src/context/AuthStorageContext';
 
 class AuthStorage implements AuthStorageContextType {
   namespace: string;
@@ -8,47 +11,44 @@ class AuthStorage implements AuthStorageContextType {
     this.namespace = namespace;
   }
 
-  getAccessToken = async (): Promise<string | null> => {
+  getToken = async (type: TokenType): Promise<string | null> => {
     try {
       if (Platform.OS === 'web') {
-        return localStorage.getItem(`${this.namespace}_accessToken`);
+        return localStorage.getItem(`${this.namespace}_${type}Token`);
       } else {
-        return await SecureStore.getItemAsync(`${this.namespace}_accessToken`);
+        return await SecureStore.getItemAsync(`${this.namespace}_${type}Token`);
       }
     } catch (e) {
-      console.log('Error fetching access token:', e);
+      console.log(`Error fetching ${type} token:`, e);
       return null;
     }
   };
 
-  setAccessToken = async (accessToken: string | null): Promise<void> => {
+  setToken = async (token: string | null, type: TokenType): Promise<void> => {
     if (Platform.OS === 'web') {
       try {
-        if (accessToken === null) {
-          localStorage.removeItem(`${this.namespace}_accessToken`);
+        if (token === null) {
+          localStorage.removeItem(`${this.namespace}_${type}Token`);
         } else {
-          localStorage.setItem(`${this.namespace}_accessToken`, accessToken);
+          localStorage.setItem(`${this.namespace}_${type}Token`, token);
         }
       } catch (e) {
         console.error('Local storage is unavailable:', e);
       }
     } else {
-      if (accessToken == null) {
-        await SecureStore.deleteItemAsync(`${this.namespace}_accessToken`);
+      if (token == null) {
+        await SecureStore.deleteItemAsync(`${this.namespace}_${type}Token`);
       } else {
-        await SecureStore.setItemAsync(
-          `${this.namespace}_accessToken`,
-          accessToken
-        );
+        await SecureStore.setItemAsync(`${this.namespace}_${type}Token`, token);
       }
     }
   };
 
-  removeAccessToken = async (): Promise<void> => {
+  removeToken = async (type: TokenType): Promise<void> => {
     if (Platform.OS === 'web') {
-      localStorage.removeItem(`${this.namespace}_accessToken`);
+      localStorage.removeItem(`${this.namespace}_${type}Token`);
     } else {
-      await SecureStore.deleteItemAsync(`${this.namespace}_accessToken`);
+      await SecureStore.deleteItemAsync(`${this.namespace}_${type}Token`);
     }
   };
 }

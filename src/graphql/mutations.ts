@@ -3,7 +3,8 @@ import { gql } from '@/__generated__';
 export const AUTHENTICATE = gql(`
   mutation Authenticate($username: String!, $password: String!) {
     authenticate(username: $username, password: $password) {
-      value
+      accessToken
+      refreshToken
     }
   }
 `);
@@ -44,6 +45,14 @@ export const UPDATE_BOOKING = gql(`
       bookingTime {
         value
       }
+    }
+  }
+`);
+
+export const REFRESH_TOKEN = gql(`
+  mutation Mutation($token: String!) {
+    refreshToken(token: $token) {
+      accessToken
     }
   }
 `);
