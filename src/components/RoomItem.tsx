@@ -9,19 +9,14 @@ import { useWindowDimensions } from 'react-native';
 interface RoomProps {
   code: string;
   venue: string;
-  pictureUrl?: string;
+  pictureUrl?: string | null;
   isFree?: boolean | null;
 }
 
 const blurhash =
   '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
 
-export default function Room({
-  code,
-  venue,
-  pictureUrl = 'https://nlr.ru/eng/dep/artupload/eng/article/RA2510/NA19217.jpg',
-  isFree,
-}: RoomProps) {
+export default function Room({ code, venue, pictureUrl, isFree }: RoomProps) {
   const { colors } = useTheme();
   const { LL } = useI18nContext();
   const styles = useStyles();
@@ -31,7 +26,10 @@ export default function Room({
     <View testID="room-item">
       <Image
         style={styles.roomItemImage}
-        source={pictureUrl}
+        source={
+          pictureUrl ??
+          'https://nlr.ru/eng/dep/artupload/eng/article/RA2510/NA19217.jpg'
+        }
         placeholder={{ blurhash }}
         contentFit="cover"
         transition={1000}
@@ -42,14 +40,16 @@ export default function Room({
           flexDirection: isExtraSmallScreen ? 'row' : 'column',
           justifyContent: 'space-between',
           alignItems: 'flex-start',
+          paddingLeft: 10,
+          paddingBottom: 10,
         }}
       >
-        <View>
+        <View style={{}}>
           <CustomText
             isBig
             style={{
               fontFamily: 'Nunito-Bold',
-              marginBottom: 2,
+              marginVertical: 2,
             }}
           >
             {code}

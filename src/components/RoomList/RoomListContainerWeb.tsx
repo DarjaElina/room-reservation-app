@@ -78,6 +78,7 @@ export default function RoomListContainerWeb({
             code={item.code}
             venue={item.venue.name}
             isFree={item.isFree}
+            pictureUrl={item.pictureUrl}
           />
         </PressableCard>
       ))}

@@ -10,8 +10,7 @@ const BACKEND_URL = __DEV__
   : process.env.EXPO_PUBLIC_BACKEND_URL_PROD;
 
 export const httpLink = createHttpLink({
-  //uri: BACKEND_URL,
-  uri: "http://localhost:4000",
+  uri: BACKEND_URL,
 });
 
 export const authLink = setContext(async (_, previousContext) => {

@@ -15,7 +15,7 @@ const useStyles = () => {
     return StyleSheet.create({
       // inputs, checkboxes & searchbars
       inputContainer: {
-        marginBottom: vmin * 4.5,
+        marginBottom: vmin * 4,
       },
       input: {
         backgroundColor: 'transparent',
@@ -35,7 +35,7 @@ const useStyles = () => {
         transitionProperty: 'background-color',
       },
       searchbar: {
-        height: isLargeScreen ? vmin * 6 : vmin * 10,
+        height: isLargeScreen ? vmin * 7 : vmin * 10,
         borderRadius: 20,
         justifyContent: 'center',
         borderWidth: 1,
@@ -80,17 +80,18 @@ const useStyles = () => {
       segmentedButtons: {
         width: '100%',
         alignSelf: 'center',
+        marginBottom: vmin * 4,
       },
 
       // text
       bigText: {
-        fontSize: isLargeScreen ? 8 + vmin * 2 : 10 + vmin * 3,
+        fontSize: isLargeScreen ? 8 + vmin * 2 : 10 + vmin * 2,
       },
       smallText: {
-        fontSize: isLargeScreen ? 5 + vmin * 1.3 : 5 + vmin * 2.3,
+        fontSize: isLargeScreen ? 5 + vmin * 1.3 : 5 + vmin * 2,
       },
       mediumText: {
-        fontSize: isLargeScreen ? 6 + vmin * 1.5 : 7 + vmin * 2.3,
+        fontSize: isLargeScreen ? 6 + vmin * 1.5 : 7 + vmin * 2,
       },
       userMessage: {
         fontSize: isLargeScreen ? 7 + vmin * 1.5 : 7 + vmin * 2.5,
@@ -113,9 +114,10 @@ const useStyles = () => {
       },
       itemContainer: {
         width: Platform.OS === 'web' ? vmin * 38 : vmin * 45,
-        padding: vmin * 2.6,
+        // padding: vmin * 2.6,
         borderRadius: 12,
         overflow: 'hidden',
+        paddingTop: 0,
       },
       iconTextContainer: {
         flexDirection: 'row',
@@ -210,8 +212,8 @@ const useStyles = () => {
             : isLargeScreen
               ? vmin * 20
               : vmin * 20,
-        borderRadius: 12,
         marginVertical: isLargeScreen ? vmin : vmin * 2.5,
+        marginTop: 0,
       },
       roomViewImage: {
         width: '100%',

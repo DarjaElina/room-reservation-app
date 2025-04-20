@@ -13,6 +13,7 @@ import { useI18nContext } from '../i18n/i18n-react';
 import useStyles from '../hooks/useStyles';
 import CustomText from './CustomText';
 import CustomButton from './CustomButton';
+import { useWindowDimensions } from 'react-native';
 interface RoomViewProps {
   __typename?: 'Room';
   id: string;
@@ -46,17 +47,28 @@ export default function RoomView({ room }: { room: RoomViewProps }) {
       .replace(/_/g, ' ')
       .replace(/^./, (str) => str.toUpperCase());
   };
+  const { width } = useWindowDimensions();
+  const isLargeScreen = width >= 768;
+
   const blurhash =
     '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
   return (
-    <View style={[styles.flexContainer]}>
+    <View
+      style={[
+        styles.flexContainer,
+        { width: isLargeScreen ? '80%' : '100%', alignSelf: 'center' },
+      ]}
+    >
       <ScrollView
         contentContainerStyle={styles.scrollContainer}
         style={[{ backgroundColor: colors.background }]}
       >
         <Image
           style={styles.roomViewImage}
-          source="https://nlr.ru/eng/dep/artupload/eng/article/RA2510/NA19217.jpg"
+          source={
+            room.pictureUrl ??
+            'https://nlr.ru/eng/dep/artupload/eng/article/RA2510/NA19217.jpg'
+          }
           placeholder={{ blurhash }}
           contentFit="cover"
           transition={1000}

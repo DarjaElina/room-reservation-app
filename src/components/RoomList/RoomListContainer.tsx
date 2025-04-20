@@ -60,6 +60,7 @@ export default function RoomListContainer({
               code={item.code}
               venue={item.venue.name}
               isFree={item.isFree}
+              pictureUrl={item.pictureUrl}
             />
           </PressableCard>
         ) : null
