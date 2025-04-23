@@ -15,6 +15,7 @@ import { useQuery } from '@apollo/client';
 import { CURRENT_USER } from '@/src/graphql/queries';
 import { quotes } from '@/src/constants/Quotes';
 import CustomButton from '@/src/components/CustomButton';
+import { useRouter } from 'expo-router';
 
 export default function SettingsScreen() {
   const { colors } = useTheme();
@@ -24,6 +25,7 @@ export default function SettingsScreen() {
   const [quote, setQuote] = useState('');
   const styles = useStyles();
   const { loading: userLoading, data } = useQuery(CURRENT_USER);
+  const router = useRouter();
 
   const onLocaleSelected = useCallback(
     (locale: Locales) => {
@@ -36,6 +38,11 @@ export default function SettingsScreen() {
     },
     [setLocale]
   );
+
+  const handleSighOut = () => {
+    signOut();
+    router.navigate('/sign-in');
+  };
 
   useEffect(() => {
     const localeKey = locale.slice(0, 2) as keyof typeof quotes;
@@ -90,7 +97,7 @@ export default function SettingsScreen() {
             />
           </View>
         </Modal>
-        <CustomButton onPress={signOut} label={LL.LOGOUT()} />
+        <CustomButton onPress={handleSighOut} label={LL.LOGOUT()} />
       </View>
       <CustomText
         style={[

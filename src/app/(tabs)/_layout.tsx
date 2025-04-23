@@ -12,7 +12,6 @@ export default function TabLayout() {
     return <LoadingOverlay />;
   }
   if (!user || error) {
-    console.log('we should redirect now');
     return <Redirect href="/sign-in" />;
   }
 

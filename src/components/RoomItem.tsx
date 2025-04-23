@@ -40,7 +40,7 @@ export default function Room({ code, venue, pictureUrl, isFree }: RoomProps) {
           flexDirection: isExtraSmallScreen ? 'row' : 'column',
           justifyContent: 'space-between',
           alignItems: 'flex-start',
-          paddingLeft: 10,
+          paddingHorizontal: 10,
           paddingBottom: 10,
         }}
       >

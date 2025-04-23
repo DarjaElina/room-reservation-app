@@ -50,9 +50,19 @@ export const UPDATE_BOOKING = gql(`
 `);
 
 export const REFRESH_TOKEN = gql(`
-  mutation Mutation($token: String!) {
+  mutation RefreshToken($token: String!) {
     refreshToken(token: $token) {
       accessToken
+    }
+  }
+`);
+
+export const TOGGLE_FAVORITE = gql(`
+  mutation ToggleFavorite($roomId: ID!) {
+    toggleFavorite(roomId: $roomId ) {
+      message
+      success
+      id
     }
   }
 `);

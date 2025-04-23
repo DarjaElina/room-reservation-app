@@ -13,6 +13,12 @@ export interface ColorTheme {
   errorHovered: string;
   errorPressed: string;
   success: string;
+  favorite: string;
+  favoriteHovered: string;
+  favoritePressed: string;
+  favoriteActive: string;
+  favoriteActiveHovered: string;
+  favoriteActivePressed: string;
 }
 
 export const lightColors: ColorTheme = {
@@ -28,6 +34,12 @@ export const lightColors: ColorTheme = {
   errorHovered: '#FF3C5C',
   errorPressed: '#C7162A',
   success: '#3F7D58',
+  favorite: '#c8aca9',
+  favoriteHovered: '#AE8985',
+  favoritePressed: '#976F6B',
+  favoriteActive: '#E75480',
+  favoriteActiveHovered: '#D52D57',
+  favoriteActivePressed: '#B81E40',
 };
 
 export const darkColors: ColorTheme = {
@@ -43,6 +55,12 @@ export const darkColors: ColorTheme = {
   errorHovered: '#FF6E76',
   errorPressed: '#D83A3A',
   success: '#00A36C',
+  favorite: '#F1DDCF',
+  favoriteHovered: '#D8C6BA',
+  favoritePressed: '#C0B0A5',
+  favoriteActive: '#fbaed2',
+  favoriteActiveHovered: '#ffdfed',
+  favoriteActivePressed: '#e5c1d1',
 };
 export const customLightTheme = {
   ...DefaultTheme,

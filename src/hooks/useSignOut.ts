@@ -12,7 +12,7 @@ const useSignOut = () => {
       setLoading(true);
       await authStorage?.removeToken('access');
       await authStorage?.removeToken('refresh');
-      await apolloClient.resetStore();
+      apolloClient.clearStore();
     } catch (error) {
       console.error('Sign-out failed', error);
     } finally {

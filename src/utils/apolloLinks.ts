@@ -5,12 +5,9 @@ import AuthStorage from './authStorage';
 import { onError } from '@apollo/client/link/error';
 const authStorage = new AuthStorage();
 
-const BACKEND_URL = __DEV__
-  ? process.env.EXPO_PUBLIC_BACKEND_URL_STAGING
-  : process.env.EXPO_PUBLIC_BACKEND_URL_PROD;
-
 export const httpLink = createHttpLink({
-  uri: BACKEND_URL,
+  //uri: process.env.EXPO_PUBLIC_BACKEND_URL,
+  uri: 'http://localhost:4000/',
 });
 
 export const authLink = setContext(async (_, previousContext) => {

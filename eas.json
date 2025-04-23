@@ -16,7 +16,7 @@
         "buildType": "apk"
       },
       "env": {
-        "EXPO_PUBLIC_BACKEND_URL_STAGING": "https://backend-rough-wildflower-6075.fly.dev"
+        "EXPO_PUBLIC_BACKEND_URL": "https://backend-rough-wildflower-6075.fly.dev"
       }
     },
     "development-device": {
@@ -25,7 +25,7 @@
       "buildType": "apk"
     },
     "env": {
-      "EXPO_PUBLIC_BACKEND_URL_STAGING": "https://backend-rough-wildflower-6075.fly.dev"
+      "EXPO_PUBLIC_BACKEND_URL": "https://backend-rough-wildflower-6075.fly.dev"
     }
   }
   },

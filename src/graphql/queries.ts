@@ -59,6 +59,7 @@ export const FIND_ROOM = gql(`
       }
       description
       type
+      isFavorite
     }
   }
 `);
