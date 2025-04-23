@@ -6,8 +6,7 @@ import { onError } from '@apollo/client/link/error';
 const authStorage = new AuthStorage();
 
 export const httpLink = createHttpLink({
-  //uri: process.env.EXPO_PUBLIC_BACKEND_URL,
-  uri: 'http://localhost:4000/',
+  uri: process.env.EXPO_PUBLIC_BACKEND_URL,
 });
 
 export const authLink = setContext(async (_, previousContext) => {
