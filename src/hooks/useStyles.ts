@@ -80,7 +80,7 @@ const useStyles = () => {
       segmentedButtons: {
         width: '100%',
         alignSelf: 'center',
-        marginBottom: vmin * 4,
+        marginBottom: vmin * 3,
       },
 
       // text
@@ -113,7 +113,7 @@ const useStyles = () => {
         justifyContent: 'flex-start',
       },
       itemContainer: {
-        width: Platform.OS === 'web' ? vmin * 38 : vmin * 45,
+        width: Platform.OS === 'web' ? vmin * 43 : vmin * 45,
         // padding: vmin * 2.6,
         borderRadius: 12,
         overflow: 'hidden',
@@ -186,7 +186,7 @@ const useStyles = () => {
         alignSelf: 'center',
       },
       pressableCard: {
-        margin: vmin * 2,
+        // margin: vmin * 2,
       },
 
       // headings
@@ -274,11 +274,21 @@ const useStyles = () => {
         alignItems: 'center',
       },
 
-      // pickers
+      // pickers, switchers
       picker: {
         width: '100%',
         fontSize: isLargeScreen ? vmin * 3 : vmin * 4.5,
         padding: 15,
+      },
+
+      switch: {
+        display: 'flex',
+        flexDirection: 'row',
+        // justifyContent: 'space-between',
+        // width: '100%',
+        alignItems: 'center',
+        marginBottom: vmin * 3,
+        gap: 10,
       },
     });
   }, [vh, vmin, vw, width]);

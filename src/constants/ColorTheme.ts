@@ -55,7 +55,7 @@ export const darkColors: ColorTheme = {
   errorHovered: '#FF6E76',
   errorPressed: '#D83A3A',
   success: '#00A36C',
-  favorite: '#F1DDCF',
+  favorite: '#CED2D3',
   favoriteHovered: '#D8C6BA',
   favoritePressed: '#C0B0A5',
   favoriteActive: '#fbaed2',

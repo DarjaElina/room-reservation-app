@@ -63,6 +63,7 @@ export const TOGGLE_FAVORITE = gql(`
       message
       success
       id
+      isFavoriteNow
     }
   }
 `);

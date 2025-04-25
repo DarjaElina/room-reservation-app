@@ -1,6 +1,7 @@
-import { Pressable, Text, ViewStyle, TextStyle } from 'react-native';
+import { Pressable, ViewStyle, TextStyle } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import useStyles from '../hooks/useStyles';
+import CustomText from './CustomText';
 
 type Variant = 'primary' | 'error' | 'favorite' | 'favoriteActive';
 
@@ -64,7 +65,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
         style,
       ]}
     >
-      <Text style={[styles.buttonText, textStyle]}>{label}</Text>
+      <CustomText style={[styles.buttonText, textStyle]}>{label}</CustomText>
     </Pressable>
   );
 };

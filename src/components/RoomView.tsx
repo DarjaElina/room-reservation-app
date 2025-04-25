@@ -62,7 +62,6 @@ export default function RoomView({ room }: RoomViewProps) {
   const handleAddToFavorite = async () => {
     await toggleFavoriteRoom();
   };
-
   const blurhash =
     '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
 
@@ -100,7 +99,11 @@ export default function RoomView({ room }: RoomViewProps) {
                 maxWidth: '60%',
               }}
             >
-              <CustomText fontFamily="Nunito-Bold" isBig>
+              <CustomText
+                fontFamily="Nunito-Bold"
+                isBig
+                style={{ color: colors.primary }}
+              >
                 {room.code}
               </CustomText>
               <CustomText>{formatRoomType(room.type)}</CustomText>
@@ -144,12 +147,11 @@ export default function RoomView({ room }: RoomViewProps) {
               />
               <CustomButton
                 onPress={handleAddToFavorite}
-                label={room.isFavorite ? 'Favorited 🎵' : 'Add to Favorites'}
+                label={room.isFavorite ? '🎵 Favorited' : 'Favorites'}
                 style={{
                   margin: 0,
                   alignSelf: 'flex-start',
                 }}
-                variant={room.isFavorite ? 'favoriteActive' : 'favorite'}
               />
             </View>
           </View>

@@ -12,6 +12,8 @@ interface FilterContextType {
   setBuildings: React.Dispatch<React.SetStateAction<string[]>>;
   types: RoomType[];
   setTypes: React.Dispatch<React.SetStateAction<RoomType[]>>;
+  showFavorites: boolean;
+  setShowFavorites: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const FilterContext = createContext<FilterContextType | null>(null);
@@ -22,6 +24,7 @@ export const FilterProvider = ({ children }: { children: React.ReactNode }) => {
   const [equipment, setEquipment] = useState<string[]>([]);
   const [buildings, setBuildings] = useState<string[]>([]);
   const [types, setTypes] = useState<RoomType[]>([]);
+  const [showFavorites, setShowFavorites] = useState<boolean>(false);
 
   const value = {
     startDate,
@@ -34,6 +37,8 @@ export const FilterProvider = ({ children }: { children: React.ReactNode }) => {
     setBuildings,
     types,
     setTypes,
+    showFavorites,
+    setShowFavorites,
   };
 
   return (
