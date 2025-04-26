@@ -39,6 +39,9 @@ export default function RootLayout() {
 
   if (localeLoaded === null) return null;
 
+  console.log('launching app?')
+  console.log('launching app!')
+
   return (
     <ApolloProvider client={apolloClient}>
       <AuthStorageContext.Provider value={authStorage}>

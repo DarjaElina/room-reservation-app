@@ -1,5 +1,7 @@
 import { useMutation } from '@apollo/client';
 import { CREATE_BOOKING } from '@/src/graphql/mutations';
+import { BOOKINGS } from '../graphql/queries';
+import { BookingsQuery } from '@/__generated__/graphql';
 
 const useBooking = (): [
   (
@@ -12,13 +14,16 @@ const useBooking = (): [
   const [mutate, { loading }] = useMutation(CREATE_BOOKING, {
     update: (cache, { data }) => {
       if (!data?.createBooking) return;
-
-      cache.modify({
-        fields: {
-          bookings(existingBookings = []) {
-            return [...existingBookings, data.createBooking];
-          },
-        },
+      const bookingsData = cache.readQuery({ query: BOOKINGS }) || {
+        bookings: [],
+      };
+      cache.writeQuery({
+        query: BOOKINGS,
+        data: {
+          ...data,
+          bookings: bookingsData?.bookings.concat(data?.createBooking),
+        } as BookingsQuery,
+        broadcast: false,
       });
     },
   });

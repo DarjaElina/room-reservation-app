@@ -101,13 +101,12 @@ export default function RoomView({ room }: RoomViewProps) {
             >
               <CustomText
                 fontFamily="Nunito-Bold"
-                isBig
-                style={{ color: colors.primary }}
+                style={{ color: colors.primary, fontSize: 30 }}
               >
                 {room.code}
               </CustomText>
               <CustomText>{formatRoomType(room.type)}</CustomText>
-              <CustomText isSmall>{room.venue.name}</CustomText>
+              <CustomText>{room.venue.name}</CustomText>
               {room.isFree ? (
                 <View style={styles.iconTextContainer}>
                   <AntDesign

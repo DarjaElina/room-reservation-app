@@ -35,7 +35,7 @@ const useStyles = () => {
         transitionProperty: 'background-color',
       },
       searchbar: {
-        height: isLargeScreen ? vmin * 7 : vmin * 10,
+        height: isLargeScreen ? vmin * 5.5 : vmin * 10,
         borderRadius: 20,
         justifyContent: 'center',
         borderWidth: 1,
@@ -85,13 +85,13 @@ const useStyles = () => {
 
       // text
       bigText: {
-        fontSize: isLargeScreen ? 8 + vmin * 2 : 10 + vmin * 2,
+        fontSize: isLargeScreen ? 6 + vmin * 2 : 10 + vmin * 2,
       },
       smallText: {
-        fontSize: isLargeScreen ? 5 + vmin * 1.3 : 5 + vmin * 2,
+        fontSize: isLargeScreen ? 3 + vmin * 1.3 : 5 + vmin * 2,
       },
       mediumText: {
-        fontSize: isLargeScreen ? 6 + vmin * 1.5 : 7 + vmin * 2,
+        fontSize: isLargeScreen ? 4 + vmin * 1.5 : 7 + vmin * 2,
       },
       userMessage: {
         fontSize: isLargeScreen ? 7 + vmin * 1.5 : 7 + vmin * 2.5,
@@ -113,11 +113,11 @@ const useStyles = () => {
         justifyContent: 'flex-start',
       },
       itemContainer: {
-        width: Platform.OS === 'web' ? vmin * 43 : vmin * 45,
-        // padding: vmin * 2.6,
+        width: isLargeScreen ? vmin * 33 : vmin * 42,
         borderRadius: 12,
         overflow: 'hidden',
         paddingTop: 0,
+        marginBottom: Platform.OS === 'web' ? 20 : 0,
       },
       iconTextContainer: {
         flexDirection: 'row',
@@ -256,7 +256,7 @@ const useStyles = () => {
         right: 0,
         zIndex: 1,
         width: '80%',
-        padding: vmin * 0.7,
+        // padding: vmin * 0.7,
       },
       separator: {
         width: 1,

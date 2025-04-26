@@ -7,7 +7,7 @@ import nunitoBold from '../assets/fonts/Nunito-Bold.ttf';
 import { useTheme } from '@react-navigation/native';
 import useStyles from '../hooks/useStyles';
 
-SplashScreen.preventAutoHideAsync(); // only once, globally
+SplashScreen.preventAutoHideAsync();
 
 type Props = TextProps & {
   fontFamily?: 'Nunito-Regular' | 'Nunito-Bold';

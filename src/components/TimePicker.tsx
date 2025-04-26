@@ -47,7 +47,7 @@ export default function TimePicker({
   const { bookings } = useBookings({
     roomId: id,
     startDate: new Date(date).setHours(6, 0, 0, 0),
-    endDate: new Date(date).setHours(23, 0, 0, 0),
+    endDate: new Date(date).setHours(24, 0, 0, 0),
     status: BookingStatus.Active,
   });
 
@@ -217,6 +217,8 @@ export default function TimePicker({
       );
     }
   };
+
+  console.log('mappedBookings are', mappedBookings);
   return (
     <View style={{ flex: 1 }}>
       <FlatList
@@ -231,12 +233,13 @@ export default function TimePicker({
             timeSlot={item}
             onSelect={handleSelect}
             booking={
-              mappedBookings.find(
-                (b) =>
-                  b.startDate <= item.value &&
-                  b.endDate > item.value &&
-                  b.startDate !== startTime
-              ) || null
+              mappedBookings.find((b) => {
+                const start = b.startDate;
+                const end = b.endDate === '00:00:00' ? '24:00:00' : b.endDate;
+                return (
+                  start <= item.value && end > item.value && start !== startTime
+                );
+              }) || null
             }
           />
         )}

@@ -64,7 +64,6 @@ export default function RoomListContainerWeb({
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
-        gap: 15,
       }}
     >
       {rooms.map((item) => (

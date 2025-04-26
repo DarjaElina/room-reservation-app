@@ -34,7 +34,6 @@ const TimeSlot = memo(function TimeSlotItem({
   const { selectedTimeValues } = useBookingContext();
   const styles = useStyles();
   const { colors } = useTheme();
-
   return (
     <Pressable
       testID="time_slot_btn"

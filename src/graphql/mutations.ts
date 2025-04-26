@@ -23,6 +23,7 @@ export const CREATE_BOOKING = gql(`
       }
       room {
         code
+        id
       }
     }
   }

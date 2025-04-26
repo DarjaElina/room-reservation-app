@@ -2,10 +2,8 @@ import { View } from 'react-native';
 import { Image } from 'expo-image';
 import { AntDesign } from '@expo/vector-icons';
 import { useTheme } from '@react-navigation/native';
-import { useI18nContext } from '../i18n/i18n-react';
 import useStyles from '../hooks/useStyles';
 import CustomText from './CustomText';
-import { useWindowDimensions } from 'react-native';
 interface RoomProps {
   code: string;
   venue: string;
@@ -18,10 +16,7 @@ const blurhash =
 
 export default function Room({ code, venue, pictureUrl, isFree }: RoomProps) {
   const { colors } = useTheme();
-  const { LL } = useI18nContext();
   const styles = useStyles();
-  const { width } = useWindowDimensions();
-  const isExtraSmallScreen = width < 460;
   return (
     <View testID="room-item">
       <Image
@@ -37,14 +32,14 @@ export default function Room({ code, venue, pictureUrl, isFree }: RoomProps) {
       <View
         style={{
           display: 'flex',
-          flexDirection: isExtraSmallScreen ? 'row' : 'column',
+          flexDirection: 'row',
           justifyContent: 'space-between',
           alignItems: 'flex-start',
           paddingHorizontal: 10,
           paddingBottom: 10,
         }}
       >
-        <View style={{}}>
+        <View>
           <CustomText
             isBig
             style={{
@@ -60,20 +55,10 @@ export default function Room({ code, venue, pictureUrl, isFree }: RoomProps) {
           {isFree ? (
             <>
               <AntDesign name="checksquare" size={23} color={colors.success} />
-              <CustomText
-                style={{ display: isExtraSmallScreen ? 'none' : 'flex' }}
-              >
-                {LL.AVAILABLE()}
-              </CustomText>
             </>
           ) : (
             <>
               <AntDesign name="closesquare" size={23} color={colors.error} />
-              <CustomText
-                style={{ display: isExtraSmallScreen ? 'none' : 'flex' }}
-              >
-                {LL.OCCUPIED()}
-              </CustomText>
             </>
           )}
         </View>

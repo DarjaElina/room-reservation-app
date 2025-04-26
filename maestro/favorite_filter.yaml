@@ -1,0 +1,28 @@
+appId: com.daria111.mobilefrontend
+---
+- clearState
+
+- launchApp
+- assertVisible: 'M-100 M-Building Available'
+- assertNotVisible: 'T-100 T-Building Available'
+- tapOn: 'M-100 M-Building Available'
+- assertVisible: 'Favorites'
+- tapOn: 'Favorites'
+- assertVisible: '🎵 Favorited'
+- tapOn: '🎵 Favorited'
+- assertVisible: 'Favorites'
+- tapOn: 'Favorites'
+- assertVisible: '🎵 Favorited'
+- tapOn: 'Back'
+- scrollUntilVisible:
+    element: 'T-100 T-Building Available'
+- tapOn: 'T-100 T-Building Available'
+- assertVisible: 'Favorites'
+- tapOn: 'Favorites'
+- assertVisible: '🎵 Favorited'
+- tapOn: 'Back'
+- tapOn:
+    point: "51%,27%"
+- assertVisible: 'T-100 T-Building Available'
+- assertVisible: 'M-100 M-Building Available'
+- clearState

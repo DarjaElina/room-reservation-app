@@ -40,8 +40,8 @@ export default function RoomListContainer({
   }
   return (
     <FlatList
-      contentContainerStyle={[styles.listContainer, { gap: 10 }]}
-      columnWrapperStyle={{ gap: 10 }}
+      contentContainerStyle={[styles.listContainer, { gap: 12 }]}
+      columnWrapperStyle={{ gap: 12 }}
       onEndReached={onEndReach}
       onEndReachedThreshold={0.5}
       showsVerticalScrollIndicator={false}

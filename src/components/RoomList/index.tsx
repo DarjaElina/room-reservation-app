@@ -28,7 +28,7 @@ export default function RoomListWrapper() {
   } = useFilter();
 
   const { rooms, loading, error, fetchMore } = useRooms({
-    first: 6,
+    first: 8,
     searchKeyword: debouncedSearchQuery,
     startsAt: startDate?.getTime() ?? undefined,
     endsAt: endDate?.getTime() ?? undefined,
@@ -43,8 +43,6 @@ export default function RoomListWrapper() {
     fetchMore();
   };
   const { colors } = useTheme();
-
-  console.log(showFavorites);
 
   const toggleSwitch = () => {
     setShowFavorites(!showFavorites);
