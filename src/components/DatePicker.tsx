@@ -85,6 +85,7 @@ export default function DatePicker({ dateToModify }: DatePickerProps) {
             day: 'numeric',
             month: 'short',
             year: 'numeric',
+            weekday: 'short',
           })}
         </CustomText>
       </TouchableOpacity>

@@ -31,7 +31,7 @@ appId: com.daria111.mobilefrontend
 - assertVisible: 'New Title'
 - tapOn: 'Modify'
 - tapOn: '${output.getTomorrowDate.spaceFormat} at 06:00'
-- assertVisible: ${output.getTomorrowDate.spaceFormat}
+- assertVisible: ${output.getTomorrowDate.weekDayFormat}
 - tapOn: 09:00:00
 - tapOn: 'Confirm'
 - assertVisible: 'Starts: ${output.getTomorrowDate.commaFormat} at 9:00 AM'
