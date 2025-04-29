@@ -51,17 +51,22 @@ export default function Room({ code, venue, pictureUrl, isFree }: RoomProps) {
           </CustomText>
           <CustomText style={{ marginBottom: 2.5 }}>{venue}</CustomText>
         </View>
-        <View style={styles.iconTextContainer}>
-          {isFree ? (
-            <>
-              <AntDesign name="checksquare" size={23} color={colors.success} />
-            </>
-          ) : (
-            <>
-              <AntDesign name="closesquare" size={23} color={colors.error} />
-            </>
-          )}
-        </View>
+        {isFree ? (
+          <AntDesign
+            testID="available-icon"
+            name="checksquare"
+            size={23}
+            color={colors.success}
+            aria-label="available"
+          />
+        ) : (
+          <AntDesign
+            testID="occupied-icon"
+            name="closesquare"
+            size={23}
+            color={colors.error}
+          />
+        )}
       </View>
     </View>
   );

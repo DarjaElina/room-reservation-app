@@ -60,7 +60,7 @@ const mocks = [
       variables: {
         roomId: '1',
         startDate: new Date().setHours(6, 0, 0, 0),
-        endDate: new Date().setHours(23, 0, 0, 0),
+        endDate: new Date().setHours(24, 0, 0, 0),
         status: 'ACTIVE',
       },
     },
@@ -96,7 +96,7 @@ const mocksWithEmptyResponse = [
       variables: {
         roomId: '1',
         startDate: new Date().setHours(6, 0, 0, 0),
-        endDate: new Date().setHours(23, 0, 0, 0),
+        endDate: new Date().setHours(24, 0, 0, 0),
         status: 'ACTIVE',
       },
     },

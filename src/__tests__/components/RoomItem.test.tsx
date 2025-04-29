@@ -49,16 +49,16 @@ describe('RoomItem Component', () => {
   });
 
   it('renders available status when isFree is true', async () => {
-    const { findByText } = render(
+    const { findByTestId } = render(
       <Room code="R-123" venue="R-Building" isFree={true} />
     );
-    expect(await findByText('Available')).toBeDefined();
+    expect(await findByTestId('available-icon')).toBeDefined();
   });
 
   it('renders occupied status when isFree is false', async () => {
-    const { findByText } = render(
+    const { findByTestId } = render(
       <Room code="R-123" venue="R-Building" isFree={false} />
     );
-    expect(await findByText('Occupied')).toBeDefined();
+    expect(await findByTestId('occupied-icon')).toBeDefined();
   });
 });

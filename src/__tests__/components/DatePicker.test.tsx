@@ -40,6 +40,7 @@ describe('DatePicker Component', () => {
     day: 'numeric',
     month: 'short',
     year: 'numeric',
+    weekday: 'short',
   });
   const tomorrowDate = new Date(
     new Date().setDate(new Date().getDate() + 1)
@@ -47,6 +48,7 @@ describe('DatePicker Component', () => {
     day: 'numeric',
     month: 'short',
     year: 'numeric',
+    weekday: 'short',
   });
   it('renders pressable with current date on initial render', async () => {
     const { findByText } = render(
