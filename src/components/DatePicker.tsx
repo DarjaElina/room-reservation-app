@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, Platform } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import useBookingContext from '@/src/hooks/useBookingContext';
@@ -53,6 +53,12 @@ export default function DatePicker({ dateToModify }: DatePickerProps) {
     });
   };
 
+  const toDateInputValue = (dateObject: Date) => {
+    const local = new Date(dateObject);
+    local.setMinutes(dateObject.getMinutes() - dateObject.getTimezoneOffset());
+    return local.toJSON().slice(0, 10);
+  };
+
   return (
     <View
       style={[
@@ -80,23 +86,47 @@ export default function DatePicker({ dateToModify }: DatePickerProps) {
           borderRadius: 8,
         }}
       >
-        <CustomText style={{ fontSize: 18, color: 'black' }}>
-          {date.toLocaleDateString('en-GB', {
-            day: 'numeric',
-            month: 'short',
-            year: 'numeric',
-            weekday: 'short',
-          })}
-        </CustomText>
+        {Platform.OS === 'android' || Platform.OS === 'ios' ? (
+          <CustomText style={{ fontSize: 18, color: 'black' }}>
+            {date.toLocaleDateString('en-GB', {
+              day: 'numeric',
+              month: 'short',
+              year: 'numeric',
+              weekday: 'short',
+            })}
+          </CustomText>
+        ) : (
+          <input
+            min={toDateInputValue(new Date())}
+            type="date"
+            value={toDateInputValue(date)}
+            onChange={(e) => {
+              const newDate = new Date(e.target.value);
+              handleConfirm(newDate);
+            }}
+            style={{
+              backgroundColor: '#f0f0f0',
+              padding: 8,
+              borderRadius: 8,
+              border: 'none',
+              fontSize: 16,
+              color: 'black',
+              cursor: 'pointer',
+            }}
+          />
+        )}
       </TouchableOpacity>
-      <DateTimePickerModal
-        testID="date_time_picker_modal"
-        isVisible={isDatePickerVisible}
-        mode="date"
-        onConfirm={handleConfirm}
-        onCancel={hideDatePicker}
-        minimumDate={new Date()}
-      />
+      {Platform.OS === 'android' ||
+        (Platform.OS === 'ios' && (
+          <DateTimePickerModal
+            testID="date_time_picker_modal"
+            isVisible={isDatePickerVisible}
+            mode="date"
+            onConfirm={handleConfirm}
+            onCancel={hideDatePicker}
+            minimumDate={new Date()}
+          />
+        ))}
       <AntDesign.Button
         testID="next_day_button"
         backgroundColor="lightgrey"

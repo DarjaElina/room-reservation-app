@@ -37,7 +37,6 @@ export default function PressableCard({
             : hovered
               ? colors.primaryHovered + '08'
               : colors.card,
-          margin: styles.pressableCard.margin,
         },
         style,
       ]}
