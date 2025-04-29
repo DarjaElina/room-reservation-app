@@ -36,6 +36,7 @@ This repository contains the frontend part of the application. Built with [TypeS
 1. Clone the repo
 2. Install dependencies
 3. Start the dev server pointing to the staging backend
+4. Download the [Expo Go App](https://expo.dev/go)
 
 ``` bash
 git clone https://github.com/DarjaElina/room-reservation-app.git
@@ -43,12 +44,7 @@ cd room-reservation-app
 npm install
 EXPO_PUBLIC_BACKEND_URL=https://backend-rough-wildflower-6075.fly.dev npm start
 ```
-Then scan the QR code using Expo Go on your mobile device or follow the terminal instructions:
-```
-› Press a │ open Android
-› Press i │ open iOS simulator
-› Press w │ open web
-```
+Then scan the QR code using Expo Go on your mobile device.
 
 ⚠️ Notes on Local Backend and Expo Go
 
@@ -75,12 +71,28 @@ Then follow the terminal instructions:
 › Press w │ open web
 ```
 
-#### 🍎 Using iOS Development Build (Xcode)
-todo: add instructions
+❗️ Note that running the app on your development machine requires Android Studio or XCode (for Mac only).
 
-#### 🤖 Using Android Build (Android Studio or physical device)
-todo: add instructions
+### 📱 Running Development Builds
 
+This project supports both Android and iOS development builds for easy testing across platforms.
+
+#### 🤖 Android Development Build
+📦 APK Download (for physical device or with Expo Orbit and Android Studio)
+Open this link with your Android device:
+➡️ [Download Android build](https://expo.dev/accounts/daria111/projects/mobile-frontend/builds/72860318-312d-4f6a-9e93-55d54fcf5a65)
+
+Then follow the instructions to install the APK file.
+
+#### 🍎 iOS Development Build (Mac only)
+
+Unfortunately, I found no easy way to share and run the iOS development build without an Apple Developer account.
+If you still would like to test the iOS build, you can do the following:
+
+1) Download the tar file from [here](add link later)
+2) Extract the file by doubleclicking it
+3) Open the iOS simulator (requires XCode)
+4) Drag and drop the extracted .app file into the Simulator window
 
 ### 🌐 Web Deployment
 The web version lives here: https://mobile-frontend--jbyli0d1x4.expo.app/
