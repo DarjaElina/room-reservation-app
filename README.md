@@ -1,48 +1,65 @@
-## Booking App
+## 🎻 Room Reservation App 
 
-This is a final project implemented for Full Stack Open Course at Helsinki University.
+This is a final project implemented for the [Full Stack Open course](https://fullstackopen.com/en/) at the [University of Helsinki](https://www.helsinki.fi/en) (aiming for 10 credits).
 
-This application is a booking platform designed for conservatory students and teachers, allowing to book different study facilities, such as practice rooms, classrooms etc.
+This project is a full-stack application designed for music school students and teachers. It allows users to book different study facilities such as practice rooms, classrooms, and more.
 
-This repo contains frontend part of the application, developed with Expo and React Native.
+This repository contains the frontend part of the application. Built with TypeScript, React Native, and Expo, it supports both native mobile and web platforms.
 
-Application main features:
+#### 🔗 Links to other parts of the project:
 
-1) JSON Web token Authentication
-2) CRUD operations (create, update, cancel and view bookings)
+- Backend repo: https://github.com/DarjaElina/room-reservation-app-backend
+- Account activation page repo: https://github.com/DarjaElina/account-activation-page
 
-This app uses three CI/CD pipelines, one implemented as a GitHub actions workflow, and 2 others as EAS workflow.
+### ✨ Features
 
-Pipelines are made to lint, test and the deploy the application to the web and create development builds for Android and IOS accordingly.
+- JSON Web Token authentication (login, registration, refresh)
+- Full room booking CRUD: create, view, update, cancel
+- Filter rooms by time, type, building, and available tools
+- Paginated room list with infinite scroll
+- Localization with typesafe-i18n
+- Dark/light mode with React Navigation native theming
+- Cross-platform support: Web, Android, iOS
+- Testing with Jest and Maestro
+- CI/CD with GitHub Actions: linting, tests, web deploy, and Expo development builds
+- Uses two backend environments: staging (for testing and dev builds) and production (for deployed web)
+- Automatic username generation and email-based registration for testing
+- Custom-built TimePicker for selecting booking times (a bit of a Frankenstein 👹, but built with love 💛)
+  
+### 🧡 Getting Started
 
-Additional features:
-1) Localization using typesafe-i18n
-2) Dark/light mode using react navigation native theming
-3) App works both on web and native platforms
-4) Maestro and Jest tests
-5) App uses two backends, staging for testing and development builds, and production for web production version
-6) Custom TimePicker component
-7) Automatic username generation and email based registration for test mode (in actual app users will be added by admin)
+#### 📱 Using Expo Go
 
-Steps to open the project:
+``` bash
+git clone [<repo-url>](https://github.com/DarjaElina/room-reservation-app.git)
+cd room-reservation-app
+npm install
+npm start
+```
+Then scan the QR code using Expo Go on your mobile device.
 
-### Using Expo go
+#### 🍎 Using iOS Development Build (Xcode)
+todo: add instructions
 
-1) Clone this repo
-2) Navigate to the project directory
-3) Run npm install
-4) Npm start 
-
-### Using IOS development build and X Code
-// Steps
-
-### Using android build on your device or Androud Studio
-// Steps
+#### 🤖 Using Android Build (Android Studio or physical device)
+todo: add instructions
 
 
-### Deployed web application lives here
-// Link to the web version
-You can login using username jd10000 and password password, or if you'd like to test the user activation flow, go to this link, enter your email address and system will generate a username for you and you will be able to set your password
+ ### 🌐 Web Deployment
+The web version is available at: [link]
+
+You can log in using:
+- Username: jd10000
+- Password: password
+
+Or test the full account activation flow:
+
+1) Visit [link]
+2) Enter your email
+3) The system will generate a username and allow you to set a password
+
+### 🧡 Acknowledgments
+Huge thanks to the [Full Stack Open](https://fullstackopen.com/en/) team for creating such a fantastic, free, and super educational course. It’s been a joy building this project and growing as a developer through the journey! 🙏✨
 
 
 
