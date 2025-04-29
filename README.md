@@ -4,7 +4,7 @@ This is a final project implemented for the [Full Stack Open course](https://ful
 
 This project is a full-stack application designed for music school students and teachers. It allows users to book different study facilities such as practice rooms, classrooms, and more.
 
-This repository contains the frontend part of the application. Built with TypeScript, React Native, and Expo, it supports both native mobile and web platforms.
+This repository contains the frontend part of the application. Built with [TypeScript](https://www.typescriptlang.org/), [React Native](https://reactnative.dev/), and [Expo](https://expo.dev/), it supports both native mobile and web platforms.
 
 #### 🔗 Links to other parts of the project:
 
@@ -17,11 +17,10 @@ This repository contains the frontend part of the application. Built with TypeSc
 - Full room booking CRUD: create, view, update, cancel
 - Filter rooms by time, type, building, and available tools
 - Paginated room list with infinite scroll
-- Localization with typesafe-i18n
-- Dark/light mode with React Navigation native theming
+- Localization with [typesafe-i18n](https://www.npmjs.com/package/typesafe-i18n/v/2.21.1)
 - Cross-platform support: Web, Android, iOS
-- Testing with Jest and Maestro
-- CI/CD with GitHub Actions: linting, tests, web deploy, and Expo development builds
+- Testing with [Jest](https://jestjs.io/) and [Maestro](https://docs.maestro.dev/)
+- CI/CD with [GitHub Actions](https://github.com/features/actions): linting, tests, web deploy, and Expo development builds
 - Uses two backend environments: staging (for testing and dev builds) and production (for deployed web)
 - Automatic username generation and email-based registration for testing
 - Custom-built TimePicker for selecting booking times (a bit of a Frankenstein 👹, but built with love 💛)
