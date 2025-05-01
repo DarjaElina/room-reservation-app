@@ -86,7 +86,7 @@ export default function RoomListWrapper() {
             </View>
           ) : (
             <View style={styles.switch}>
-              <CustomText isBig>Show favorites only</CustomText>
+              <CustomText isBig>{LL.SHOW_FAVORITES()}</CustomText>
               <Switch
                 trackColor={{
                   false: colors.borderLight,

@@ -5,7 +5,10 @@
   },
   "build": {
     "production": {
-      "autoIncrement": true
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_BACKEND_URL": "https://room-reservation-app.fly.dev"
+      }
     },
     "preview-simulator": {
       "distribution": "internal",
