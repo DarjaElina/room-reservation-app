@@ -7,7 +7,7 @@
     "production": {
       "autoIncrement": true
     },
-    "development-simulator": {
+    "preview-simulator": {
       "distribution": "internal",
       "ios": {
         "simulator": true
@@ -18,16 +18,7 @@
       "env": {
         "EXPO_PUBLIC_BACKEND_URL": "https://backend-rough-wildflower-6075.fly.dev"
       }
-    },
-    "development-device": {
-    "distribution": "internal",
-    "android": {
-      "buildType": "apk"
-    },
-    "env": {
-      "EXPO_PUBLIC_BACKEND_URL": "https://backend-rough-wildflower-6075.fly.dev"
     }
-  }
   },
   "submit": {
     "production": {}
