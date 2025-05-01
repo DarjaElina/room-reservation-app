@@ -147,7 +147,7 @@ export default function RoomView({ room }: RoomViewProps) {
               <CustomButton
                 onPress={handleAddToFavorite}
                 label={
-                  room.isFavorite ? `🎵 ${LL.FAVORITED()}` : `${LL.FAVORITED()}`
+                  room.isFavorite ? `🎵 ${LL.FAVORITED()}` : `${LL.FAVORITES()}`
                 }
                 style={{
                   margin: 0,
