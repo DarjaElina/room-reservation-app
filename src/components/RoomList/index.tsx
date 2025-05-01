@@ -71,7 +71,7 @@ export default function RoomListWrapper() {
 
           {Platform.OS === 'web' ? (
             <View style={styles.switch}>
-              <CustomText>Show favorites only</CustomText>
+              <CustomText>{LL.SHOW_FAVORITES()}</CustomText>
               <WebSwitch
                 offColor="#c7c4bf"
                 onColor={colors.primary}

@@ -62,6 +62,9 @@ const en = {
   SEARCH_CLASSROOMS: 'Search classrooms',
   CLEAR_DATES: 'Clear dates',
   HELLO: 'Hello',
+  SHOW_FAVORITES: 'Show favorites only',
+  FAVORITES: 'Favorites',
+  FAVORITED: 'Favorited',
 } satisfies BaseTranslation;
 
 export default en;

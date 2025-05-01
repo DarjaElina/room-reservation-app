@@ -62,6 +62,9 @@ const fi: Translation = {
   SEARCH_CLASSROOMS: 'Etsi luokkia',
   CLEAR_DATES: 'Tyhjennä päivämäärät',
   HELLO: 'Hei',
+  SHOW_FAVORITES: 'Näytä vain suosikit',
+  FAVORITES: 'Suosikit',
+  FAVORITED: 'Suosikissa',
 };
 
 export default fi;

@@ -1,24 +1,24 @@
 appId: com.daria111.mobilefrontend
 ---
 - launchApp
-- assertVisible: 'M-100 M-Building Available'
-- assertNotVisible: 'T-100 T-Building Available'
-- tapOn: 'M-100 M-Building Available'
+- assertVisible: 'M-100 M-Building available'
+- assertNotVisible: 'T-100 T-Building available'
+- tapOn: 'M-100 M-Building available'
 - assertNotVisible: 'Music stands'
 - tapOn: 'Back'
 - scrollUntilVisible:
-    element: 'T-100 T-Building Available'
-- tapOn: 'T-100 T-Building Available'
+    element: 'T-100 T-Building available'
+- tapOn: 'T-100 T-Building available'
 - assertVisible: 'Music stands'
 - tapOn: 'Back'
 - scrollUntilVisible:
-    element: 'M-100 M-Building Available'
+    element: 'M-100 M-Building available'
     direction: 'UP'
 - tapOn: ' Tools'
 - assertVisible: ' Music stands'
 - tapOn: ' Music stands'
 - tapOn: 'Back'
-- assertNotVisible: 'M-100 M-Building Available'
-- assertVisible: 'T-100 T-Building Available'
+- assertNotVisible: 'M-100 M-Building available'
+- assertVisible: 'T-100 T-Building available'
 - clearState 
 

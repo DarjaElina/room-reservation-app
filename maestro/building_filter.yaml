@@ -1,12 +1,12 @@
 appId: com.daria111.mobilefrontend
 ---
 - launchApp
-- assertVisible: 'M-100 M-Building Available'
-- assertNotVisible: 'T-101 T-Building Available'
+- assertVisible: 'M-100 M-Building available'
+- assertNotVisible: 'T-101 T-Building available'
 - tapOn: ' Building'
 - assertVisible: ' T-Building'
 - tapOn: ' T-Building'
 - tapOn: 'Back'
-- assertVisible: 'T-101 T-Building Available'
-- assertNotVisible: 'M-100 M-Building Available'
+- assertVisible: 'T-101 T-Building available'
+- assertNotVisible: 'M-100 M-Building available'
 - clearState

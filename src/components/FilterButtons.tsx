@@ -6,14 +6,11 @@ import { router } from 'expo-router';
 import { useTheme } from '@react-navigation/native';
 import { useI18nContext } from '../i18n/i18n-react';
 import useStyles from '../hooks/useStyles';
-import { useWindowDimensions } from 'react-native';
 function FilterButtons() {
   const { LL } = useI18nContext();
   const [value, setValue] = React.useState('');
   const { colors } = useTheme();
   const styles = useStyles();
-  const { width } = useWindowDimensions();
-  const isSmallScreen = width <= 460;
   return (
     <View style={styles.segmentedButtons}>
       <SegmentedButtons
@@ -28,7 +25,7 @@ function FilterButtons() {
         buttons={[
           {
             value: 'time',
-            label: isSmallScreen ? '' : LL.TIME(),
+            label: LL.TIME(),
             icon: () => (
               <Ionicons
                 name="time"
@@ -42,7 +39,7 @@ function FilterButtons() {
           },
           {
             value: 'building',
-            label: isSmallScreen ? '' : LL.BUILDING(),
+            label: LL.BUILDING(),
             icon: () => (
               <Ionicons
                 name="location"
@@ -56,9 +53,10 @@ function FilterButtons() {
           },
           {
             value: 'tools',
-            label: isSmallScreen ? '' : LL.TOOLS(),
+            label: LL.TOOLS(),
             icon: () => (
               <FontAwesome5
+                testID="tools"
                 name="guitar"
                 size={15}
                 color={value === 'tools' ? colors.background : colors.text}
@@ -70,9 +68,10 @@ function FilterButtons() {
           },
           {
             value: 'type',
-            label: isSmallScreen ? '' : LL.TYPE(),
+            label: LL.TYPE(),
             icon: () => (
               <MaterialIcons
+                testID="type"
                 name="class"
                 size={15}
                 color={value === 'type' ? colors.background : colors.text}

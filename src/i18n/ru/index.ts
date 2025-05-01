@@ -61,6 +61,9 @@ const ru: Translation = {
   SEARCH_CLASSROOMS: 'Поиск аудиторий',
   CLEAR_DATES: 'Очистить даты',
   HELLO: 'Привет',
+  SHOW_FAVORITES: 'Показывать только избранное',
+  FAVORITES: 'Избранное',
+  FAVORITED: 'В избранном',
 };
 
 export default ru;

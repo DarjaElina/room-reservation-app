@@ -46,7 +46,9 @@ If you still would like to test the iOS build, you can do the following:
 1) Download the tar file from [here](add link later)
 2) Extract the file by doubleclicking it
 3) Open the iOS simulator (requires XCode)
-4) Drag and drop the extracted .app file into the Simulator window
+4) Drag and drop the extracted file into the Simulator window
+5) Wait until the app will be installed
+6) Open it as any other application
 
 #### 🛠️ Alternatively, for local development
 If you have Xcode installed and want to build the app locally:

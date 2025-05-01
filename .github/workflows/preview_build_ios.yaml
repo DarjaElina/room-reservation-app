@@ -9,7 +9,7 @@ on:
     types: [opened, synchronize]
       
 jobs:
-  test_and_lint:
+  test_lint_and_build:
       runs-on: macos-latest
       
       steps:

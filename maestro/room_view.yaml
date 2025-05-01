@@ -1,8 +1,8 @@
 appId: com.daria111.mobilefrontend
 ---
 - launchApp
-- assertVisible: 'M-100 M-Building Available'
-- tapOn: 'M-100 M-Building Available'
+- assertVisible: 'M-100 M-Building available'
+- tapOn: 'M-100 M-Building available'
 - assertVisible: 'M-100'
 - assertVisible: 'Reserve'
 - scrollUntilVisible:
@@ -17,14 +17,14 @@ appId: com.daria111.mobilefrontend
 - tapOn:
     point: '92%,13%'
 - runScript: ../src/scripts/getTomorrowDate.js
-- assertVisible: ${output.getTomorrowDate.spaceFormat}
+- assertVisible: ${output.getTomorrowDate.weekDayFormat}
 - tapOn: '06:00:00'
 - tapOn: 'Confirm'
 - assertVisible: 'Booking Details'
 - tapOn: 'Reserve'
 - assertVisible: 'Booking created successfully.'
-- assertVisible: 'M-100 M-Building Available'
-- tapOn: 'M-100 M-Building Available'
+- assertVisible: 'M-100 M-Building available'
+- tapOn: 'M-100 M-Building available'
 - scrollUntilVisible:
     element: 'Show upcoming reservations'
 - tapOn: 'Show upcoming reservations'

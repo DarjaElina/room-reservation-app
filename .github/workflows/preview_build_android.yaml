@@ -1,4 +1,7 @@
-name: Preview build iOS
+name: Preview build Android
+
+env:
+  BUILD: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip') }}
 
 on:
   push:
@@ -9,7 +12,7 @@ on:
     types: [opened, synchronize]
       
 jobs:
-  test_and_lint:
+  test_lint_and_build:
       runs-on: ubuntu-latest
       
       steps:
@@ -35,3 +38,7 @@ jobs:
           with:
             eas-version: latest
             token: ${{ secrets.EXPO_TOKEN }}
+
+        - name: Create preview build for Android
+          if: ${{ env.BUILD == 'true' }}
+          run: eas build --platform all --profile preview-simulator

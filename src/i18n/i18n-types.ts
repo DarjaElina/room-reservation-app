@@ -255,6 +255,18 @@ type RootTranslation = {
 	 * H​e​l​l​o
 	 */
 	HELLO: string
+	/**
+	 * S​h​o​w​ ​f​a​v​o​r​i​t​e​s​ ​o​n​l​y
+	 */
+	SHOW_FAVORITES: string
+	/**
+	 * F​a​v​o​r​i​t​e​s
+	 */
+	FAVORITES: string
+	/**
+	 * F​a​v​o​r​i​t​e​d
+	 */
+	FAVORITED: string
 }
 
 export type TranslationFunctions = {
@@ -498,6 +510,18 @@ export type TranslationFunctions = {
 	 * Hello
 	 */
 	HELLO: () => LocalizedString
+	/**
+	 * Show favorites only
+	 */
+	SHOW_FAVORITES: () => LocalizedString
+	/**
+	 * Favorites
+	 */
+	FAVORITES: () => LocalizedString
+	/**
+	 * Favorited
+	 */
+	FAVORITED: () => LocalizedString
 }
 
 export type Formatters = {}

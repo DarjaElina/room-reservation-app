@@ -5,7 +5,7 @@ appId: com.daria111.mobilefrontend
 - tapOn: "My Calendar, tab, 2 of 3"
 - assertVisible: 'You have no upcoming bookings.'
 - tapOn: 'Search, tab, 1 of 3'
-- tapOn: 'M-100 M-Building Available'
+- tapOn: 'M-100 M-Building available'
 - tapOn: 'Reserve'
 - tapOn:
     point: '92%,13%'
@@ -14,7 +14,7 @@ appId: com.daria111.mobilefrontend
 - assertVisible: 'Booking Details'
 - tapOn: 'Reserve'
 - assertVisible: 'Booking created successfully.'
-- assertVisible: 'M-100 M-Building Available'
+- assertVisible: 'M-100 M-Building available'
 - tapOn: "My Calendar, tab, 2 of 3"
 - assertVisible: 'M-100'
 - runScript: ../src/scripts/getTomorrowDate.js
