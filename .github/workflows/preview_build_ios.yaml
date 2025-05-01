@@ -1,5 +1,8 @@
 name: Preview build iOS
 
+env:
+  BUILD: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip') }}
+
 on:
   push:
     branches:
@@ -69,6 +72,10 @@ jobs:
             else
               echo "Simulator with DEVICE_ID=$DEVICE_ID is already booted."
             fi
+
+        - name: Create preview build for iOS
+          if: ${{ env.BUILD == 'true' }}
+          run: eas build --platform ios --non-interactive --profile preview-simulator
 
         - name: Download and install the latest build on the iOS Simulator
           run: eas build:run -p ios --latest 

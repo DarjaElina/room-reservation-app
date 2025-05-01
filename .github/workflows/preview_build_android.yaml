@@ -41,4 +41,4 @@ jobs:
 
         - name: Create preview build for Android
           if: ${{ env.BUILD == 'true' }}
-          run: eas build --platform all --profile preview-simulator
+          run: eas build --platform android --non-interactive --profile preview-simulator
