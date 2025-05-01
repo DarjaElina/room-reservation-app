@@ -55,6 +55,7 @@ jest.mock('@/src/i18n/i18n-react', () => {
         CLOSE: () => 'Close',
         LOADING: () => 'Loading',
         ERROR: () => 'Error',
+        FAVORITED: () => 'Favorited',
       },
     }),
   };
