@@ -32,23 +32,19 @@ This project supports both Android and iOS development builds for easy testing a
 
 #### 🤖 Android Development Build
 
-📦 APK Download (for physical device or with Expo Orbit and Android Studio)
-Open this link with your Android device:
-➡️ [Download Android build](https://expo.dev/accounts/daria111/projects/mobile-frontend/builds/72860318-312d-4f6a-9e93-55d54fcf5a65)
+- ➡️ [Download Android build](https://expo.dev/accounts/daria111/projects/mobile-frontend/builds/72860318-312d-4f6a-9e93-55d54fcf5a65)
 
 Then follow the instructions to install the APK file.
 
-#### 🍎 iOS DEvelopment Build (Simulator only, Mac required)
+#### 🍎 iOS Development Build (Simulator only, Mac required)
 
 Unfortunately, I found no easy way to share and run the iOS development build without an Apple Developer account.
 If you still would like to test the iOS build, you can do the following:
 
-1) Download the tar file from [here](add link later)
+1) Download the tar file from from [this GitHub release](https://github.com/DarjaElina/room-reservation-app/releases/v0.0.1)
 2) Extract the file by doubleclicking it
 3) Open the iOS simulator (requires XCode)
 4) Drag and drop the extracted file into the Simulator window
-5) Wait until the app will be installed
-6) Open it as any other application
 
 #### 🛠️ Alternatively, for local development
 If you have Xcode installed and want to build the app locally:
@@ -58,14 +54,14 @@ npx expo run:ios
 ```
 
 ### 🌐 Web Deployment
-The web version lives here: https://mobile-frontend--jbyli0d1x4.expo.app/
+The web version lives here: https://mobile-frontend.expo.app
 
 #### You can log in using:
 - Username: jd10000
 - Password: password
 
 #### 🧪 Or if you'd like to test the full account activation flow:
-1. Visit [link]
+1. Visit [this link](https://account-activation-page.vercel.app/)
 2. Enter your email address
 3. The system will generate a username and let you set a password
 
@@ -73,7 +69,7 @@ The web version lives here: https://mobile-frontend--jbyli0d1x4.expo.app/
 Currently build pipeline for Android does not have e2e testing. Android Maestro tests can be run locally due to the complexity of setting up emulators in CI environments (or me not having Maestro Cloud paid subscription 😁)
 
 ### 🧡 Acknowledgments
-Huge thanks to the [Full Stack Open](https://fullstackopen.com/en/) team for creating such a fantastic, free, and super educational course. It’s been a joy building this project and growing as a developer through the journey! 🙏✨
+Huge thanks to the [Full Stack Open](https://fullstackopen.com/en/) team for creating such a fantastic, free, and super educational course. It’s been a joy studying the materials and completing projects! 🙏✨
 
 
 
