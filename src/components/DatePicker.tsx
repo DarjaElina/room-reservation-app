@@ -116,17 +116,16 @@ export default function DatePicker({ dateToModify }: DatePickerProps) {
           />
         )}
       </TouchableOpacity>
-      {Platform.OS === 'android' ||
-        (Platform.OS === 'ios' && (
-          <DateTimePickerModal
-            testID="date_time_picker_modal"
-            isVisible={isDatePickerVisible}
-            mode="date"
-            onConfirm={handleConfirm}
-            onCancel={hideDatePicker}
-            minimumDate={new Date()}
-          />
-        ))}
+      {(Platform.OS === 'android' || Platform.OS === 'ios') && (
+        <DateTimePickerModal
+          testID="date_time_picker_modal"
+          isVisible={isDatePickerVisible}
+          mode="date"
+          onConfirm={handleConfirm}
+          onCancel={hideDatePicker}
+          minimumDate={new Date()}
+        />
+      )}
       <AntDesign.Button
         testID="next_day_button"
         backgroundColor="lightgrey"
