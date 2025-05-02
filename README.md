@@ -11,6 +11,10 @@ This repository contains the frontend part of the application. Built with [TypeS
 - Backend repo: https://github.com/DarjaElina/room-reservation-app-backend
 - Account activation page repo: https://github.com/DarjaElina/account-activation-page
 
+#### ⏰ Work hours 
+
+[Link to work hours listing](https://github.com/DarjaElina/room-reservation-app/blob/main/workHours.md)
+
 ### ✨ Features
 
 - JSON Web Token authentication (login, registration, refresh)
