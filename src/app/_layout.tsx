@@ -44,14 +44,31 @@ export default function RootLayout() {
       <AuthStorageContext.Provider value={authStorage}>
         <TypesafeI18n locale={localeLoaded}>
           <BookingProvider>
-            <SafeAreaView style={styles.container}>
-              <ThemeProvider
-                value={scheme === 'dark' ? customDarkTheme : customLightTheme}
+            <ThemeProvider
+              value={scheme === 'dark' ? customDarkTheme : customLightTheme}
+            >
+              <SafeAreaView
+                style={[
+                  styles.container,
+                  {
+                    backgroundColor:
+                      scheme === 'dark'
+                        ? 'rgb(18, 20, 22)'
+                        : 'rgba(245, 250, 255, 1)',
+                  },
+                ]}
               >
-                <StatusBar style="auto" />
+                <StatusBar
+                  backgroundColor={
+                    scheme === 'dark'
+                      ? 'rgb(18, 20, 22)'
+                      : 'rgba(245, 250, 255, 1)'
+                  }
+                  style="auto"
+                />
                 <Slot />
-              </ThemeProvider>
-            </SafeAreaView>
+              </SafeAreaView>
+            </ThemeProvider>
           </BookingProvider>
         </TypesafeI18n>
       </AuthStorageContext.Provider>

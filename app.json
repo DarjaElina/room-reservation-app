@@ -18,19 +18,25 @@
       "bundleIdentifier": "com.daria111.mobilefrontend",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
-      }
+      },
+        "icon": {
+          "dark": "./src/assets/images/ios-dark.png",
+          "light": "./src/assets/images/ios-light.png",
+          "tinted": "./src/assets/images/ios-tinted.png"
+        }
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/images/adaptive-icon.png",
+        "foregroundImage": "./src/assets/images/android-adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.daria111.mobilefrontend"
+      "package": "com.daria111.mobilefrontend",
+      "icon": "./src/assets/images/icon.png"
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./src/assets/images/favicon.png"
+      "favicon": "./src/assets/images/favicon.ico"
     },
     "plugins": [
       "expo-router",
@@ -46,7 +52,19 @@
           ]
         }
       ],
-      "expo-localization"
+      "expo-localization",
+      [
+      "expo-splash-screen",
+        {
+          "backgroundColor": "#f5faff",
+          "image": "./src/assets/images/splash-icon.png",
+          "dark": {
+            "image": "./src/assets/images/splash-icon.png",
+            "backgroundColor": "#121416"
+          },
+          "imageWidth": 200
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
