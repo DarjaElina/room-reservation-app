@@ -36,16 +36,16 @@ This project supports both Android and iOS development builds for easy testing a
 
 #### 🤖 Android Development Build
 
-- ➡️ [Download Android build](https://expo.dev/accounts/daria111/projects/mobile-frontend/builds/72860318-312d-4f6a-9e93-55d54fcf5a65)
+- ➡️ [Download Android build](https://expo.dev/accounts/daria111/projects/mobile-frontend/builds/4cd620d7-d128-45fc-9a96-8c5c169302fd)
 
 Then follow the instructions to install the APK file.
 
-#### 🍎 iOS Development Build (Simulator only, Mac required)
+#### 🍎 iOS Development Build (Simulator only, Mac and [XCode](https://developer.apple.com/xcode/) required)
 
 Unfortunately, I found no easy way to share and run the iOS development build without an Apple Developer account.
 If you still would like to test the iOS build, you can do the following:
 
-1) Download the tar file from from [this GitHub release](https://github.com/DarjaElina/room-reservation-app/releases/v0.0.1)
+1) Download the **room-reservation-app.tar.gz** file from from [this GitHub release](https://github.com/DarjaElina/room-reservation-app/releases/v0.0.3)
 2) Extract the file by doubleclicking it
 3) Open the iOS simulator (requires XCode)
 4) Drag and drop the extracted file into the Simulator window
@@ -71,6 +71,29 @@ The web version lives here: https://mobile-frontend.expo.app
 
 ### Notes about CI tests
 Currently build pipeline for Android does not have e2e testing. Android Maestro tests can be run locally due to the complexity of setting up emulators in CI environments (or me not having Maestro Cloud paid subscription 😁)
+
+### Previews
+
+#### Login screen
+
+![Login screen](screenshots/ios-screenshots/en/login-screen.png)
+
+#### Home screen
+
+![Home screen](screenshots/ios-screenshots/en/main-screen.png)
+
+#### Calendar
+
+![Calendar](screenshots/ios-screenshots/en/calendar.png)
+
+#### Settings
+
+![Settings](screenshots/ios-screenshots/en/settings.png)
+
+#### Time picker
+
+![Time picker](screenshots/ios-screenshots/en/time-picker.png)
+
 
 ### 🧡 Acknowledgments
 Huge thanks to the [Full Stack Open](https://fullstackopen.com/en/) team for creating such a fantastic, free, and super educational course. It’s been a joy studying the materials and completing projects! 🙏✨
