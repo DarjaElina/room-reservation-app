@@ -6,12 +6,12 @@ This project is a full-stack application designed for music school students and 
 
 This repository contains the frontend part of the application. Built with [TypeScript](https://www.typescriptlang.org/), [React Native](https://reactnative.dev/), and [Expo](https://expo.dev/), it supports both native mobile and web platforms.
 
-#### 🔗 Links to other parts of the project:
+### Links to other parts of the project:
 
 - Backend repo: https://github.com/DarjaElina/room-reservation-app-backend
 - Account activation page repo: https://github.com/DarjaElina/account-activation-page
 
-#### ⏰ Work hours 
+### ⏰ Work hours 
 
 [Link to work hours listing](https://github.com/DarjaElina/room-reservation-app/blob/main/workHours.md)
 
