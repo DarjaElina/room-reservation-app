@@ -19,7 +19,7 @@ appId: com.daria111.mobilefrontend
 - tapOn: 'Modify'
 - assertVisible: 'Reservation from Booking App'
 - longPressOn:
-    point: '70%,33%'
+    point: '70%,36%'
 - tapOn: 'Select All'
 - eraseText
 - inputText: 'New Title'

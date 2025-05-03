@@ -69,30 +69,27 @@ The web version lives here: https://mobile-frontend.expo.app
 2. Enter your email address
 3. The system will generate a username and let you set a password
 
-### Notes about CI tests
-Currently build pipeline for Android does not have e2e testing. Android Maestro tests can be run locally due to the complexity of setting up emulators in CI environments (or me not having Maestro Cloud paid subscription 😁)
+### Screenshots
 
-### Previews
+#### Home Screen
+<img src="screenshots/main-screen.png" alt="Home Screen" width="400"/>
 
-#### Login screen
+---
 
-![Login screen](screenshots/ios-screenshots/en/login-screen.png)
+#### Room View
+<img src="screenshots/room-view.png" alt="Room View" width="400"/>
 
-#### Home screen
+---
 
-![Home screen](screenshots/ios-screenshots/en/main-screen.png)
+#### Time Picker
+<img src="screenshots/time-picker.png" alt="Time Picker" width="400"/>
 
-#### Calendar
+More screenshots can be found [here](https://github.com/DarjaElina/room-reservation-app/tree/main/screenshots)
 
-![Calendar](screenshots/ios-screenshots/en/calendar.png)
+#### Notes about CI tests
+Currently, E2E tests are not part of the CI pipeline. The tests can be run locally, but they tend to break in the CI environment due to timeouts and app crashes, likely caused by the emulator running inside a virtualized CI setup. Unfortunately, I haven’t set up a Maestro Cloud paid subscription for running tests in a more stable environment. 😁
 
-#### Settings
-
-![Settings](screenshots/ios-screenshots/en/settings.png)
-
-#### Time picker
-
-![Time picker](screenshots/ios-screenshots/en/time-picker.png)
+For a more consistent testing experience, I recommend running the Maestro tests locally in a simulator.
 
 
 ### 🧡 Acknowledgments
