@@ -58,7 +58,7 @@ npx expo run:ios
 ```
 
 ### 🌐 Web Deployment
-The web version lives here: https://mobile-frontend.expo.app
+The web version lives here: [https://mobile-frontend.expo.app](https://mobile-frontend--u2zj3se9p2.expo.app/calendar)
 
 #### You can log in using:
 - Username: jd10000
